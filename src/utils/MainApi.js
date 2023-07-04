@@ -10,14 +10,14 @@ export const register = (email, password, name) => request(REGISTER_API, {
     body: JSON.stringify({ email, password, name })
   });
 
-export const login = (email, password) => {request(LOGIN_API, {
-           method: 'POST',
+export const login = (email, password) => request(LOGIN_API, {
+    method: 'POST',
     headers: {
-      					'Accept': 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ email, password })
-  })};
+  });
 
 export const forgotPassword = (email) => request(RESET_PASSWORD_API, {
     method: 'POST',
