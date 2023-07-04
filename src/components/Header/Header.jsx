@@ -1,7 +1,6 @@
 import React from "react";
 import "../../scss/header.scss";
 import { Link } from "react-router-dom";
-import notice from "../../images/notice.svg";
 import options from "../../images/options.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -15,12 +14,15 @@ export default function Header() {
 			</div>
 
 			<div className="header__link-container">
-
 				<Link className="header__options" to="/profile">
 					<img src={options} alt="options" className="header__options-icon" />
 				</Link>
 				<Link className="header__avatar-profile" to="/profile">
-					<img src={currentUser.avatar} alt="avatar" className="header__avatar-icon" />
+					<img
+						src={currentUser.avatar}
+						alt="avatar"
+						className="header__avatar-icon"
+					/>
 				</Link>
 			</div>
 		</header>
