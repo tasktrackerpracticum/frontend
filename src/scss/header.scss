@@ -1,15 +1,70 @@
-@import './utils/mixins.scss';
+@import "./utils/mixins.scss";
 
 .header {
-  margin: 0;
-  background-color: #1C1C21;
+	margin: 0;
+	background-color: #fafafa;
+	min-width: 100%;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  &__container {
-    margin: 0 auto;
-  }
-  
-  &__title {
-    @include text-format(500, 24px, 29px);
-    margin: 0;
-  }
+	&__hidden {
+		visibility: hidden;
+	}
+
+	&__container {
+		margin: 0 auto;
+	}
+
+	&__title {
+		@include text-format(500, 24px, 29px);
+		margin: 0;
+		opacity: 0.6;
+	}
+
+	&__link-container {
+		display: flex;
+		gap: 10px;
+	}
+
+	&__options {
+		width: 24px;
+		height: 24px;
+		background: transparent;
+		background-color: rgb(0, 0, 0);
+		opacity: 0;
+
+		&:hover {
+			opacity: 0.8;
+			transition: opacity 0.3s linear 0s;
+		}
+	}
+	&__options-icon {
+		width: 24px;
+		height: 24px;
+		object-fit: cover;
+	}
+
+	&__avatar-profile {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: transparent;
+		background-color: rgb(0, 0, 0);
+		opacity: 0;
+
+		&:hover {
+			opacity: 0.8;
+			transition: opacity 0.3s linear 0s;
+		}
+	}
+
+	&__avatar-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
 }
