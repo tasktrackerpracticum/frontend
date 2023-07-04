@@ -1,0 +1,25 @@
+@import "./utils/mixins.scss";
+
+.search-form {
+	max-width: 261px;
+	height: 40px;
+	padding: 10px 70px 0;
+	background-color: gray;
+
+	&__icon {
+		background-image: url("../images/search-icon.svg");
+		background-repeat: no-repeat;
+		width: 18px;
+		height: 18px;
+	}
+
+    &__input {
+        width: 80%;
+        margin: 5px 5px 0 0;
+        background-color: #000000;
+        border: none;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 13px;
+    }
+}
