@@ -1,17 +1,15 @@
 import React from "react";
 import "../../scss/header.scss";
 import { Route, Link } from "react-router-dom";
-import options from "../../images/icon.svg";
-import defaultIcon from "../../images/options.svg";
+import defaultIcon from "../../images/icon.svg";
+import options from "../../images/options.svg";
 
 export default function Header() {
 	return (
-		<Route path={["/profile", "/organization", "/project"]}>
+		<Route path={["/profile", "/organization", "/project", "/"]}>
 			<header className="header">
 				<div className="header__container">
-					<Link to="/">
-						<h2 className="header__title">Такса</h2>
-					</Link>
+					<h2 className="header__title">Такса</h2>
 				</div>
 
 				<div className="header__link-container">
