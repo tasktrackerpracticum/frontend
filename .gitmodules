@@ -1,0 +1,6 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/ValLugovaia/task-tracker-frontend.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/Konstantin8891/Tracker.git
