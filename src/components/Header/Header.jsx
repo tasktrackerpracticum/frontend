@@ -15,10 +15,8 @@ export default function Header() {
 			</div>
 
 			<div className="header__link-container">
-				<Link className="header__notice" to="/notice">
-					<img src={notice} alt="notice" className="header__notice-icon" />
-				</Link>
-				<Link className="header__options" to="/options">
+
+				<Link className="header__options" to="/profile">
 					<img src={options} alt="options" className="header__options-icon" />
 				</Link>
 				<Link className="header__avatar-profile" to="/profile">
