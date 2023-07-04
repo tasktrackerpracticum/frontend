@@ -1,0 +1,31 @@
+@mixin text-format($font-weight, $font-size, $line-height) {
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin size($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin reset {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin text {
+  text-rendering: optimizeLegibility;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+@mixin flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin focus {
+  outline: 0;
+  outline-offset: 0;
+}

@@ -1,0 +1,15 @@
+@import './utils/mixins.scss';
+
+.header {
+  margin: 0;
+  background-color: #1C1C21;
+
+  &__container {
+    margin: 0 auto;
+  }
+  
+  &__title {
+    @include text-format(500, 24px, 29px);
+    margin: 0;
+  }
+}
