@@ -1,19 +1,29 @@
-class MainApi {
-  constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
-  }
+import request from "./utilsApi";
+import { RESET_PASSWORD_API, REGISTER_API, LOGIN_API } from "../constatnts/constants";
 
-  _handleResponse(res) {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-  }
-}
+export const register = (email, password, name) => request(REGISTER_API, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password, name })
+  });
 
-const mainApi = new MainApi({
-  baseUrl: "",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+export const login = (email, password) => {request(LOGIN_API, {
+           method: 'POST',
+    headers: {
+      					'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  })};
 
-export default mainApi;
+export const forgotPassword = (email) => request(RESET_PASSWORD_API, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email })
+  });
