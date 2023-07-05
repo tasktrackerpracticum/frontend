@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../Header/Header.jsx";
-import "../../scss/app.scss";
+import "../../scss/components/app.scss";
 import SideNavigation from "../SideNavigation/SideNavigation.jsx";
 import Menu from "../Menu/Menu.jsx";
 

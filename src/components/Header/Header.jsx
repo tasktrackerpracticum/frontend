@@ -1,5 +1,5 @@
 import React from "react";
-import "../../scss/header.scss";
+import "../../scss/components/header.scss";
 import { Route, Link } from "react-router-dom";
 import defaultIcon from "../../images/icon.svg";
 import options from "../../images/options.svg";
