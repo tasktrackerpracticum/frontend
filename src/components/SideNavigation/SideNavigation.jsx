@@ -1,0 +1,23 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import "./SideNavigation.scss";
+import {items} from "../../constatnts/constants"
+
+export default function SideNavigation({ active, setActive }) {
+	return (
+		<section className={active ? "side-navigation__active" : "side-navigation"}>
+			<div className="side-navigation__menu">
+				<ul className="side-navigation__menu-content">
+					{items.map((item) => (
+						<li className="side-navigation__link-container">
+							<span className="side-navigation__icon"></span>
+							<Link to={item.href} className="side-navigation__link">
+								{item.value}
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+	);
+}
