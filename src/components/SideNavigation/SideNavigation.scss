@@ -6,20 +6,28 @@
 	left: 0;
 	transform: translateX(-100%);
 	z-index: 100;
+	transition: all .2s;
+	background-color: #fafafa;
 
 	&__active {
-		transform: translateX();
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 64px;
+		left: 0;
+		transform: translateX(0);
 	}
 
 	&__menu {
 		width: 188px;
 		height: 100%;
-		background-color: white;
+		background-color: rgb(255, 255, 255);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin: 0;
 		margin-left: 6px;
+		border-right: 1px solid gray;
 	}
 
 	&__menu-content {
@@ -30,7 +38,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		margin-top: 8px;
+		margin-top: 3px;
+		transition: all .4s;
 	}
 
 	&__link-container {
@@ -44,16 +53,16 @@
 	&__link {
 		display: flex;
 		align-items: center;
-		cursor: pointer;
 		color: black;
 		font-size: 16px;
 		line-height: 24px;
 		font-weight: 500;
 		text-decoration: none;
 		text-align: center;
+		cursor: pointer;
 
 		&:hover {
-			opacity: 0.5;
+			opacity: 0.6;
 		}
 	}
 }
