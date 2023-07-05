@@ -19,5 +19,5 @@ export	const items = [
 		{ value: "Создать проект", href: "/" },
 		{ value: "Мои проекты", href: "/profile" },
 		{ value: "Мои задачи", href: "/project" },
-		{ value: "Мои отчеты", href: "/" },
+		{ value: "Мои отчеты", href: "/task" },
 	];

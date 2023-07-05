@@ -18,19 +18,19 @@ export default function Menu({ menuActive, setMenuActive }) {
 				<img
 					src={folder}
 					className="menu__icon-btn"
-					alt="мои проекты"
+					alt="Мои проекты"
 					onClick={() => setMenuActive(!menuActive)}
 				></img>
 				<img
 					src={task}
 					className="menu__icon-btn"
-					alt="мои задачи"
+					alt="Мои задачи"
 					onClick={() => setMenuActive(!menuActive)}
 				></img>
 				<img
 					src={reports}
 					className="menu__icon-btn"
-					alt="мои отчеты"
+					alt="Мои отчеты"
 					onClick={() => setMenuActive(!menuActive)}
 				></img>
 			</div>
