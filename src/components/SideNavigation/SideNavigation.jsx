@@ -7,6 +7,7 @@ export default function SideNavigation({ active, setActive }) {
 	return (
 		<section className={active ? "side-navigation__active" : "side-navigation"} onClick={() => setActive(false)}>
 			<div className="side-navigation__menu">
+			
 				<ul className="side-navigation__menu-content" onClick={(e) => e.isPropagationStopped}>
 					{items.map((item) => (
 						<li className="side-navigation__link-container">
@@ -19,5 +20,6 @@ export default function SideNavigation({ active, setActive }) {
 				</ul>
 			</div>
 		</section>
+		
 	);
 }
