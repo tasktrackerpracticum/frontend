@@ -1,4 +1,4 @@
-@import "./utils/mixins.scss";
+@import "../utils/mixins.scss";
 
 .search-form {
 	max-width: 261px;
@@ -7,7 +7,7 @@
 	background-color: gray;
 
 	&__icon {
-		background-image: url("../images/search-icon.svg");
+		background-image: url("../../images/search-icon.svg");
 		background-repeat: no-repeat;
 		width: 18px;
 		height: 18px;

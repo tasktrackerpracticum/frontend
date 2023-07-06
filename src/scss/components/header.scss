@@ -1,4 +1,4 @@
-@import "./utils/mixins.scss";
+@import "../utils/mixins.scss";
 
 .header {
 	margin: 0;
@@ -15,6 +15,7 @@
 	}
 
 	&__container {
+    @include reset;
 	}
 
 	&__title {
