@@ -10,8 +10,7 @@ export default function SideNavigation({ active, setActive }) {
 			
 				<ul className="side-navigation__menu-content" onClick={(e) => e.isPropagationStopped}>
 					{items.map((item) => (
-						<li className="side-navigation__link-container">
-							<span className="side-navigation__icon"></span>
+						<li key={item.toSting()} className="side-navigation__link-container">
 							<Link to={item.href} className="side-navigation__link">
 								{item.value}
 							</Link>
