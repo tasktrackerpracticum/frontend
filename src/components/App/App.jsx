@@ -7,15 +7,16 @@ import Profile from "../Profile/Profile.jsx"
 
 function App() {
 	const [menuActive, setMenuActive] = useState(false);
+  const [profileActive, setProfileActive] = useState(false);
 
 	return (
 		<>
 			<div className="page">
 				<div className="page__container">
-					<Header />
+					<Header active={profileActive} setActive={setProfileActive}/>
 					<Menu menuActive={menuActive} setMenuActive={setMenuActive} />
 					<SideNavigation active={menuActive} setActive={setMenuActive} />
-					<Profile />
+					<Profile active={profileActive} setActive={setProfileActive} />
 				</div>
 			</div>
 		</>

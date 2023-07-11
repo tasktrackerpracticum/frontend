@@ -3,18 +3,33 @@ import { Route } from "react-router-dom";
 import avatar from "../../images/user-avatar-profile.png";
 import "./profile.scss";
 
-function Profile() {
+function Profile({active, setActive}) {
 	return (
 		<Route path="/profile">
-			<section className="profile">
+			<section className={active ? "profile__active" : "profile"}>
+				<div className="profile__wrap"> 
 				<h1 className="profile__title">Профиль</h1>
+				<h2 className="profile__status">Статус</h2>
+				</div>
+				
 				<div className="profile__content">
+					
 					<div className="profile__avatar-overlay"> </div>
 					<img
 						src={avatar}
 						alt="место для аватара"
 						className="profile__avatar"
 					/>
+					<div className="profile__container-check"> 
+					<input 
+					type="checkbox" 
+					id="check-input" 
+					name="check"
+					className="profile__input-check" />
+					<label for="check-input" className="profile__check-email"> Уведомление на почту</label>
+					</div>
+				
+
 					<div className="profile__info">
 						<div className="profile__container">
 							<h2 className="profile__subtitle">Имя</h2>
@@ -77,7 +92,7 @@ function Profile() {
 						
 								id="phone-input"
 								type="number"
-								placeholder="Укажите пол"
+								placeholder="+7(__)__-__-__"
 								name="phone"
 								minLength="9"
 								maxLength="11"
@@ -106,12 +121,29 @@ function Profile() {
 						
 								id="work-input"
 								type="text"
-								placeholder="Укажите пол"
+								placeholder="Укажите должность"
 								name="work"
 								minLength="2"
 								maxLength="10"
 								required
 							/>
+						</div>
+						<div className="profile__container-timezone">
+						<h2 className="profile__subtitle">Часовой пояс</h2>
+							<input
+								className="profile__input"
+						
+								id="timezone-input"
+								type="datetime-local"
+								placeholder="Выберите ваш часовой пояс"
+								name="timezone"
+								required
+							/>
+						</div>
+
+						<div className="profile__container-btn">
+							<button className="profile__submit-btn" type="submit">Сохранить</button>
+							<button className="profile__cancel-btn" onClick={() => setActive(!active)}>Отмена</button>
 						</div>
 				</div>
 			</section>

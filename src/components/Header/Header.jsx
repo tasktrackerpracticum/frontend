@@ -4,7 +4,7 @@ import { Route, Link } from "react-router-dom";
 import defaultIcon from "../../images/icon.svg";
 import options from "../../images/options.svg";
 
-export default function Header() {
+export default function Header({ active, setActive }) {
 	return (
 		<Route path={["/profile", "/organization", "/project", "/"]}>
 			<header className="header">
@@ -21,6 +21,7 @@ export default function Header() {
 							src={defaultIcon}
 							alt="avatar"
 							className="header__avatar-icon"
+							onClick={() => setActive(!active)}
 						/>
 					</Link>
 				</div>
