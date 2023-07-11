@@ -1,4 +1,3 @@
-import "../../scss/components/main.scss";
 import Project from "../Project/Project";
 
 export default function Main() {

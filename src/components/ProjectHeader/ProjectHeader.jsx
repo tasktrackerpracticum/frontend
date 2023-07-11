@@ -1,4 +1,4 @@
-import "../../scss/components/projectHeader.scss";
+
 
 export default function ProjectHeader() {
 

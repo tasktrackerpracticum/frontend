@@ -1,4 +1,4 @@
-import "../../scss/components/projectContainer.scss";
+
 import TaskContainer from "../TaskContainer/TaskContainer";
 import { projectContainers } from "../../constatnts/constants";
 

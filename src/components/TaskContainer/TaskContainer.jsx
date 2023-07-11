@@ -1,8 +1,7 @@
-import "../../scss/components/taskContainer.scss";
+import { taskContainerType } from "../../constatnts/prop-types";
 import Task from "../Task/Task";
 
 export default function TaskContainer({ taskHeader }) {
-  console.log(taskHeader)
 
   return(
     <section className="taskContainer">
@@ -21,4 +20,8 @@ export default function TaskContainer({ taskHeader }) {
       </ul>
     </section>
   )
+}
+
+TaskContainer.propTypes = {
+  taskHeader: taskContainerType
 }
