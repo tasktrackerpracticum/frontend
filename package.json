@@ -28,7 +28,7 @@
 		"lint": "eslint . --ext .js,.jsx .",
 		"lint:fix": "npm run lint -- --fix",
 		"format": "prettier . --write --ignore-path ./.prettierignore",
-		"prepare": "husky"
+		"prepare": "husky install"
 	},
 	"eslintConfig": {
 		"extends": [
