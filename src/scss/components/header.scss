@@ -15,6 +15,7 @@
 	}
 
 	&__container {
+		@include reset;
 	}
 
 	&__title {
