@@ -8,10 +8,10 @@ import Menu from '../Menu/Menu.jsx';
 import Register from '../Register/Register.jsx';
 import Login from '../Login/Login.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
+import Main from "../Main/Main.jsx";
 
 function App() {
   const [menuActive, setMenuActive] = useState(false);
-
   const { handleLogin, handleRegister } = useAuth();
 
   return (
@@ -21,6 +21,7 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Header />
+              <Main />
               <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
               <SideNavigation active={menuActive} setActive={setMenuActive} />
             </Route>
@@ -38,6 +39,5 @@ function App() {
       </div>
     </>
   );
-}
-
+  }
 export default App;

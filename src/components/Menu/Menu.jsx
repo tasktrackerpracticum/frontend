@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./Menu.scss";
 import plus from "../../images/icon-create-project.svg";
 import folder from "../../images/icon-folder-project.svg";

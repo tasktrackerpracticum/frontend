@@ -1,0 +1,24 @@
+@import "../utils/mixins.scss";
+
+
+.projectHeader {
+  @include reset;
+
+  &__button {
+    @include reset;
+  }
+
+  &__header {
+    @include reset;
+    @include text-format(500, 40px, 24px)
+  }
+  
+  &__status {
+    @include reset;
+    @include text-format(500, 16px, 24px)
+  }
+    
+  &__container {
+    @include reset;
+  }
+}

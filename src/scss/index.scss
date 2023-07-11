@@ -1,4 +1,5 @@
-@import 'fonts';
-@import 'libs/normalize';
+@import './fonts';
+@import './utils/variable.scss';
+@import './libs/normalize.css';
 
-@import 'components/all';
+@import './components/all';
