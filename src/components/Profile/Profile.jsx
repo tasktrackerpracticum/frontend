@@ -2,10 +2,12 @@ import React from "react";
 import { Route } from "react-router-dom";
 import avatar from "../../images/user-avatar-profile.png";
 import "./profile.scss";
+import useValidation from '../../hooks/useValidation';
 
 function Profile({active, setActive}) {
+	const {values, handleChange} = useValidation();
+
 	return (
-		<Route path="/profile">
 			<section className={active ? "profile__active" : "profile"}>
 				<div className="profile__wrap"> 
 				<h1 className="profile__title">Профиль</h1>
@@ -35,7 +37,8 @@ function Profile({active, setActive}) {
 							<h2 className="profile__subtitle">Имя</h2>
 							<input
 								className="profile__input"
-				
+								value={values.name}
+								onChange={handleChange}
 								id="name-input"
 								type="text"
 								placeholder="Имя"
@@ -49,7 +52,8 @@ function Profile({active, setActive}) {
 							<h2 className="profile__subtitle">Фамилия</h2>
 							<input
 								className="profile__input"
-						
+								value={values.surname}
+								onChange={handleChange}
 								id="surname-input"
 								type="text"
 								placeholder="Имя"
@@ -63,7 +67,8 @@ function Profile({active, setActive}) {
 							<h2 className="profile__subtitle">Дата рождения</h2>
 							<input
 								className="profile__input"
-						
+								value={values.date}
+								onChange={handleChange}
 								id="date-input"
 								type="date"
 								placeholder="Дата"
@@ -75,7 +80,8 @@ function Profile({active, setActive}) {
 							<h2 className="profile__subtitle">Пол</h2>
 							<input
 								className="profile__input"
-						
+								value={values.gender}
+								onChange={handleChange}
 								id="gender-input"
 								type="text"
 								placeholder="Укажите пол"
@@ -89,7 +95,8 @@ function Profile({active, setActive}) {
 							<h2 className="profile__subtitle">Телефон</h2>
 							<input
 								className="profile__input"
-						
+								value={values.phone}
+								onChange={handleChange}
 								id="phone-input"
 								type="number"
 								placeholder="+7(__)__-__-__"
@@ -103,10 +110,11 @@ function Profile({active, setActive}) {
 							<h2 className="profile__subtitle">Электронная почта</h2>
 							<input
 								className="profile__input"
-						
+								value={values.email}
+								onChange={handleChange}
 								id="email-input"
 								type="email"
-								placeholder="Укажите пол"
+								placeholder="Укажите почту"
 								name="email"
 								minLength="7"
 								maxLength="20"
@@ -118,7 +126,8 @@ function Profile({active, setActive}) {
 							<h2 className="profile__subtitle">Должность</h2>
 							<input
 								className="profile__input"
-						
+								value={values.work}
+								onChange={handleChange}
 								id="work-input"
 								type="text"
 								placeholder="Укажите должность"
@@ -132,7 +141,8 @@ function Profile({active, setActive}) {
 						<h2 className="profile__subtitle">Часовой пояс</h2>
 							<input
 								className="profile__input"
-						
+								value={values.timezone}
+								onChange={handleChange}
 								id="timezone-input"
 								type="datetime-local"
 								placeholder="Выберите ваш часовой пояс"
@@ -147,7 +157,6 @@ function Profile({active, setActive}) {
 						</div>
 				</div>
 			</section>
-		</Route>
 	);
 }
 
