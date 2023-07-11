@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../Header/Header.jsx";
-import "../../scss/app.scss";
+import "../../scss/components/_all.scss";
 import Profile from "../Profile/Profile.jsx"
 
 function App() {
