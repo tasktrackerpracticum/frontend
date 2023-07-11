@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import '../../scss/components/auth.scss';
 import useValidation from '../../hooks/useValidation';
+import { loginFunctionType } from '../../constatnts/prop-types';
 
 function Register({ onRegister }) {
   const { values, handleChange } = useValidation();
@@ -86,3 +86,8 @@ function Register({ onRegister }) {
 }
 
 export default Register;
+
+
+Register.propTypes = {
+  onRegister: loginFunctionType
+}

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import '../../scss/components/auth.scss';
 import useValidation from '../../hooks/useValidation';
+import { loginFunctionType } from '../../constatnts/prop-types';
 
 function Login({ onLogin }) {
   const { values, handleChange } = useValidation();
@@ -85,3 +85,7 @@ function Login({ onLogin }) {
 }
 
 export default Login;
+
+Login.propTypes = {
+  onLogin: loginFunctionType
+}

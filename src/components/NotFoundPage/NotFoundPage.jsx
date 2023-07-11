@@ -1,4 +1,3 @@
-import '../../scss/components/notFoundPage.scss';
 import { NavLink } from 'react-router-dom';
 
 function NotFoundPage() {

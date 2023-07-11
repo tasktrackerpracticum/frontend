@@ -1,0 +1,19 @@
+@import "../utils/mixins.scss";
+@import "../utils/variable.scss";
+
+.task {
+  @include reset;
+  height: 120px;
+  width: 277px;
+  background-color: $cardColor;
+  border-radius: $borderRadiusTask;
+
+  &__header {
+    @include reset;
+    @include text-format(500, 16px, 20px)
+  }
+
+  &__timeContainer {
+    @include reset;
+  }
+}
