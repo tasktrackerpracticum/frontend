@@ -8,15 +8,20 @@
   "extends": [ 
       "eslint:recommended",
       "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
       "prettier"
   ],
-  "parser": "babel-eslint", // Парсер для обработки jsx кода
+  "parser": "@babel/eslint-parser", // Парсер для обработки jsx кода
   "parserOptions": {
       "ecmaFeatures": {
           "jsx": true
       },
       "ecmaVersion": 11, // версия стандарта JavaScript. Последний 12 (2021).
-      "sourceType": "module" // Позволяет использовать import/export
+      "sourceType": "module", // Позволяет использовать import/export
+      "requireConfigFile": false, // Устраняет какой-то конфликт с babel
+      "babelOptions": {
+        "presets": ["@babel/preset-react"] // Пресет для реакта
+     }
   },
   // Здесь мы подключаем используемые плагины.
   "plugins": [
