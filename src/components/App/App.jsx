@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { Route, Switch } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Header from '../Header/Header.jsx';
@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile.jsx"
 
 function App() {
   const { handleLogin, handleRegister } = useAuth();
-  const {profileActive, setProfileActive} = useState(false);
+  const [profileActive, setProfileActive] = React.useState(false);
 
   return (
     <>
@@ -19,8 +19,8 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Header active={profileActive} setActive={setProfileActive}/>
-              <Main />
               <Profile active={profileActive} setActive={setProfileActive}/>
+              <Main />
             </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />
