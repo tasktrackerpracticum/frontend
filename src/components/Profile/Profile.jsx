@@ -8,7 +8,7 @@ function Profile({ active, setActive }) {
   return (
     <section className={active ? 'profile__active' : 'profile'}>
       <div className='profile__wrap'>
-        <img src={avatar} alt='место для аватара' className='profile__avatar' />
+        <img src={avatar} alt='место для аватара' className='profile__avatar'/>
         <div className='profile__info-content'>
           <h1 className='profile__title'>Имя пользователя</h1>
           <h2 className='profile__date'>Дата рождения</h2>
