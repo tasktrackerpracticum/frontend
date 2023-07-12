@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Route, Switch } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Header from '../Header/Header.jsx';
@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile.jsx"
 
 function App() {
   const { handleLogin, handleRegister } = useAuth();
-  const [profileActive, setProfileActive] = useState(false);
+  const {profileActive, setProfileActive} = useState(false);
 
   return (
     <>
@@ -20,7 +20,7 @@ function App() {
             <Route exact path='/'>
               <Header active={profileActive} setActive={setProfileActive}/>
               <Main />
-			  <Profile active={profileActive} setActive={setProfileActive} e
+              <Profile active={profileActive} setActive={setProfileActive}/>
             </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />
@@ -38,3 +38,4 @@ function App() {
   );
   }
 export default App;
+

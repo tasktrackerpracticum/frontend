@@ -1,7 +1,7 @@
-import React from "react";
-import { Route } from "react-router-dom";
 import avatar from "../../images/user-avatar-profile.png";
 import useValidation from "../../hooks/useValidation";
+import { activeFunctionType } from '../../constatnts/prop-types';
+
 
 function Profile({ active, setActive }) {
 	const { values, handleChange } = useValidation();
@@ -23,7 +23,7 @@ function Profile({ active, setActive }) {
 						name="check"
 						className="profile__input-check"
 					/>
-					<label for="check-input" className="profile__check-email">
+					<label htmlFor="check-input" className="profile__check-email">
 						{" "}
 						Уведомление на почту
 					</label>
@@ -165,3 +165,8 @@ function Profile({ active, setActive }) {
 }
 
 export default Profile;
+
+  Profile.propTypes = {
+	active: activeFunctionType,
+	setActive: activeFunctionType
+  }
