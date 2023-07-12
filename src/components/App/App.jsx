@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Header from '../Header/Header.jsx';
 import Register from '../Register/Register.jsx';
 import Login from '../Login/Login.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
-import Main from "../Main/Main.jsx";
-import Profile from "../Profile/Profile.jsx";
-import Project from "../Project/Project.jsx";
+import Main from '../Main/Main.jsx';
+import Profile from '../Profile/Profile.jsx';
+import Project from '../Project/Project.jsx';
 
 function App() {
   const { handleLogin, handleRegister } = useAuth();
   const [profileActive, setProfileActive] = React.useState(false);
-  const [isOpenTaskCreate, isOpenTaskCreate] = React.useState(false);
+  const [isOpenTaskCreate, setOpenTaskCreate] = React.useState(false);
 
   return (
     <>
@@ -20,15 +20,14 @@ function App() {
         <div className='page__container'>
           <Switch>
             <Route exact path='/'>
-              <Header active={profileActive} setActive={setProfileActive}/>
-              <Profile active={profileActive} setActive={setProfileActive}/>
-             
+              <Header active={profileActive} setActive={setProfileActive} />
+              <Profile active={profileActive} setActive={setProfileActive} />
             </Route>
-            <Route path="/project">
-            <Header active={profileActive} setActive={setProfileActive}/>
-            <Profile active={profileActive} setActive={setProfileActive}/>
-                <Project isOpen={isOpenTaskCreate} setOpen={isOpenTaskCreate}/>
-              </Route>
+            <Route path='/project'>
+              <Header active={profileActive} setActive={setProfileActive} />
+              <Profile active={profileActive} setActive={setProfileActive} />
+              <Project isOpen={isOpenTaskCreate} setOpen={setOpenTaskCreate} />
+            </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />
             </Route>
@@ -43,6 +42,5 @@ function App() {
       </div>
     </>
   );
-  }
+}
 export default App;
-
