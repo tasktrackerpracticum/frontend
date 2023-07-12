@@ -26,7 +26,7 @@ function App() {
             </Route>
             <Route exact path='/project'>
               <Header active={profileActive} setActive={setProfileActive} />
-              <Profile active={profileActive} setActive={setProfileActive} />
+
               <Project isOpen={isOpenTaskCreate} setOpen={setOpenTaskCreate} />
             </Route>
             <Route path='/register' onRegister={handleRegister}>

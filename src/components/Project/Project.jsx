@@ -1,5 +1,6 @@
 import '../../scss/components/project.scss';
 import { openFunctionType } from '../../constatnts/prop-types';
+import { NavLink} from "react-router-dom";
 
 export default function Project({ isOpen, setOpen }) {
   const openTaskCreate = () => {
@@ -8,12 +9,16 @@ export default function Project({ isOpen, setOpen }) {
 
   return (
     <section className='project'>
+
       <div className='project__wrap'>
         <div className='project__create'>
           <button className='project__create-btn'>
             <div className='project__icon-create' onClick={openTaskCreate} />
             Новый проект
           </button>
+          <NavLink to="/"> 
+          <button> RETURN</button>
+          </NavLink>
         </div>
         <div className='project__content'>
           <div className='project__tag'>

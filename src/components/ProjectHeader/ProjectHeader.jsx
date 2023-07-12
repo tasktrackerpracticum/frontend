@@ -1,4 +1,5 @@
 import '../../scss/components/projectHeader.scss';
+import { NavLink } from "react-router-dom";
 
 export default function ProjectHeader() {
   return (
@@ -15,7 +16,9 @@ export default function ProjectHeader() {
           <p className='projectHeader__team'>Команда:</p>
         </div>
       </div>
+      <NavLink to="/project"> 
       <button className='projectHeader__button' />
+      </NavLink>
     </div>
   );
 }
