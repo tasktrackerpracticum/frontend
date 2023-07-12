@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import avatar from "../../images/user-avatar-profile.png";
-import "../../scss/components/_all.scss";
 import useValidation from "../../hooks/useValidation";
 
 function Profile({ active, setActive }) {
