@@ -1,6 +1,4 @@
 import '../../scss/components/project.scss';
-import ProjectHeader from '../ProjectHeader/ProjectHeader';
-import ProjectContainer from '../ProjectContainer/ProjectContainer';
 import { openFunctionType } from '../../constatnts/prop-types';
 
 export default function Project({ isOpen, setOpen }) {
