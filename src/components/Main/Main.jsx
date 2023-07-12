@@ -6,7 +6,7 @@ export default function Main() {
     <main className='main'>
       <div className='main__container'>
         <ProjectHeader />
-        <ProjectContainer />
+       <ProjectContainer />
       </div>
     </main>
   );
