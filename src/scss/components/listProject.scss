@@ -1,0 +1,79 @@
+.listProject {
+  width: 320px;
+  height: 840px;
+  margin-top: 50px;
+  border-radius: 40px;
+  background: #f5f1ed;
+  padding: 40px;
+  left: 40px;
+
+  &__create {
+    width: 56px;
+    height: 56px;
+    border-radius: 72px;
+    background: #f8d57e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__create-btn {
+    border: none;
+    text-align: center;
+    width: 32px;
+    height: 32px;
+    background: url(../../images/add.svg) no-repeat center;
+    object-fit: contain;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__content {
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__container {
+    width: 100%;
+    border-radius: 16px;
+    height: 158px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 16px;
+  }
+
+  &__project-title {
+    max-width: 208px;
+    margin: 0 10px;
+  }
+
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__project-info {
+    margin: 0 10px;
+  }
+
+  &__project-status {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    width: 88px;
+    height: 26px;
+    border-radius: 4px;
+    background: #F8D57E66;
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

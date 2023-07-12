@@ -1,11 +1,15 @@
 .main {
-  max-width: 1280px;
-  justify-self: center;
+  display: flex;
+  gap: 50px;
+  margin: 0 auto;
 
   &__container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 40px;
+    background: #F5F1ED;
+    border-radius: 40px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
     height: 100%;
     overflow: visible;
   }

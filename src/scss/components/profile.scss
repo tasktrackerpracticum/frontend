@@ -82,7 +82,7 @@
   }
 
   &__container-check {
-	margin-top: 50px;
+    margin-top: 50px;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -104,7 +104,7 @@
   }
 
   &__container-btn {
-	width: 400px;
+    width: 400px;
     padding-top: 385px;
     display: flex;
     gap: 15px;
@@ -114,9 +114,9 @@
     border: none;
     height: 53px;
     border-radius: 15px;
-    background-color: #F8D57E;
+    background-color: #f8d57e;
     color: black;
-	font-size: 20px;
+    font-size: 20px;
     cursor: pointer;
     transition: opacity 0.2s ease;
 
@@ -130,7 +130,7 @@
     border: none;
     cursor: pointer;
     transition: opacity 0.2s ease;
-	background: url(../../images/close.svg) no-repeat right;
+    background: url(../../images/close.svg) no-repeat right;
 
     &:hover {
       opacity: 0.5;
@@ -158,8 +158,8 @@
       opacity: 0.5;
     }
 
-	&:focus {
-		outline: none;
-	}
+    &:focus {
+      outline: none;
+    }
   }
 }

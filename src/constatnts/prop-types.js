@@ -6,3 +6,6 @@ export const loginFunctionType = requiredFunc;
 
 export const activeFunctionType = requiredFunc;
 
+export const openFunctionType = requiredFunc;
+
+
