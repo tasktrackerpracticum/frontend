@@ -12,6 +12,7 @@ import Project from "../Project/Project.jsx";
 function App() {
   const { handleLogin, handleRegister } = useAuth();
   const [profileActive, setProfileActive] = React.useState(false);
+  const [isOpenTaskCreate, isOpenTaskCreate] = React.useState(false);
 
   return (
     <>
@@ -26,7 +27,7 @@ function App() {
             <Route path="/project">
             <Header active={profileActive} setActive={setProfileActive}/>
             <Profile active={profileActive} setActive={setProfileActive}/>
-                <Project />
+                <Project isOpen={isOpenTaskCreate} setOpen={isOpenTaskCreate}/>
               </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />

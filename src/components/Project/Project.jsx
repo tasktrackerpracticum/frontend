@@ -1,8 +1,13 @@
 import "../../scss/components/project.scss";
 import ProjectHeader from "../ProjectHeader/ProjectHeader";
 import ProjectContainer from "../ProjectContainer/ProjectContainer";
+import { openFunctionType } from '../../constatnts/prop-types';
 
-export default function Project() {
+export default function Project({isOpen, setOpen}) {
+
+  const openTaskCreate = () => {
+		setOpen(!isOpen);
+	  };
 
   return(
     <section className="project">
@@ -10,7 +15,7 @@ export default function Project() {
   
       <div className="project__create">
         <button className="project__create-btn">
-        <div className="project__icon-create" />
+        <div className="project__icon-create" onClick={openTaskCreate}/>
           Новый проект</button>
       </div>
       <div className="project__content">
@@ -43,3 +48,8 @@ export default function Project() {
     </section>
   )
 }
+
+Project.propTypes = {
+  isOpen: openFunctionType,
+  setOpen: openFunctionType,
+};
