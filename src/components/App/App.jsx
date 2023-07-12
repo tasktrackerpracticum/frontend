@@ -6,7 +6,8 @@ import Register from '../Register/Register.jsx';
 import Login from '../Login/Login.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Main from "../Main/Main.jsx";
-import Profile from "../Profile/Profile.jsx"
+import Profile from "../Profile/Profile.jsx";
+import Project from "../Project/Project.jsx";
 
 function App() {
   const { handleLogin, handleRegister } = useAuth();
@@ -20,8 +21,13 @@ function App() {
             <Route exact path='/'>
               <Header active={profileActive} setActive={setProfileActive}/>
               <Profile active={profileActive} setActive={setProfileActive}/>
-              <Main />
+             
             </Route>
+            <Route path="/project">
+            <Header active={profileActive} setActive={setProfileActive}/>
+            <Profile active={profileActive} setActive={setProfileActive}/>
+                <Project />
+              </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />
             </Route>
