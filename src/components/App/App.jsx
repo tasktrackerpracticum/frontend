@@ -20,7 +20,7 @@ function App() {
             <Route exact path='/'>
               <Header active={profileActive} setActive={setProfileActive}/>
               <Main />
-			  <Profile active={profileActive} setActive={setProfileActive} />
+			  <Profile active={profileActive} setActive={setProfileActive} e
             </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />
