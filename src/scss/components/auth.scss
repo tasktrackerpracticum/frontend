@@ -2,30 +2,31 @@
 
 .auth {
   display: flex;
-  height: 100vh;  
+  height: calc(100vh - 160px);
+  padding: 80px;
+  margin: auto;
+  gap: 80px;
 
   &__block {
-    flex-grow: 1;
-    width: 50%;
-    margin: 80px auto;
+    min-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  &__image {
-    flex-grow: 1;
-    width: 50%;
-    background: url(../../images/taksa.jpg) no-repeat center;
+    justify-content: space-between;
   }
 
   &__container {
-    width: 480px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     height: 100vh;
+    border-radius: 52px;
+  }
+
+  &__container_left {
+    background-color: #F5F1ED;
   }
 
   &__top {
@@ -36,11 +37,12 @@
   }
 
   &__name {
-    font-size: 44px;
+    font-size: 32px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 41px;
     text-align: center;
-    margin-bottom: 96px;
+    margin: 56px auto 120px;
+    color: #2F261B;
   }
 
   &__title {
@@ -52,112 +54,41 @@
   }
   
   &__form {
-    width: 100%;
+    width: 488px;
     display: flex;
     flex-direction: column;
     align-items: left;
-    gap: 28px;
+    gap: 24px;
   }
   
   &__input {
-    width: calc(100% - 20px);
-    height: 64px;
-    border: 1px solid #D9D9D9;
-    border-radius: 15px;
+    width: calc(100% - 24px);
+    height: 59px;
+    border: 1px solid #9D8E80;
+    border-radius: 16px;
     font-size: 18px;
     font-weight: 400;
     line-height: 24px;
-    color: #7F7E88;
-    padding: 0 0 0 20px;
+    color: #9D8E80;
+    padding: 0 0 0 24px;
     outline: none;
-  }
-
-  &__password {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 64px;
-    border: 1px solid #D9D9D9;
-    border-radius: 15px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #7F7E88;
-    padding: 0;
-    align-items : center;
-    overflow: hidden;
-  }
-
-  &__input_type_password {
-    width: calc(100% - 64px);
-    border: none;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #7F7E88;
-    padding: 0 0 0 20px;
-  }
-
-  &__hide-button {
-    width: 24px;
-    height: 24px;
-    background: url(../../images/icon-hide.svg) center center no-repeat;
-    cursor: pointer;
-    border: none;
-  }
-
-  &__hide-button:hover {
-    opacity: 0.8;
-  }
-  
-  &__input_type_remember {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    height: 0;
-    width: 0;
-  }
-
-  &__input_type_remember + label {
-    display: inline-flex;
-    align-items: center;
-    user-select: none;
-  }
-  
-  &__input_type_remember + label::before {
-    content: "";
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border-radius: 4px;
-    border: 1px solid #7F7E88;
-    margin-right: 10px;
-  }
-  
-  &__input_type_remember:checked + label::before {
-    background: url(../../images/icon-check.svg) center center no-repeat;
-  }
-
-  &__remember-text {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 18px;
-    color: #7F7E88;
   }
   
   &__submit-button {
     padding: 0;
     border: none;
     outline: none;
-    background: #D9D9D9;
-    border-radius: 15px;
+    background: #F8D57E;
+    border-radius: 100px;
     width: 100%;
-    height: 64px;
-    font-size: 18px;
+    height: 56px;
+    font-size: 24px;
     font-weight: 500;
     line-height: 24px;
     text-align: center;
+    color: #2F261B;
     cursor: pointer;
+    margin-bottom: 40px;
   }
   
   &__submit-button:hover {
@@ -165,12 +96,12 @@
   }
 
   &__link {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 17px;
+    line-height: 24px;
     text-align: center;
-    color: #A0A0A0;
-    margin-top: 48px;
+    color: #2F261B;
+    margin-bottom: 8px;
   }
   
   &__link:hover {
@@ -186,18 +117,21 @@
   }
 
   &__bottom {
-    width: 480px;
-    font-size: 13px;
+    width: 488px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 24px;
-    color: #817F7F;
+    line-height: 17px;
+    color: #9D8E80;
+    text-align: center;
+    margin-bottom: 80px;
     text-align: center;
   }
 
   &__bottom-link {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 24px;
-    color: #817F7F;
+    line-height: 17px;
+    color: #9D8E80;
+    text-decoration: none;
   }
 }
