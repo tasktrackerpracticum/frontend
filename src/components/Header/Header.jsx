@@ -1,6 +1,6 @@
 import { Route, NavLink } from 'react-router-dom';
 import defaultIcon from '../../images/icon.svg';
-import options from '../../images/options.svg';
+import exit from "../../images/exit.svg";
 import logo from '../../images/logo.svg';
 import { activeFunctionType } from '../../constatnts/prop-types';
 import SearchForm from "../SearchForm/SearchForm.jsx";
@@ -19,10 +19,6 @@ export default function Header({ active, setActive }) {
         </NavLink>
 		<SearchForm />
         <div className='header__link-container'>
-		<div className="header__logout"> Выйти </div>
-          <div className='header__options'>
-            <img src={options} alt='options' className='header__options-icon' onClick={toggleClass}/>
-          </div>
           <div className='header__avatar-profile'>
             <img
               src={defaultIcon}
@@ -30,6 +26,9 @@ export default function Header({ active, setActive }) {
               className='header__avatar-icon'
               onClick={toggleClass}
             />
+          </div>
+          <div className='header__exit'>
+            <img src={exit} alt='exit' className='header__exit-icon'/>
           </div>
         </div>
       </header>

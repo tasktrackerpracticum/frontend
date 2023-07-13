@@ -36,10 +36,10 @@
 
 	&__link-container {
 		display: flex;
-		gap: 10px;
+		gap: 24px;
 	}
 
-	&__options {
+	&__exit {
 		width: 24px;
 		height: 24px;
 		background: transparent;
@@ -50,7 +50,7 @@
 			transition: opacity 0.3s linear 0s;
 		}
 	}
-	&__options-icon {
+	&__exit-icon {
 		width: 24px;
 		height: 24px;
 		object-fit: cover;
@@ -86,13 +86,4 @@
 		height: 41px;
 	}
 
-	&__logout {
-		display: flex;
-		align-items: center;
-		cursor: pointer;
-
-		&:hover {
-			opacity: 0.5;
-		}
-	}
 }
