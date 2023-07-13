@@ -1,14 +1,21 @@
 import uuid from 'react-uuid';
 
-const baseUrl = 'https://'; // Добавить эндпоинт
+const baseUrl = 'http://localhost:8000/';
 
-export const RESET_PASSWORD_API = `${baseUrl}/password-reset`;
+export const RESET_PASSWORD_API = `${baseUrl}/users/reset_password/`;
 // ------/auth
-export const REGISTER_API = `${baseUrl}/auth/register`;
-export const LOGIN_API = `${baseUrl}/auth/login`;
-export const LOGOUT_API = `${baseUrl}/auth/logout`;
+export const REGISTER_API = `${baseUrl}/auth/register`; //Посмотреть в swgger
+export const LOGIN_API = `${baseUrl}/auth/login`; //Посмотреть в swgger
+export const LOGOUT_API = `${baseUrl}/auth/logout`; //Посмотреть в swgger
 // ------/user
-export const USER_API = `${baseUrl}/auth/user`;
+export const USER_API = `${baseUrl}/auth/user`; //Посмотреть в swgger
+// ------/organizations
+export const ORGANIZATIONS_API = `${baseUrl}/organizations/`;
+// ------/projects
+export const PROJECTS_API = `${baseUrl}/projects/`;
+// ------/tasks
+export const TASKS_API = `${baseUrl}/tasks/`;
+
 // ------/роуты
 export const SIGN_IN = '/sign-in';
 export const SIGN_UP = '/sign-up';
