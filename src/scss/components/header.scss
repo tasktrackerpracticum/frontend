@@ -16,6 +16,15 @@
 
 	&__container {
 		@include reset;
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		cursor: pointer;
+		text-decoration: none;
+
+		&:hover {
+			opacity: 0.4;
+		}
 	}
 
 	&__title {
@@ -45,6 +54,11 @@
 		width: 24px;
 		height: 24px;
 		object-fit: cover;
+		cursor: pointer;
+		&:hover {
+			opacity: 0.8;
+			transition: opacity 0.3s linear 0s;
+		}
 	}
 
 	&__avatar-profile {
@@ -65,5 +79,20 @@
 		height: 48px;
 		border-radius: 50%;
 		object-fit: cover;
+	}
+
+	&__logo {
+		width: 41px;
+		height: 41px;
+	}
+
+	&__logout {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+
+		&:hover {
+			opacity: 0.5;
+		}
 	}
 }
