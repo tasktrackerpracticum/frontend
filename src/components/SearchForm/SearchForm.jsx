@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../scss/components/searchForm.scss';
 import useValidation from '../../hooks/useValidation.js';
 import { searchFunctionType } from '../../constatnts/prop-types.js';
 

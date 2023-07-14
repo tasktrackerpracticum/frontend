@@ -1,9 +1,9 @@
-import { Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import defaultIcon from '../../images/icon.svg';
-import exit from "../../images/exit.svg";
+import exit from '../../images/exit.svg';
 import logo from '../../images/logo.svg';
 import { activeFunctionType } from '../../constatnts/prop-types';
-import SearchForm from "../SearchForm/SearchForm.jsx";
+import SearchForm from '../SearchForm/SearchForm.jsx';
 
 export default function Header({ active, setActive }) {
   const toggleClass = () => {
@@ -11,28 +11,26 @@ export default function Header({ active, setActive }) {
   };
 
   return (
-    <Route path={['/organization', '/project', '/']}>
-      <header className='header'>
-        <NavLink to='/' className='header__container'>
-          <img className='header__logo' src={logo} alt='logo' />
-          <h2 className='header__title'>Лого</h2>
-        </NavLink>
-		<SearchForm />
-        <div className='header__link-container'>
-          <div className='header__avatar-profile'>
-            <img
-              src={defaultIcon}
-              alt='avatar'
-              className='header__avatar-icon'
-              onClick={toggleClass}
-            />
-          </div>
-          <div className='header__exit'>
-            <img src={exit} alt='exit' className='header__exit-icon'/>
-          </div>
+    <header className='header'>
+      <NavLink to='/' className='header__container'>
+        <img className='header__logo' src={logo} alt='logo' />
+        <h2 className='header__title'>Лого</h2>
+      </NavLink>
+      <SearchForm />
+      <div className='header__link-container'>
+        <div className='header__avatar-profile'>
+          <img
+            src={defaultIcon}
+            alt='avatar'
+            className='header__avatar-icon'
+            onClick={toggleClass}
+          />
         </div>
-      </header>
-    </Route>
+        <div className='header__exit'>
+          <img src={exit} alt='exit' className='header__exit-icon' />
+        </div>
+      </div>
+    </header>
   );
 }
 
