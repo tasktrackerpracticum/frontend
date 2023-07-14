@@ -1,4 +1,3 @@
-import '../../scss/components/listProject.scss';
 import { openFunctionType } from '../../constatnts/prop-types';
 
 export default function ListProject({ isOpen, setOpen }) {

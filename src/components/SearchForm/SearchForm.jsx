@@ -1,9 +1,9 @@
 import React from 'react';
-import '../../scss/searchForm.scss';
-import { useValidation } from '../../hooks/useValidation';
+import useValidation from '../../hooks/useValidation.js';
+import { searchFunctionType } from '../../constatnts/prop-types.js';
 
 export default function SearchForm({ onSearchTask }) {
-  const { values, setValues, handleChange, isValid, resetForm, setIsValid } =
+  const { values, handleChange, isValid } =
     useValidation();
   let { name } = values;
   const [searchErrorMessage, setSearchErrorMessage] = React.useState(null);
@@ -22,20 +22,6 @@ export default function SearchForm({ onSearchTask }) {
     }
   }
 
-  React.useEffect(() => {
-    if (localStorage.getItem('query')) {
-      resetForm();
-      const inputSearch = localStorage.getItem('query');
-      setValues({ ...values, name: inputSearch });
-      setIsValid(true);
-      handleSubmit();
-      onSearchTask({
-        taskName: inputSearch,
-      });
-      setSearchErrorMessage(null);
-    }
-  }, []);
-
   return (
     <section className='search-form'>
       <form
@@ -46,6 +32,7 @@ export default function SearchForm({ onSearchTask }) {
       >
         <div className='search-form__container'>
           <div className='search-form__icon' />
+          <div className='search-form__title'> Поиск</div>
           <input
             className='search-form__input'
             value={name || ''}
@@ -56,8 +43,15 @@ export default function SearchForm({ onSearchTask }) {
             minLength='1'
             maxLength='30'
           />
+          <span className='search-form__search-error'>
+            {searchErrorMessage ? `${searchErrorMessage}` : ''}
+          </span>
         </div>
       </form>
     </section>
   );
 }
+
+SearchForm.propTypes = {
+  onSearchTask: searchFunctionType,
+};

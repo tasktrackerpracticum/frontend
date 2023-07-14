@@ -8,4 +8,4 @@ export const activeFunctionType = requiredFunc;
 
 export const openFunctionType = requiredFunc;
 
-
+export const searchFunctionType = requiredFunc;
