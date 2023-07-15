@@ -7,7 +7,9 @@ export default function TaskContainer({ taskHeader, key }) {
 
   const ref = useRef(null);
 
-  const [{isDrag}, drag] = useDrag({
+  // const [{isDrag}, drag] = useDrag({
+
+  const [, drag] = useDrag({
     type: "sort_project_boards",
     item: () => {
       return { key }

@@ -1,6 +1,9 @@
 import uuid from 'react-uuid';
 
-const baseUrl = 'http://localhost:8000/';
+const baseUrl = 'http://localhost:8000';
+
+export const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NTA2MDEyLCJpYXQiOjE2ODk0MTk2MTIsImp0aSI6IjEwMDAyNWZhY2JlZTRjZDk5OWNiNzAxZjM4MjMyNTE4IiwidXNlcl9pZCI6MX0.Y-q990C9YnsZnvastoTdKR5tnKdGxAxz4pUQseEGnuU';
 
 export const RESET_PASSWORD_API = `${baseUrl}/users/reset_password/`;
 // ------/auth

@@ -1,11 +1,20 @@
-import '../../scss/components/project.scss';
+import { useEffect } from 'react';
 import { openFunctionType } from '../../constatnts/prop-types';
 import { NavLink} from "react-router-dom";
+import { useDispatch, useSelector }  from "react-redux";
+import { fetchProjects } from '../../services/projectsSlice';
 
 export default function Project({ isOpen, setOpen }) {
+  const dispatch = useDispatch();
+  const { status, error } = useSelector(state => state.projects)
+
   const openTaskCreate = () => {
     setOpen(!isOpen);
   };
+
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [dispatch]);
 
   return (
     <section className='project'>
@@ -20,6 +29,8 @@ export default function Project({ isOpen, setOpen }) {
           <button> RETURN</button>
           </NavLink>
         </div>
+        {status === 'loading' && <h2>loading...</h2>}
+        {error && <h2>{error}</h2>}
         <div className='project__content'>
           <div className='project__tag'>
             <h2 className='project__tag-name'>Название</h2>
