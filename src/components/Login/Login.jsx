@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import useValidation from '../../hooks/useValidation';
 import { loginFunctionType } from '../../constatnts/prop-types';
+import Slider from '../Slider/Slider';
 
 function Login({ onLogin }) {
   const { values, handleChange } = useValidation();
@@ -70,8 +71,7 @@ function Login({ onLogin }) {
         </div>
       </div>
       <div className='auth__block auth__block_right'>
-        <div className='auth__container auth__container_right'>
-        </div>
+        <Slider />
       </div>
     </section>
   );

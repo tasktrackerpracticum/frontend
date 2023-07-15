@@ -15,6 +15,11 @@
     justify-content: space-between;
   }
 
+  &__block_right {
+    display: block;
+    max-width: 600px
+  }
+
   &__container {
     width: 100%;
     display: flex;
@@ -22,11 +27,11 @@
     align-items: center;
     justify-content: space-between;
     height: 100vh;
-    border-radius: 52px;
   }
 
   &__container_left {
     background-color: #F5F1ED;
+    border-radius: 52px;
   }
 
   &__top {
