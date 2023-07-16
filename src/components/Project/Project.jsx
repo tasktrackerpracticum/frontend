@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { activeFunctionType } from '../../constatnts/prop-types';
+import { activeType } from '../../constatnts/prop-types';
 import { NavLink} from "react-router-dom";
 import { useDispatch, useSelector }  from "react-redux";
 import { fetchProjects } from '../../services/projectsSlice';
@@ -61,6 +61,6 @@ export default function Project({ active, setActive }) {
 }
 
 Project.propTypes = {
-  active: activeFunctionType,
-  setActive: activeFunctionType,
+  active: activeType,
+  setActive: activeType,
 };

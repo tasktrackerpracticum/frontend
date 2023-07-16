@@ -1,5 +1,5 @@
 import useValidation from '../../hooks/useValidation';
-import { activeFunctionType } from '../../constatnts/prop-types';
+import { activeType } from '../../constatnts/prop-types';
 
 function CreateProject({ active, setActive }) {
   const { values, handleChange } = useValidation();
@@ -91,6 +91,6 @@ function CreateProject({ active, setActive }) {
 export default CreateProject;
 
 CreateProject.propTypes = {
-  active: activeFunctionType,
-  setActive: activeFunctionType,
+  active: activeType,
+  setActive: activeType,
 };
