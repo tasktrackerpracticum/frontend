@@ -1,10 +1,10 @@
-import { string, requiredFunc } from 'prop-types';
+import { string, bool, requiredFunc } from 'prop-types';
 
 export const taskContainerType = string.isRequired;
 
 export const loginFunctionType = requiredFunc;
 
-export const activeFunctionType = requiredFunc;
+export const activeType = bool.isRequired;
 
 export const openFunctionType = requiredFunc;
 

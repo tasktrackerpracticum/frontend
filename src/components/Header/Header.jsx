@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import defaultIcon from '../../images/icon.svg';
 import exit from '../../images/exit.svg';
 import logo from '../../images/logo.svg';
-import { activeFunctionType } from '../../constatnts/prop-types';
+import { activeType } from '../../constatnts/prop-types';
 import SearchForm from '../SearchForm/SearchForm.jsx';
 
 export default function Header({ active, setActive }) {
@@ -35,6 +35,6 @@ export default function Header({ active, setActive }) {
 }
 
 Header.propTypes = {
-  active: activeFunctionType,
-  setActive: activeFunctionType,
+  active: activeType,
+  setActive: activeType,
 };

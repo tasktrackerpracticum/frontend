@@ -1,4 +1,4 @@
-.profile {
+.createProject {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -21,11 +21,12 @@
 
   &__wrap {
     max-width: 868px;
-    width: 100%;
     text-align: right;
     display: flex;
-    padding-left: 30px;
-    border-bottom: 1px solid #d9d9d9;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 0 16px;
+    color: #8a8a8a;
   }
 
   &__info-content {
@@ -52,8 +53,7 @@
   }
 
   &__content {
-    padding-left: 30px;
-    padding-bottom: 30px;
+    padding: 0 16px 30px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -80,6 +80,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: #8A8A8A;
+    &:hover {
+        color: black;
+    }
   }
 
   &__container-check {
@@ -115,7 +119,7 @@
     border: none;
     height: 53px;
     border-radius: 15px;
-    background-color: #f8d57e;
+    background-color: #f1f1f1;
     color: black;
     font-size: 20px;
     cursor: pointer;
@@ -126,8 +130,8 @@
     }
   }
   &__cancel-btn {
-    width: 147px;
-    height: 53px;
+    width: 32px;
+    height: 32px;
     border: none;
     cursor: pointer;
     transition: opacity 0.2s ease;
