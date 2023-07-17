@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { openFunctionType } from '../../constatnts/prop-types';
 import { useEffect } from 'react';
-import { fetchProjects } from '../../services/projectsSlice';
+import { fetchProjects } from '../../services/projectsSlice.js';
 
 export default function ListProject({ isOpen, setOpen }) {
   const dispatch = useDispatch();
@@ -11,9 +11,11 @@ export default function ListProject({ isOpen, setOpen }) {
     dispatch(fetchProjects());
   }, [dispatch]);
 
+
   const openTaskCreate = () => {
     setOpen(!isOpen);
   };
+
 
   return (
     <section className='listProject'>

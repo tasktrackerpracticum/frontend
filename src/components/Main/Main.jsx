@@ -5,12 +5,13 @@ import { DndProvider } from 'react-dnd/dist/core';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export default function Main() {
+
   return (
     <DndProvider backend={HTML5Backend}>
       <main className='main'>
          <ListProject />
         <div className='main__container'>
-          <ProjectHeader />
+          <ProjectHeader/>
           <ProjectContainer />
         
         </div>
