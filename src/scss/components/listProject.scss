@@ -46,6 +46,10 @@
     flex-direction: column;
     justify-content: space-around;
     gap: 16px;
+
+    &:hover {
+      background: #9A7F6633;
+    }
   }
 
   &__project-title {
