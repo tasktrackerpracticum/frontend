@@ -1,4 +1,8 @@
-import { openType, objectType, functionType } from '../../constatnts/prop-types';
+import {
+  openType,
+  objectType,
+  functionType,
+} from '../../constatnts/prop-types';
 
 export default function ListProject({
   isOpen,
@@ -69,5 +73,5 @@ ListProject.propTypes = {
   projects: objectType,
   onClick: functionType,
   status: objectType,
-  error: objectType
+  error: objectType,
 };

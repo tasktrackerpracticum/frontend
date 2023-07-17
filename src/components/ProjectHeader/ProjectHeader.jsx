@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import { objectType } from '../../constatnts/prop-types.js';
 
 export default function ProjectHeader({ onProject }) {
-  console.log(onProject)
   return (
     
     <div className='projectHeader'>
