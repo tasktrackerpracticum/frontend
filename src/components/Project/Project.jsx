@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { activeType } from '../../constatnts/prop-types';
-import { NavLink} from "react-router-dom";
 import { useDispatch, useSelector }  from "react-redux";
 import { fetchProjects } from '../../services/projectsSlice';
 
@@ -25,9 +24,6 @@ export default function Project({ active, setActive }) {
             <div className='project__icon-create' />
             Новый проект
           </button>
-          <NavLink to="/"> 
-          <button> RETURN</button>
-          </NavLink>
         </div>
         {status === 'loading' && <h2>loading...</h2>} {/* потом добавить спиннер и убрать */}
         {error && <h2>{error}</h2>}                   {/* потом добавить модалку ошибки и убрать */}
