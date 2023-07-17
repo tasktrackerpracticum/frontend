@@ -7,13 +7,14 @@ export default function Project({ active, setActive }) {
   const dispatch = useDispatch();
   const { status, error, projects } = useSelector(state => state.projects);
 
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [dispatch]);
+
   const openTaskCreate = () => {
     setActive(!active);
   };
 
-  useEffect(() => {
-    dispatch(fetchProjects())
-  }, [dispatch]);
 
   return (
     <section className='project'>

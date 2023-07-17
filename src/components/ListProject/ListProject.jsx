@@ -1,16 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { openType } from '../../constatnts/prop-types';
-import { useEffect } from 'react';
-import { fetchProjects } from '../../services/projectsSlice';
+import { openType, objectType, functionType } from '../../constatnts/prop-types';
 
-export default function ListProject({ isOpen, setOpen }) {
-  const dispatch = useDispatch();
-  const { status, error, projects } = useSelector((state) => state.projects);
-
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
-
+export default function ListProject({
+  isOpen,
+  setOpen,
+  projects,
+  status,
+  error,
+  onClick,
+}) {
+  const openProject = (evt) => {
+    const project = evt;
+    onClick(project);
+  };
   const openTaskCreate = () => {
     setOpen(!isOpen);
   };
@@ -32,7 +33,11 @@ export default function ListProject({ isOpen, setOpen }) {
         {projects.length !== 0 &&
           projects.map((item) => {
             return (
-              <div key={item.id} className='listProject__container'>
+              <div
+                key={item.id}
+                className='listProject__container'
+                onClick={() => openProject(item)}
+              >
                 <div className='listProject__project-title'>{item.title}</div>
                 <div className='listProject__project-info'>
                   <div className='listProject__project-time'>
@@ -41,7 +46,13 @@ export default function ListProject({ isOpen, setOpen }) {
                   <div className='listProject__wrap'>
                     <div className='listProject__project-member'>...</div>
 
-                    <div className='listProject__project-status'>Активен</div>
+                    <div
+                      className={
+                        item.is_active
+                          ? 'listProject__project-status-actived'
+                          : 'listProject__project-status-closed'}>
+                      {item.is_active ? 'Активен' : 'Завершен'}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -55,4 +66,8 @@ export default function ListProject({ isOpen, setOpen }) {
 ListProject.propTypes = {
   isOpen: openType,
   setOpen: openType,
+  projects: objectType,
+  onClick: functionType,
+  status: objectType,
+  error: objectType
 };

@@ -67,7 +67,7 @@
     margin: 0 10px;
   }
 
-  &__project-status {
+  &__project-status-actived {
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
@@ -75,6 +75,20 @@
     height: 26px;
     border-radius: 4px;
     background: #F8D57E66;
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__project-status-closed {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    width: 88px;
+    height: 26px;
+    border-radius: 4px;
+    background: #F1F1F1;
     gap: 8px;
     display: flex;
     justify-content: center;
