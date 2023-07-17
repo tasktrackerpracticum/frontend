@@ -1,6 +1,6 @@
 import avatar from '../../images/user-avatar-profile.png';
 import useValidation from '../../hooks/useValidation';
-import { activeFunctionType } from '../../constatnts/prop-types';
+import { activeType } from '../../constatnts/prop-types';
 
 function Profile({ active, setActive }) {
   const { values, handleChange } = useValidation();
@@ -109,6 +109,6 @@ function Profile({ active, setActive }) {
 export default Profile;
 
 Profile.propTypes = {
-  active: activeFunctionType,
-  setActive: activeFunctionType,
+  active: activeType,
+  setActive: activeType,
 };

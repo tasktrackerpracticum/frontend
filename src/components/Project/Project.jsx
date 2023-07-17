@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { openFunctionType } from '../../constatnts/prop-types';
+import { activeType } from '../../constatnts/prop-types';
 import { NavLink} from "react-router-dom";
 import { useDispatch, useSelector }  from "react-redux";
 import { fetchProjects } from '../../services/projectsSlice';
 
-export default function Project({ isOpen, setOpen }) {
+export default function Project({ active, setActive }) {
   const dispatch = useDispatch();
-  const { status, error, projects } = useSelector(state => state.projects)
+  const { status, error, projects } = useSelector(state => state.projects);
 
   const openTaskCreate = () => {
-    setOpen(!isOpen);
+    setActive(!active);
   };
 
   useEffect(() => {
@@ -21,8 +21,8 @@ export default function Project({ isOpen, setOpen }) {
 
       <div className='project__wrap'>
         <div className='project__create'>
-          <button className='project__create-btn'>
-            <div className='project__icon-create' onClick={openTaskCreate} />
+          <button className='project__create-btn' onClick={openTaskCreate}>
+            <div className='project__icon-create' />
             Новый проект
           </button>
           <NavLink to="/"> 
@@ -43,7 +43,7 @@ export default function Project({ isOpen, setOpen }) {
               return (
                 <div key={item.id} className='project__container'>
                   <div className='project__list-name'>{item.title}</div>
-                  <div className='project__list-name'>16.06.2023 - 16.07.2023</div>
+                  <div className='project__list-name'>16.06.2023 - 16.06.2023</div>
                   <div className='project__list-name'>
                     <div className='project__list-member'></div>
                   </div>
@@ -61,6 +61,6 @@ export default function Project({ isOpen, setOpen }) {
 }
 
 Project.propTypes = {
-  isOpen: openFunctionType,
-  setOpen: openFunctionType,
+  active: activeType,
+  setActive: activeType,
 };
