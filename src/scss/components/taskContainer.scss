@@ -4,20 +4,34 @@
 .taskContainer {
   @include reset;
   height: 689px;
-  width: 325px;
+  width: 300px;
   background-color: $secondColor;
-  border-radius: $borderRadiusTaskContainer;
+  border-right: 2px solid #2F261B1A;
+
+  &:last-child {
+    border: none;
+    margin: 0;
+  }
+
+  &__content {
+    height: 689px;
+    width: 280px;
+    border-radius: $borderRadiusTaskContainer;
+  }
 
   &__header {
-    @include text-format(500, 24px, 24px)
+    @include text-format(500, 24px, 24px);
+    color: #9D8E80;
   }
 
   &__button {
     @include reset;
-    height: 48px;
+    height: 96px;
     width: 277px;
-    border: 1px solid #fff;
-    border-radius: calc(height / 2);
+    border: 2px dashed #9D8E80;
+    border-radius: 16px;
+    background: transparent;
+    margin-bottom: 15px;
   }
 
   &__tasks {
@@ -27,10 +41,18 @@
     flex-direction: column;
     align-items: center;
     row-gap: 16px;
+    transition: 0.2;
   }
   
   &__task {
     @include reset;
     list-style: none;
+    cursor: pointer;
+
+    &:hover {
+      background: #93939366;
+    }
   }
+
+
 }

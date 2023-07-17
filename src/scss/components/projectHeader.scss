@@ -2,16 +2,15 @@
 
 .projectHeader {
   @include reset;
-  margin: 50px 40px;
+  margin: 50px 20px;
   height: 56px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   gap: 56px;
 
   &__content {
     width: 832px;
-    gap: 16px;
   }
 
   &__button {

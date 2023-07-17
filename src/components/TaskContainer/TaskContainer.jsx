@@ -72,6 +72,7 @@ export default function TaskContainer({ tasks, taskHeader, key }) {
 
   return(
     <section ref={ref} data-handler-id={handlerId} className="taskContainer">
+      <div className="taskContainer__content"> 
       <h2 className="taskContainer__header">{ taskHeader }</h2>
       {taskHeader === 'Беклог' && <button className="taskContainer__button">Новая задача</button>}
       <ul className="taskContainer__tasks">
@@ -86,6 +87,7 @@ export default function TaskContainer({ tasks, taskHeader, key }) {
           )
         }))}
       </ul>
+      </div>
     </section>
   )
 }
