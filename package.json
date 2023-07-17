@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"main": "index.js",
-	"homepage":"https://vallugovaia.github.io/",
+	"homepage":"https://vallugovaia.github.io/task-tracker-frontend/",
 	"repository": {
 		"type": "git",
 	    "url": "git+https://guthub.com/..........git"
