@@ -2,8 +2,9 @@ import { useRef } from "react";
 import { taskContainerType } from "../../constatnts/prop-types";
 import Task from "../Task/Task";
 import { useDrag, useDrop } from 'react-dnd';
+import uuid from "react-uuid";
 
-export default function TaskContainer({ taskHeader, key }) {
+export default function TaskContainer({ tasks, taskHeader, key }) {
 
   const ref = useRef(null);
 
@@ -71,24 +72,28 @@ export default function TaskContainer({ taskHeader, key }) {
 
   return(
     <section ref={ref} data-handler-id={handlerId} className="taskContainer">
+      <div className="taskContainer__content"> 
       <h2 className="taskContainer__header">{ taskHeader }</h2>
-      <button className="taskContainer__button">Новая задача</button>
+      {taskHeader === 'Беклог' && <button className="taskContainer__button">Новая задача</button>}
       <ul className="taskContainer__tasks">
-        <li className="taskContainer__task">
-          <Task />
-        </li>
-        <li className="taskContainer__task">
-          <Task />
-        </li>
-        <li className="taskContainer__task">
-          <Task />
-        </li>
+        {tasks && (tasks.map((item) => {
+          return (
+          <li key={key} className="taskContainer__task">
+            <Task
+              title={item.title}
+              deadline={item.deadline}
+              key={uuid()}/>
+          </li>
+          )
+        }))}
       </ul>
+      </div>
     </section>
   )
 }
 
 TaskContainer.propTypes = {
   taskHeader: taskContainerType,
-  key: taskContainerType
+  key: taskContainerType,
+  tasks: taskContainerType
 }

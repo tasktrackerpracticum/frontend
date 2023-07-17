@@ -1,15 +1,17 @@
 .main {
   display: flex;
-  gap: 50px;
-  margin: 0 auto;
+  margin: 0 20px;
+  height: 100%;
+  gap: 30px;
+  
 
   &__container {
     background: #F5F1ED;
     border-radius: 40px;
-    margin-top: 50px;
+    margin: 50px auto;
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 30px;
     height: 100%;
     overflow: visible;
   }

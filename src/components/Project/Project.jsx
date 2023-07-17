@@ -6,7 +6,7 @@ import { fetchProjects } from '../../services/projectsSlice';
 
 export default function Project({ active, setActive }) {
   const dispatch = useDispatch();
-  const { status, error, projects } = useSelector(state => state.projects)
+  const { status, error, projects } = useSelector(state => state.projects);
 
   const openTaskCreate = () => {
     setActive(!active);
@@ -43,7 +43,7 @@ export default function Project({ active, setActive }) {
               return (
                 <div key={item.id} className='project__container'>
                   <div className='project__list-name'>{item.title}</div>
-                  <div className='project__list-name'>16.06.2023 - 16.07.2023</div>
+                  <div className='project__list-name'>16.06.2023 - 16.06.2023</div>
                   <div className='project__list-name'>
                     <div className='project__list-member'></div>
                   </div>
