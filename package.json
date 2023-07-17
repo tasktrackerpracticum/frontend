@@ -6,7 +6,7 @@
 	"homepage":"https://vallugovaia.github.io/task-tracker-frontend/",
 	"repository": {
 		"type": "git",
-	    "url": "git+httrs://guthub.com/..........git"
+	    "url": "git+https://guthub.com/..........git"
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.5",
