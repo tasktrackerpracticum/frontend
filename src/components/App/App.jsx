@@ -39,7 +39,8 @@ function App() {
             <Route exact path='/'>
               <Header active={profileActive} setActive={setProfileActive} />
               <Profile active={profileActive} setActive={setProfileActive} />
-              <Main />
+              <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate} />
+              <Main isOpen={isOpenTaskCreate} setOpen={setOpenTaskCreate}/>
             </Route>
             <Route exact path='/project'>
               <Header active={profileActive} setActive={setProfileActive} />

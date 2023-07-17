@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { openFunctionType } from '../../constatnts/prop-types';
+import { openType } from '../../constatnts/prop-types';
 import { useEffect } from 'react';
 import { fetchProjects } from '../../services/projectsSlice';
 
@@ -53,6 +53,6 @@ export default function ListProject({ isOpen, setOpen }) {
 }
 
 ListProject.propTypes = {
-  isOpen: openFunctionType,
-  setOpen: openFunctionType,
+  isOpen: openType,
+  setOpen: openType,
 };

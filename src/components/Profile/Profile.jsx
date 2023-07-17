@@ -97,7 +97,7 @@ function Profile({ active, setActive }) {
         </div>
 
         <div className='profile__container-btn'>
-          <button className='profile__submit-btn' type='submit'>
+          <button className='profile__submit-btn' type='submit' onClick={() => setActive(!active)}>
             Сохранить изменения
           </button>
         </div>

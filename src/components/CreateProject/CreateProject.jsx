@@ -79,7 +79,7 @@ function CreateProject({ active, setActive }) {
         </div>
 
         <div className='createProject__container-btn'>
-          <button className='createProject__submit-btn' type='submit'>
+          <button className='createProject__submit-btn' type='submit' onClick={() => setActive(!active)}>
             + Создать проект
           </button>
         </div>

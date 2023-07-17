@@ -6,6 +6,6 @@ export const loginFunctionType = requiredFunc;
 
 export const activeType = bool.isRequired;
 
-export const openFunctionType = requiredFunc;
+export const openType = bool.isRequired;
 
 export const searchFunctionType = requiredFunc;
