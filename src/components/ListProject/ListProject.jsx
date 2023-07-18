@@ -3,6 +3,7 @@ import {
   objectType,
   functionType,
 } from '../../constatnts/prop-types';
+import PostProject from "../PostProject/PostProject.jsx";
 
 export default function ListProject({
   openTaskCreate,
@@ -29,34 +30,13 @@ export default function ListProject({
       {/* потом добавить спиннер и убрать */}
       {error && <h2>{error}</h2>} {/* потом добавить модалку ошибки и убрать */}
       <div className='listProject__content'>
-        {/* потом добавить компонент вместо вставки разметки. Либо сделать на роуте со списком проектов с модалкой справа, чтобы не запрашивать список проектов */}
-
         {projects.length !== 0 &&
           projects.map((item) => {
-            return (
-              <div
-                key={item.id}
-                className='listProject__container'
-                onClick={() => openProject(item)}
-              >
-                <div className='listProject__project-title'>{item.title}</div>
-                <div className='listProject__project-info'>
-                  <div className='listProject__project-time'>
-                    16.06.2023-16.06.2023
-                  </div>
-                  <div className='listProject__wrap'>
-                    <div className='listProject__project-member'>...</div>
+            return ( 
+            <li key={item.id} className="listProject__container"  onClick={() => openProject(item)}>
+              <PostProject title={item.title} is_active={item.is_active} />
 
-                    <div
-                      className={
-                        item.is_active
-                          ? 'listProject__project-status-actived'
-                          : 'listProject__project-status-closed'}>
-                      {item.is_active ? 'Активен' : 'Завершен'}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </li>
             );
           })}
       </div>

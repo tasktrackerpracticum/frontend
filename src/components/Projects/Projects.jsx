@@ -38,7 +38,7 @@ export default function Projects({ openTaskCreate, onClick, selectListProject })
             <h2 className='projects__tag-name'>Участник</h2>
             <h2 className='projects__tag-name'>Статус</h2>
           </div>
-          <div className='projects__list'>             {/* потом добавить компонент вместо вставки разметки */}
+          <div className='projects__list'>
             {projects.length !== 0 && (projects.map((item) => {
               return (
                 <li key={item.id} className="projects__container" onClick={() => handlerProject(item)}>

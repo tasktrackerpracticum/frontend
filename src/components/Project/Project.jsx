@@ -1,5 +1,6 @@
 import { stringType } from '../../constatnts/prop-types';
 
+
 export default function Project({ title }) {
   return (
     <form className='project'>
