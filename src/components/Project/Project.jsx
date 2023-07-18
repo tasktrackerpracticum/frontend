@@ -1,18 +1,21 @@
 import { useEffect } from 'react';
-import { activeType } from '../../constatnts/prop-types';
+import { activeType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector }  from "react-redux";
 import { fetchProjects } from '../../services/projectsSlice';
 
-export default function Project({ active, setActive }) {
+export default function Project({ openTaskCreate, onClick, selectListProject }) {
   const dispatch = useDispatch();
   const { status, error, projects } = useSelector(state => state.projects);
 
   useEffect(() => {
     dispatch(fetchProjects())
   }, [dispatch]);
+  
 
-  const openTaskCreate = () => {
-    setActive(!active);
+  const handlerProject = (evt) => {
+    const project = evt;
+    onClick(project);
+    selectListProject();
   };
 
 
@@ -38,7 +41,7 @@ export default function Project({ active, setActive }) {
           <div className='project__list'>             {/* потом добавить компонент вместо вставки разметки */}
             {projects.length !== 0 && (projects.map((item) => {
               return (
-                <div key={item.id} className='project__container'>
+                <div key={item.id} className='project__container'  onClick={() => handlerProject(item)}>
                   <div className='project__list-name'>{item.title}</div>
                   <div className='project__list-name'>16.06.2023 - 16.06.2023</div>
                   <div className='project__list-name'>
@@ -58,6 +61,7 @@ export default function Project({ active, setActive }) {
 }
 
 Project.propTypes = {
-  active: activeType,
-  setActive: activeType,
+  openTaskCreate: activeType,
+  selectListProject: activeType,
+  onClick: functionType
 };

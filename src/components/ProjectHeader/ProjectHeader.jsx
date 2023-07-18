@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import { objectType } from '../../constatnts/prop-types.js';
+import { activeType, objectType } from '../../constatnts/prop-types.js';
 
-export default function ProjectHeader({ onProject }) {
+export default function ProjectHeader({ onProject, selectListProject }) {
+
   return (
     
     <div className='projectHeader'>
@@ -24,13 +24,14 @@ export default function ProjectHeader({ onProject }) {
         </div>
       </div>
 
-      <NavLink to='/project'>
-        <button className='projectHeader__button' />
-      </NavLink>
+ 
+        <button className='projectHeader__button' onClick={selectListProject}/>
+    
     </div>
   );
 }
 
 ProjectHeader.propTypes = {
   onProject: objectType,
+  selectListProject: activeType,
 };

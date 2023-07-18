@@ -7,7 +7,6 @@ import Login from '../Login/Login.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Main from '../Main/Main.jsx';
 import Profile from '../Profile/Profile.jsx';
-import Project from '../Project/Project.jsx';
 import CreateProject from '../CreateProject/CreateProject';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from '../../services/profileSlice';
@@ -27,6 +26,12 @@ function App() {
     dispatch(fetchToken({email, password}))
   }, [dispatch]);
 
+
+  function openTaskCreate()  {
+    setOpenTaskCreate(!isOpenTaskCreate);
+  }
+
+
   return (
     <>
       <div className='page'>
@@ -40,13 +45,7 @@ function App() {
               <Header active={profileActive} setActive={setProfileActive} />
               <Profile active={profileActive} setActive={setProfileActive} />
               <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate} />
-              <Main isOpen={isOpenTaskCreate} setOpen={setOpenTaskCreate}/>
-            </Route>
-            <Route exact path='/project'>
-              <Header active={profileActive} setActive={setProfileActive} />
-              <Profile active={profileActive} setActive={setProfileActive} />
-              <Project active={isOpenTaskCreate} setActive={setOpenTaskCreate} />
-              <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate} />
+              <Main openTaskCreate={openTaskCreate} />
             </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />

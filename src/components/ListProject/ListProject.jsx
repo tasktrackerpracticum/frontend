@@ -5,8 +5,7 @@ import {
 } from '../../constatnts/prop-types';
 
 export default function ListProject({
-  isOpen,
-  setOpen,
+  openTaskCreate,
   projects,
   status,
   error,
@@ -16,9 +15,7 @@ export default function ListProject({
     const project = evt;
     onClick(project);
   };
-  const openTaskCreate = () => {
-    setOpen(!isOpen);
-  };
+  
 
   return (
     <section className='listProject'>
@@ -68,8 +65,7 @@ export default function ListProject({
 }
 
 ListProject.propTypes = {
-  isOpen: openType,
-  setOpen: openType,
+  openTaskCreate: openType,
   projects: objectType,
   onClick: functionType,
   status: objectType,
