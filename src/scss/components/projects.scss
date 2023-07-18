@@ -1,0 +1,97 @@
+@import '../utils/mixins.scss';
+
+.projects {
+  @include reset;
+  width: 1380px;
+  height: 840px;
+  margin: 130px 40px;
+  border-radius: 40px;
+  background: #f5f1ed;
+
+  &__wrap {
+    margin: 40px 40px;
+  }
+  &__create {
+    display: flex;
+    align-items: center;
+  }
+  &__icon-create {
+    width: 24px;
+    height: 24px;
+    background: url(../../images/add.svg) no-repeat center;
+    z-index: 100;
+  }
+
+  &__create-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 267px;
+    height: 56px;
+    border-radius: 100px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    border: none;
+    background: #f8d57e;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__content {
+    padding-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__tag {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin-top: 10px;
+    gap: 24px;
+    justify-content: space-between
+
+  }
+  &__tag-name {
+    padding: 0 32px;
+    max-width: 480px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    color: #9D8E80;
+    margin: 0;
+  }
+
+  &__list {
+    margin: 5px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 24px;
+  }
+
+  &__container {
+    margin: 0;
+    height: 75px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFFFF;
+    cursor: pointer;
+
+    &:hover {
+      background: #9A7F6633;
+    }
+  }
+
+}

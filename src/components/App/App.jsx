@@ -31,7 +31,6 @@ function App() {
     setOpenTaskCreate(!isOpenTaskCreate);
   }
 
-
   return (
     <>
       <div className='page'>
@@ -44,8 +43,8 @@ function App() {
             <Route exact path='/'>
               <Header active={profileActive} setActive={setProfileActive} />
               <Profile active={profileActive} setActive={setProfileActive} />
-              <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate} />
-              <Main openTaskCreate={openTaskCreate} />
+              <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
+              <Main openTaskCreate={openTaskCreate} active={isOpenTaskCreate}  setActive={setOpenTaskCreate}/>
             </Route>
             <Route path='/register' onRegister={handleRegister}>
               <Register />

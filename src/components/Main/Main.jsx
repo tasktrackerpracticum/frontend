@@ -1,7 +1,7 @@
 import ProjectHeader from '../ProjectHeader/ProjectHeader';
 import ProjectContainer from '../ProjectContainer/ProjectContainer';
 import ListProject from '../ListProject/ListProject';
-import Project from '../Project/Project';
+import Projects from '../Projects/Projects';
 import { DndProvider } from 'react-dnd/dist/core';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { openType } from '../../constatnts/prop-types';
@@ -31,7 +31,7 @@ export default function Main({ openTaskCreate }) {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      { onSelectListProject ? <Project openTaskCreate={openTaskCreate} onClick={openProject} selectListProject={selectListProject}/> :
+      { onSelectListProject ? <Projects  openTaskCreate={openTaskCreate} onClick={openProject} selectListProject={selectListProject}/> :
       <main className='main'>
         <ListProject
         openTaskCreate={openTaskCreate}

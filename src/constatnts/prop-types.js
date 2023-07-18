@@ -14,3 +14,5 @@ export const objectType = object.isRequired;
 
 export const functionType = requiredFunc;
 
+export const stringType = string.isRequired;
+
