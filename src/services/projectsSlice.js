@@ -16,11 +16,21 @@ export const fetchProjects = createAsyncThunk(
 const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
-    projects: [],
+	projects: [],
     status: null,
     error: null,
   },
-  reducers: {},
+  reducers: {
+		addProject(state, action) {
+      state.projects.push({
+				id: state.projects.length + 1,
+				title: action.payload,
+				is_active: true,
+				date_start: Date.now(),
+      }
+			);
+    },
+	},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.pending, (state) => {
@@ -39,4 +49,5 @@ const projectsSlice = createSlice({
   },
 });
 
+export const {addProject} = projectsSlice.actions;
 export default projectsSlice.reducer;
