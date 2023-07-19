@@ -1,9 +1,14 @@
+import { useState } from "react";
 import useValidation from '../../hooks/useValidation';
-import { activeType } from '../../constatnts/prop-types';
+import { activeType, functionType } from '../../constatnts/prop-types';
 
 function CreateProject({ active, setActive }) {
   const { values, handleChange } = useValidation();
+  const [title, setTitle] = useState();
+
+
   
+
 
   return (
     <section className={active ? 'createProject__active' : 'createProject'}>
@@ -20,16 +25,29 @@ function CreateProject({ active, setActive }) {
 
       <div className='createProject__content'>
         <div className='createProject__info'>
+        <div className='createProject__container'>
+            <h2 className='createProject__subtitle'>Название проекта</h2>
+            <input
+              className='createProject__input'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              id='date-begin-input'
+              type='text'
+              placeholder='Название проекта'
+              name='title'
+              required
+            />
+          </div>
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Дата начала</h2>
             <input
               className='createProject__input'
-              value={values.dateBegin}
+              value={values.date_start}
               onChange={handleChange}
               id='date-begin-input'
-              type='data'
+              type='date'
               placeholder='Дата начала'
-              name='dateBegin'
+              name='date_start'
               required
             />
           </div>
@@ -37,12 +55,12 @@ function CreateProject({ active, setActive }) {
             <h2 className='createProject__subtitle'>Дата окончания</h2>
             <input
               className='createProject__input'
-              value={values.dateEnd}
+              value={values.date_finish}
               onChange={handleChange}
               id='date-end-input'
-              type='data'
+              type='date'
               placeholder='Дедлайн'
-              name='phone'
+              name='date_finish'
               minLength='9'
               maxLength='11'
               required
@@ -79,7 +97,7 @@ function CreateProject({ active, setActive }) {
         </div>
 
         <div className='createProject__container-btn'>
-          <button className='createProject__submit-btn' type='submit' onClick={() => setActive(!active)}>
+          <button className='createProject__submit-btn' type='submit' >
             + Создать проект
           </button>
         </div>
@@ -93,4 +111,5 @@ export default CreateProject;
 CreateProject.propTypes = {
   active: activeType,
   setActive: activeType,
+  addProject: functionType
 };
