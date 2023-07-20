@@ -16,21 +16,25 @@ export const fetchProjects = createAsyncThunk(
 const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
-	projects: [],
+    projects: [],
     status: null,
     error: null,
   },
   reducers: {
-		addProject(state, action) {
+    addProject(state, action) {
+      console.log(state);
+      console.log(action);
+
       state.projects.push({
-				id: state.projects.length + 1,
-				title: action.payload,
-				is_active: true,
-				date_start: Date.now(),
-      }
-			);
+        // добавить поле создатателя-автора и поля исполнителей после их подключения в стору
+        id: state.projects.length + 1,
+        title: action.payload.title,
+        date_finish: action.payload.date_finish,
+        is_active: false, // не забыть сменить на true
+        date_start: action.payload.date_start,
+      });
     },
-	},
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.pending, (state) => {
@@ -49,5 +53,5 @@ const projectsSlice = createSlice({
   },
 });
 
-export const {addProject} = projectsSlice.actions;
+export const { addProject } = projectsSlice.actions;
 export default projectsSlice.reducer;

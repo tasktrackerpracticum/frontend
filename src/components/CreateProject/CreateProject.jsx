@@ -7,17 +7,25 @@ import { addProject } from '../../services/projectsSlice';
 function CreateProject({ active, setActive }) {
   const { values, handleChange } = useValidation();
   const [title, setTitle] = useState();
+  const [date_start, setDateStart] = useState('');
+  const [date_finish, setDateFinish] = useState('');
+
 
   const dispatch = useDispatch();
 
   const handleAction = () => {
-    dispatch(addProject(title));
-    setTitle('');
+    dispatch(addProject({title, date_start, date_finish}));
     setActive(!active);
   };
 
   const handleNameChange = (event) => {
     setTitle(event.target.value);
+  };
+  const handleDateStartChange = (event) => {
+    setDateStart(event.target.value);
+  };
+  const handleDateFinishChange = (event) => {
+    setDateFinish(event.target.value);
   };
 
   return (
@@ -51,8 +59,8 @@ function CreateProject({ active, setActive }) {
             <h2 className='createProject__subtitle'>Дата начала</h2>
             <input
               className='createProject__input'
-              value={values.date_start}
-              onChange={handleChange}
+              value={date_start}
+              onChange={handleDateStartChange}
               id='date-begin-input'
               type='date'
               placeholder='Дата начала'
@@ -64,14 +72,12 @@ function CreateProject({ active, setActive }) {
             <h2 className='createProject__subtitle'>Дата окончания</h2>
             <input
               className='createProject__input'
-              value={values.date_finish}
-              onChange={handleChange}
-              id='date-end-input'
+              value={date_finish}
+              onChange={handleDateFinishChange}
+              id='date-finish-input'
               type='date'
               placeholder='Дедлайн'
               name='date_finish'
-              minLength='9'
-              maxLength='11'
               required
             />
           </div>
