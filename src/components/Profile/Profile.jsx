@@ -13,7 +13,7 @@ function Profile({ active, setActive }) {
   }, [dispatch]);
 
   const [position, setPosition] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState();
   const [email, setEmail] = useState('');
   const [timezone, setTimezone] = useState('');
 
@@ -34,6 +34,15 @@ function Profile({ active, setActive }) {
   dispatch(updateUser({position, timezone, email, phone}))
     setActive(!active);
   }
+
+  useEffect(() => {
+    if (currentUser.position && currentUser.phone && currentUser.email) {
+      setPosition(currentUser.position);
+      setPhone(currentUser.phone);
+      setEmail(currentUser.email);
+      setTimezone(currentUser.timezone)
+    }
+  }, [currentUser.position, currentUser.phone,currentUser.email, currentUser.timezone])
 
   return (
     <section className={active ? 'profile__active' : 'profile'}>
@@ -58,9 +67,8 @@ function Profile({ active, setActive }) {
               className='profile__input'
               value={position}
               onChange={handlePositionChange}
-              id='work-input'
+              id='position-input'
               type='text'
-              placeholder={currentUser.position}
               name='work'
               minLength='2'
               maxLength='10'
@@ -90,7 +98,6 @@ function Profile({ active, setActive }) {
               onChange={handleEmailChange}
               id='email-input'
               type='email'
-              placeholder={currentUser.email}
               name='email'
               minLength='7'
               maxLength='20'
@@ -105,7 +112,6 @@ function Profile({ active, setActive }) {
               onChange={handleTimezoneChange}
               id='timezone-input'
               type='text'
-              placeholder={currentUser.timezone}
               name='timezone'
               required
             />
