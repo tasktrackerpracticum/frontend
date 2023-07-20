@@ -18,7 +18,6 @@ export const fetchUserMe = createAsyncThunk(
 	async (_, { rejectWithValue }) => {
     try {
       const response = await getUserMe();
-			console.log(response);
       return response;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -35,12 +34,15 @@ const usersSlice = createSlice({
   },
   reducers: {
 		updateUser(state, action){
-			console.log(action);
       state.users.position = action.payload.position;
       state.users.email = action.payload.email;
       state.users.phone = action.payload.phone;
       state.users.timezone = action.payload.timezone;
-    }
+    },
+		updatePhoto(state, action){
+			console.log(action);
+			state.users.photo = 'img.freepik.com/free-photo/a-cupcake-with-a-strawberry-on-top-and-a-strawberry-on-the-top_1340-35087.jpg';
+		}
 	},
   extraReducers: (builder) => {
     builder
@@ -60,5 +62,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const {updateUser} = usersSlice.actions;
+export const {updateUser, updatePhoto} = usersSlice.actions;
 export default usersSlice.reducer;

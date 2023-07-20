@@ -2,7 +2,7 @@ import avatar from '../../images/user-avatar-profile.png';
 import { activeType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { fetchUserMe, updateUser } from '../../services/usersSlice';
+import { fetchUserMe, updateUser, updatePhoto } from '../../services/usersSlice';
 
 function Profile({ active, setActive }) {
   const dispatch = useDispatch();
@@ -32,6 +32,7 @@ function Profile({ active, setActive }) {
 
   function handleActionChange() {
   dispatch(updateUser({position, timezone, email, phone}))
+  dispatch(updatePhoto());
     setActive(!active);
   }
 
@@ -44,10 +45,11 @@ function Profile({ active, setActive }) {
     }
   }, [currentUser.position, currentUser.phone,currentUser.email, currentUser.timezone])
 
+
   return (
     <section className={active ? 'profile__active' : 'profile'}>
       <div className='profile__wrap'>
-        <img src={avatar} alt='место для аватара' className='profile__avatar'/>
+        <img src={currentUser.photo !== '' ? avatar: currentUser.photo } alt='место для аватара' className='profile__avatar'/>
         <div className='profile__info-content'>
           <h1 className='profile__title'>{currentUser.username} {currentUser.first_name} {currentUser.last_name}</h1>
           <h2 className='profile__date'>{currentUser.date_of_birth}</h2>
@@ -59,7 +61,7 @@ function Profile({ active, setActive }) {
           </button>
       </div>
 
-      <div className='profile__content'>
+      <form className='profile__content'>
         <div className='profile__info'>
           <div className='profile__container'>
             <h2 className='profile__subtitle'>Должность:</h2>
@@ -82,7 +84,7 @@ function Profile({ active, setActive }) {
               value={phone}
               onChange={handlePhoneChange}
               id='phone-input'
-              type='number'
+              type='tel'
               placeholder={currentUser.phone}
               name='phone'
               minLength='9'
@@ -137,7 +139,7 @@ function Profile({ active, setActive }) {
             Сохранить изменения
           </button>
         </div>
-      </div>
+      </form>
     </section>
   );
 }
