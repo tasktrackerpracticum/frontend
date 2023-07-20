@@ -2,12 +2,13 @@ import avatar from '../../images/user-avatar-profile.png';
 import { activeType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { fetchUserMe, updateUser, updatePhoto } from '../../services/usersSlice';
+import { fetchUserMe, updateUser } from '../../services/usersSlice';
 
 function Profile({ active, setActive }) {
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.users.users);
+  
   useEffect(() => {
     dispatch(fetchUserMe());
   }, [dispatch]);
@@ -18,23 +19,50 @@ function Profile({ active, setActive }) {
   const [timezone, setTimezone] = useState('');
 
   function handlePositionChange(evt) {
+    evt.preventDefault();
+    if (evt.target.value !== currentUser.position) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setPosition(evt.target.value);
   }
   function handlePhoneChange(evt) {
+    evt.preventDefault();
+    if (evt.target.value !== currentUser.phone) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setPhone(evt.target.value);
   }
   function handleTimezoneChange(evt) {
+    evt.preventDefault();
+    if (evt.target.value !== currentUser.timezone) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+    
     setTimezone(evt.target.value);
   }
   function handleEmailChange(evt) {
+    evt.preventDefault();
+    if (evt.target.value !== currentUser.email) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setEmail(evt.target.value);
   }
 
-  function handleActionChange() {
+  function handleActionChange(evt) {
+    evt.preventDefault();
   dispatch(updateUser({position, timezone, email, phone}))
-  dispatch(updatePhoto());
     setActive(!active);
   }
+
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     if (currentUser.position && currentUser.phone && currentUser.email) {
@@ -43,7 +71,9 @@ function Profile({ active, setActive }) {
       setEmail(currentUser.email);
       setTimezone(currentUser.timezone)
     }
-  }, [currentUser.position, currentUser.phone,currentUser.email, currentUser.timezone])
+  }, [currentUser.position, currentUser.phone, currentUser.email, currentUser.timezone])
+
+  
 
 
   return (
@@ -135,7 +165,7 @@ function Profile({ active, setActive }) {
         </div>
 
         <div className='profile__container-btn'>
-          <button className='profile__submit-btn' type='submit' onClick={handleActionChange}>
+          <button disabled={disabled} className='profile__submit-btn' type='submit' onClick={handleActionChange}>
             Сохранить изменения
           </button>
         </div>
