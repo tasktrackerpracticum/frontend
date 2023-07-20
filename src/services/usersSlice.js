@@ -26,9 +26,6 @@ export const fetchUserMe = createAsyncThunk(
   },
 );
 
-
-
-
 const usersSlice = createSlice({
   name: 'users',
   initialState: {
@@ -37,7 +34,13 @@ const usersSlice = createSlice({
     error: null,
   },
   reducers: {
-
+		updateUser(state, action){
+			console.log(action);
+      state.users.position = action.payload.position;
+      state.users.email = action.payload.email;
+      state.users.phone = action.payload.phone;
+      state.users.timezone = action.payload.timezone;
+    }
 	},
   extraReducers: (builder) => {
     builder
@@ -57,4 +60,5 @@ const usersSlice = createSlice({
   },
 });
 
+export const {updateUser} = usersSlice.actions;
 export default usersSlice.reducer;

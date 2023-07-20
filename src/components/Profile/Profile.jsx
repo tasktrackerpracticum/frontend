@@ -1,23 +1,39 @@
 import avatar from '../../images/user-avatar-profile.png';
-import useValidation from '../../hooks/useValidation';
 import { activeType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchUserMe } from '../../services/usersSlice';
+import { useEffect, useState } from 'react';
+import { fetchUserMe, updateUser } from '../../services/usersSlice';
 
 function Profile({ active, setActive }) {
-  const { values, handleChange } = useValidation();
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.users.users);
-  console.log(currentUser);
-
-
   useEffect(() => {
     dispatch(fetchUserMe());
   }, [dispatch]);
 
+  const [position, setPosition] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [timezone, setTimezone] = useState('');
 
+  function handlePositionChange(evt) {
+    setPosition(evt.target.value);
+  }
+  function handlePhoneChange(evt) {
+    setPhone(evt.target.value);
+  }
+  function handleTimezoneChange(evt) {
+    setTimezone(evt.target.value);
+  }
+  function handleEmailChange(evt) {
+    setEmail(evt.target.value);
+  }
+
+  function handleActionChange() {
+  dispatch(updateUser({position, timezone, email, phone}))
+    setActive(!active);
+  }
 
   return (
     <section className={active ? 'profile__active' : 'profile'}>
@@ -40,8 +56,8 @@ function Profile({ active, setActive }) {
             <h2 className='profile__subtitle'>Должность:</h2>
             <input
               className='profile__input'
-              value={values.work}
-              onChange={handleChange}
+              value={position}
+              onChange={handlePositionChange}
               id='work-input'
               type='text'
               placeholder={currentUser.position}
@@ -55,8 +71,8 @@ function Profile({ active, setActive }) {
             <h2 className='profile__subtitle'>Телефон:</h2>
             <input
               className='profile__input'
-              value={values.phone}
-              onChange={handleChange}
+              value={phone}
+              onChange={handlePhoneChange}
               id='phone-input'
               type='number'
               placeholder={currentUser.phone}
@@ -70,8 +86,8 @@ function Profile({ active, setActive }) {
             <h2 className='profile__subtitle'>Email:</h2>
             <input
               className='profile__input'
-              value={values.email}
-              onChange={handleChange}
+              value={email}
+              onChange={handleEmailChange}
               id='email-input'
               type='email'
               placeholder={currentUser.email}
@@ -85,8 +101,8 @@ function Profile({ active, setActive }) {
             <h2 className='profile__subtitle'>Часовой пояс:</h2>
             <input
               className='profile__input'
-              value={values.timezone}
-              onChange={handleChange}
+              value={timezone}
+              onChange={handleTimezoneChange}
               id='timezone-input'
               type='text'
               placeholder={currentUser.timezone}
@@ -111,7 +127,7 @@ function Profile({ active, setActive }) {
         </div>
 
         <div className='profile__container-btn'>
-          <button className='profile__submit-btn' type='submit' onClick={() => setActive(!active)}>
+          <button className='profile__submit-btn' type='submit' onClick={handleActionChange}>
             Сохранить изменения
           </button>
         </div>
