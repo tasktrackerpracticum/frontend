@@ -12,7 +12,6 @@ import { fetchProjects } from '../../services/projectsSlice';
 export default function Main({ openTaskCreate }) {
   const dispatch = useDispatch();
   const { status, error, projects } = useSelector((state) => state.projects);
-
   const [onProject, setProject] = useState([projects]);
   const [onSelectListProject, setSelectListProject] = useState(true);
 
