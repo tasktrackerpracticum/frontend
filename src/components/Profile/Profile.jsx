@@ -1,17 +1,31 @@
 import avatar from '../../images/user-avatar-profile.png';
 import useValidation from '../../hooks/useValidation';
 import { activeType } from '../../constatnts/prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchUserMe } from '../../services/usersSlice';
 
 function Profile({ active, setActive }) {
   const { values, handleChange } = useValidation();
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((state) => state.users.users);
+  console.log(currentUser);
+
+
+  useEffect(() => {
+    dispatch(fetchUserMe());
+  }, [dispatch]);
+
+
 
   return (
     <section className={active ? 'profile__active' : 'profile'}>
       <div className='profile__wrap'>
         <img src={avatar} alt='место для аватара' className='profile__avatar'/>
         <div className='profile__info-content'>
-          <h1 className='profile__title'>Имя пользователя</h1>
-          <h2 className='profile__date'>Дата рождения</h2>
+          <h1 className='profile__title'>{currentUser.username} {currentUser.first_name} {currentUser.last_name}</h1>
+          <h2 className='profile__date'>{currentUser.date_of_birth}</h2>
         </div>
 		<button
             className='profile__cancel-btn'
@@ -30,7 +44,7 @@ function Profile({ active, setActive }) {
               onChange={handleChange}
               id='work-input'
               type='text'
-              placeholder='Укажите должность'
+              placeholder={currentUser.position}
               name='work'
               minLength='2'
               maxLength='10'
@@ -45,7 +59,7 @@ function Profile({ active, setActive }) {
               onChange={handleChange}
               id='phone-input'
               type='number'
-              placeholder='+7(__)__-__-__'
+              placeholder={currentUser.phone}
               name='phone'
               minLength='9'
               maxLength='11'
@@ -60,7 +74,7 @@ function Profile({ active, setActive }) {
               onChange={handleChange}
               id='email-input'
               type='email'
-              placeholder='Укажите почту'
+              placeholder={currentUser.email}
               name='email'
               minLength='7'
               maxLength='20'
@@ -74,8 +88,8 @@ function Profile({ active, setActive }) {
               value={values.timezone}
               onChange={handleChange}
               id='timezone-input'
-              type='datetime-local'
-              placeholder='Выберите ваш часовой пояс'
+              type='text'
+              placeholder={currentUser.timezone}
               name='timezone'
               required
             />
