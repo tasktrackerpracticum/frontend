@@ -2,13 +2,15 @@ import { NavLink } from 'react-router-dom';
 import useValidation from '../../hooks/useValidation';
 import { loginFunctionType } from '../../constatnts/prop-types';
 import Slider from '../Slider/Slider';
+import { SIGN_UP } from '../../constatnts/constants.js';
 
 function Login({ onLogin }) {
   const { values, handleChange } = useValidation();
   function handleSubmit(evt) {
     evt.preventDefault();
     onLogin(values.email, values.password);
-  }
+  };
+  
   return (
     <section className='auth'>
       <div className='auth__block auth__block_left'>
@@ -37,7 +39,6 @@ function Login({ onLogin }) {
                 value={values.password || ''}
                 placeholder={'Пароль'}
                 required
-                minLength='8'
                 onChange={handleChange}
               />
               <span className='auth__error' id='password-error'>
@@ -53,7 +54,7 @@ function Login({ onLogin }) {
             <NavLink className='auth__link' to='/'>
               Восстановить пароль
             </NavLink>
-            <NavLink className='auth__link' to='/register'>
+            <NavLink className='auth__link' to={SIGN_UP}>
               Зарегистрироваться
             </NavLink>
           </div>

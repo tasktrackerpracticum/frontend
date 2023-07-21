@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Header from '../Header/Header.jsx';
 import Register from '../Register/Register.jsx';
@@ -10,20 +10,23 @@ import Profile from '../Profile/Profile.jsx';
 import CreateProject from '../CreateProject/CreateProject';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from '../../services/profileSlice';
+import { SIGN_IN, SIGN_UP } from '../../constatnts/constants.js';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
-  const { handleLogin, handleRegister } = useAuth();
+  const token = localStorage.getItem('accessToken');
+  const { handleLogin, handleRegister, handleLogout, isLoggedIn } = useAuth();
   const [profileActive, setProfileActive] = useState(false);
   const [isOpenTaskCreate, setOpenTaskCreate] = useState(false);
 
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.profile)
 
-  const email = "admin@admin.com";
-  const password = "admin";
+  // const email = "admin@admin.com";
+  // const password = "admin";
 //Запрос токена с админскими данными временный. Убрать после настройки авторизации
   useEffect(() => {
-    dispatch(fetchToken({email, password}))
+    dispatch(fetchToken())
   }, [dispatch]);
 
 
@@ -39,23 +42,35 @@ function App() {
       {error && <h2>{error}</h2>}
 
         <div className='page__container'>
-          <Switch>
-            <Route exact path='/'>
-              <Header active={profileActive} setActive={setProfileActive} />
-              <Profile active={profileActive} setActive={setProfileActive} />
-              <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
-              <Main openTaskCreate={openTaskCreate} active={isOpenTaskCreate}  setActive={setOpenTaskCreate}/>
-            </Route>
-            <Route path='/register' onRegister={handleRegister}>
-              <Register />
-            </Route>
-            <Route path='/login' onLogin={handleLogin}>
-              <Login />
-            </Route>
-            <Route path='*'>
-              <NotFoundPage />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route exact path='/' element={
+              <ProtectedRoute isLoggedIn={token} components={(
+                <>
+                  <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
+                  <Profile active={profileActive} setActive={setProfileActive} />
+                  <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
+                  <Main openTaskCreate={openTaskCreate} active={isOpenTaskCreate}  setActive={setOpenTaskCreate}/>
+                </>
+              )}
+              />
+            }
+            />
+            <Route path={SIGN_UP} element={
+              !isLoggedIn ?
+                <Register onRegister={handleRegister} />
+              :
+                <Navigate to='/' />
+              }
+            />
+            <Route path={SIGN_IN} element={
+              !isLoggedIn ?
+                <Login onLogin={handleLogin} />
+              :
+                <Navigate to='/' />
+              }
+            />
+            <Route path='*' element={<NotFoundPage />} />
+          </Routes>
         </div>
       </div>
     </>
