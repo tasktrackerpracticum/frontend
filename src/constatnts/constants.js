@@ -6,9 +6,7 @@ export const RESET_PASSWORD_API = `${baseUrl}/users/reset_password/`;
 // ------/token
 export const TOKEN_CREATE_API = `${baseUrl}/jwt/create/`;
 // ------/auth
-export const REGISTER_API = `${baseUrl}/auth/register`; //Посмотреть в swgger
-export const LOGIN_API = `${baseUrl}/auth/login`; //Посмотреть в swgger
-export const LOGOUT_API = `${baseUrl}/auth/logout`; //Посмотреть в swgger
+export const REGISTER_API = `${baseUrl}/users/`;
 // ------/user
 export const USERS_API = `${baseUrl}/users`; //Посмотреть в swgger
 export const USER_ME_API = `${baseUrl}/users/me`; //Посмотреть в swgger

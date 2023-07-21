@@ -2,10 +2,10 @@ import { NavLink } from 'react-router-dom';
 import defaultIcon from '../../images/icon.svg';
 import exit from '../../images/exit.svg';
 import logo from '../../images/logo.svg';
-import { activeType } from '../../constatnts/prop-types';
+import { activeType, loginFunctionType } from '../../constatnts/prop-types';
 import SearchForm from '../SearchForm/SearchForm.jsx';
 
-export default function Header({ active, setActive }) {
+export default function Header({ active, setActive, onLogout }) {
   const toggleClass = () => {
     setActive(!active);
   };
@@ -27,7 +27,7 @@ export default function Header({ active, setActive }) {
           />
         </div>
         <div className='header__exit'>
-          <img src={exit} alt='exit' className='header__exit-icon' />
+          <button onClick={onLogout}><img src={exit} alt='exit' className='header__exit-icon' /></button>
         </div>
       </div>
     </header>
@@ -37,4 +37,5 @@ export default function Header({ active, setActive }) {
 Header.propTypes = {
   active: activeType,
   setActive: activeType,
+  onLogout: loginFunctionType
 };

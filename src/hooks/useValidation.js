@@ -3,7 +3,6 @@ import { useState, useCallback } from 'react';
 function useValidation() {
   const [values, setValues] = useState({});
   const [isValid, setIsValid] = useState({
-    name: true,
     email: true,
     password: true,
   });
@@ -22,7 +21,6 @@ function useValidation() {
     (
       newValues = {},
       newIsValid = {
-        name: true,
         email: true,
         password: true,
       },

@@ -1,4 +1,4 @@
-import { string, bool, requiredFunc, object } from 'prop-types';
+import { string, bool, requiredFunc, object, element } from 'prop-types';
 
 export const taskContainerType = string.isRequired;
 
@@ -16,4 +16,6 @@ export const functionType = requiredFunc;
 
 export const stringType = string.isRequired;
 export const boolType = bool.isRequired;
+
+export const reactElement = element;
 

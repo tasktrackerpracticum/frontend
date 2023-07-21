@@ -2,10 +2,11 @@ import { NavLink } from 'react-router-dom';
 import useValidation from '../../hooks/useValidation';
 import { loginFunctionType } from '../../constatnts/prop-types';
 import Slider from '../Slider/Slider';
+import { SIGN_IN } from '../../constatnts/constants.js';
 
 function Register({ onRegister }) {
   const { values, handleChange } = useValidation();
-  function handleSubmit(evt) {
+  function handleSubmit (evt) {
     evt.preventDefault();
     onRegister(values.email, values.password);
   }
@@ -38,7 +39,6 @@ function Register({ onRegister }) {
                 value={values.password || ''}
                 placeholder={'Пароль'}
                 required
-                minLength='8'
                 onChange={handleChange}
               />
               <span className='auth__error' id='password-error'>
@@ -54,7 +54,7 @@ function Register({ onRegister }) {
             <NavLink className='auth__link' to='/'>
               Восстановить пароль
             </NavLink>
-            <NavLink className='auth__link' to='/login'>
+            <NavLink className='auth__link' to={SIGN_IN}>
               Войти
             </NavLink>
           </div>
