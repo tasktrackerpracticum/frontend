@@ -100,10 +100,10 @@ function CreateProject({ active, setActive }) {
           </div>
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Автор</h2>
-            <dic className="createProject__creator">
+            <div className="createProject__creator">
               <img src={avatar} className="createProject__creator-avatar" alt="avatar" />
-              <p className="createProject__creator-name">Текущий пользователь</p>
-            </dic>
+              <div className="createProject__creator-name">Текущий пользователь</div>
+            </div>
           </div>
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Исполнитель</h2>
