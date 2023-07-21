@@ -17,7 +17,20 @@ export const fetchUsers = createAsyncThunk(
 const usersSlice = createSlice({
   name: 'users',
   initialState: {
-    users: [],
+    users: [{
+			country: null,
+      date_of_birth: null,
+      email: null,
+      first_name: null,
+      gender: null,
+      id: null,
+      last_name: null,
+      phone: null,
+      photo: null,
+      position: null,
+      timezone: null,
+      username: null,
+		}],
     status: null,
     error: null,
   },

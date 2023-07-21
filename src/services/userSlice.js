@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {  getUserMe } from '../utils/UserApi';
-
+import { getUserMe } from '../utils/UserApi';
 
 export const fetchUserMe = createAsyncThunk(
   'user/fetchUser',
-	async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const response = await getUserMe();
       return response;
@@ -17,22 +16,35 @@ export const fetchUserMe = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: [],
+    user: {
+      country: null,
+      date_of_birth: null,
+      email: null,
+      first_name: null,
+      gender: null,
+      id: null,
+      last_name: null,
+      phone: null,
+      photo: null,
+      position: null,
+      timezone: null,
+      username: null,
+    },
     status: null,
     error: null,
   },
   reducers: {
-		updateUser(state, action){
+    updateUser(state, action) {
       state.user.position = action.payload.position;
       state.user.email = action.payload.email;
       state.user.phone = action.payload.phone;
       state.user.timezone = action.payload.timezone;
     },
-		updatePhoto(state, action){
-			console.log(action);
-			state.users.photo = action.payload.photo;
-		}
-	},
+    updatePhoto(state, action) {
+      console.log(action);
+      state.users.photo = action.payload.photo;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserMe.pending, (state) => {
@@ -51,5 +63,5 @@ const userSlice = createSlice({
   },
 });
 
-export const {updateUser, updatePhoto} = userSlice.actions;
+export const { updateUser, updatePhoto } = userSlice.actions;
 export default userSlice.reducer;
