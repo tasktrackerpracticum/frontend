@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useValidation from '../../hooks/useValidation';
 import { activeType, functionType } from '../../constatnts/prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProject } from '../../services/projectsSlice';
+import { fetchUserMe } from '../../services/userSlice';
 import avatar from '../../images/user-avatar-profile.png';
-
 
 function CreateProject({ active, setActive }) {
   const { values, handleChange } = useValidation();
@@ -13,13 +13,19 @@ function CreateProject({ active, setActive }) {
   const [date_finish, setDateFinish] = useState('');
   const [disabled, setDisabled] = useState(true);
 
-
+  const currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
+
+
   const handleAction = () => {
-    dispatch(addProject({title, date_start, date_finish}));
+    dispatch(addProject({ title, date_start, date_finish}));
     setActive(!active);
   };
+
+  useEffect(() => {
+    dispatch(fetchUserMe());
+  }, [dispatch]);
 
   const handleNameChange = (event) => {
     event.preventDefault();
@@ -53,16 +59,16 @@ function CreateProject({ active, setActive }) {
     <section className={active ? 'createProject__active' : 'createProject'}>
       <div className='createProject__wrap'>
         <div className='createProject__info-content'>
-        <input
-              className='createProject__title'
-              value={title || ''}
-              onChange={handleNameChange}
-              id='date-begin-input'
-              type='text'
-              placeholder='Название проекта'
-              name='title'
-              required
-            />
+          <input
+            className='createProject__title'
+            value={title || ''}
+            onChange={handleNameChange}
+            id='date-begin-input'
+            type='text'
+            placeholder='Название проекта'
+            name='title'
+            required
+          />
         </div>
         <button
           className='createProject__cancel-btn'
@@ -98,11 +104,17 @@ function CreateProject({ active, setActive }) {
               required
             />
           </div>
-          <div className='createProject__container'>
+          <div className='createProject__container-creator'>
             <h2 className='createProject__subtitle'>Автор</h2>
-            <div className="createProject__creator">
-              <img src={avatar} className="createProject__creator-avatar" alt="avatar" />
-              <div className="createProject__creator-name">Текущий пользователь</div>
+            <div className='createProject__creator'>
+              <img
+                src={currentUser.photo !== '' ? avatar : currentUser.photo}
+                className='createProject__creator-avatar'
+                alt='avatar'
+              />
+              <div className='createProject__creator-name'>
+                {currentUser.first_name} {currentUser.last_name}
+              </div>
             </div>
           </div>
           <div className='createProject__container'>
@@ -120,7 +132,7 @@ function CreateProject({ active, setActive }) {
           </div>
           <div className='createProject__container-btn'>
             <button
-            disabled = {disabled}
+              disabled={disabled}
               className='createProject__submit-btn'
               type='submit'
               onClick={handleAction}

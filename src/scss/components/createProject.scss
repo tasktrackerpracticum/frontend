@@ -156,6 +156,18 @@
     }
   }
 
+  &__container-creator {
+    margin-top: 30px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 120px;
+    color: #8A8A8A;
+    &:hover {
+        color: black;
+    }
+  }
+
   &__creator {
     display: flex;
     align-items: center;
