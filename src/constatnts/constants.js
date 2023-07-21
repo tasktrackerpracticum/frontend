@@ -10,7 +10,8 @@ export const REGISTER_API = `${baseUrl}/auth/register`; //Посмотреть �
 export const LOGIN_API = `${baseUrl}/auth/login`; //Посмотреть в swgger
 export const LOGOUT_API = `${baseUrl}/auth/logout`; //Посмотреть в swgger
 // ------/user
-export const USER_API = `${baseUrl}/auth/user`; //Посмотреть в swgger
+export const USERS_API = `${baseUrl}/users`; //Посмотреть в swgger
+export const USER_ME_API = `${baseUrl}/users/me`; //Посмотреть в swgger
 // ------/organizations
 export const ORGANIZATIONS_API = `${baseUrl}/organizations/`;
 // ------/projects

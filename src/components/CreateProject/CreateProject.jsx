@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useState } from 'react';
 import useValidation from '../../hooks/useValidation';
 import { activeType, functionType } from '../../constatnts/prop-types';
+import { useDispatch } from 'react-redux';
+import { addProject } from '../../services/projectsSlice';
 
 function CreateProject({ active, setActive }) {
   const { values, handleChange } = useValidation();
   const [title, setTitle] = useState();
+  const [date_start, setDateStart] = useState('');
+  const [date_finish, setDateFinish] = useState('');
 
 
-  
+  const dispatch = useDispatch();
 
+  const handleAction = () => {
+    dispatch(addProject({title, date_start, date_finish}));
+    setActive(!active);
+  };
+
+  const handleNameChange = (event) => {
+    setTitle(event.target.value);
+  };
+  const handleDateStartChange = (event) => {
+    setDateStart(event.target.value);
+  };
+  const handleDateFinishChange = (event) => {
+    setDateFinish(event.target.value);
+  };
 
   return (
     <section className={active ? 'createProject__active' : 'createProject'}>
@@ -16,21 +34,20 @@ function CreateProject({ active, setActive }) {
         <div className='createProject__info-content'>
           <h1 className='createProject__title'>Новый Проект</h1>
         </div>
-		<button
-            className='createProject__cancel-btn'
-            onClick={() => setActive(!active)}
-          >
-          </button>
+        <button
+          className='createProject__cancel-btn'
+          onClick={() => setActive(!active)}
+        ></button>
       </div>
 
       <div className='createProject__content'>
-        <div className='createProject__info'>
-        <div className='createProject__container'>
+        <form className='createProject__info'>
+          <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Название проекта</h2>
             <input
               className='createProject__input'
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={handleNameChange}
               id='date-begin-input'
               type='text'
               placeholder='Название проекта'
@@ -42,8 +59,8 @@ function CreateProject({ active, setActive }) {
             <h2 className='createProject__subtitle'>Дата начала</h2>
             <input
               className='createProject__input'
-              value={values.date_start}
-              onChange={handleChange}
+              value={date_start}
+              onChange={handleDateStartChange}
               id='date-begin-input'
               type='date'
               placeholder='Дата начала'
@@ -55,14 +72,12 @@ function CreateProject({ active, setActive }) {
             <h2 className='createProject__subtitle'>Дата окончания</h2>
             <input
               className='createProject__input'
-              value={values.date_finish}
-              onChange={handleChange}
-              id='date-end-input'
+              value={date_finish}
+              onChange={handleDateFinishChange}
+              id='date-finish-input'
               type='date'
               placeholder='Дедлайн'
               name='date_finish'
-              minLength='9'
-              maxLength='11'
               required
             />
           </div>
@@ -94,13 +109,16 @@ function CreateProject({ active, setActive }) {
               required
             />
           </div>
-        </div>
-
-        <div className='createProject__container-btn'>
-          <button className='createProject__submit-btn' type='submit' >
-            + Создать проект
-          </button>
-        </div>
+          <div className='createProject__container-btn'>
+            <button
+              className='createProject__submit-btn'
+              type='submit'
+              onClick={handleAction}
+            >
+              + Создать проект
+            </button>
+          </div>
+        </form>
       </div>
     </section>
   );
@@ -111,5 +129,5 @@ export default CreateProject;
 CreateProject.propTypes = {
   active: activeType,
   setActive: activeType,
-  addProject: functionType
+  addProject: functionType,
 };

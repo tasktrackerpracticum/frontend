@@ -20,7 +20,21 @@ const projectsSlice = createSlice({
     status: null,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    addProject(state, action) {
+      console.log(state);
+      console.log(action);
+
+      state.projects.push({
+        // добавить поле создатателя-автора и поля исполнителей после их подключения в стору
+        id: state.projects.length + 1,
+        title: action.payload.title,
+        date_finish: action.payload.date_finish,
+        is_active: false, // не забыть сменить на true
+        date_start: action.payload.date_start,
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.pending, (state) => {
@@ -39,4 +53,5 @@ const projectsSlice = createSlice({
   },
 });
 
+export const { addProject } = projectsSlice.actions;
 export default projectsSlice.reducer;

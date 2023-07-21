@@ -115,14 +115,27 @@
     border: none;
     height: 53px;
     border-radius: 15px;
-    background-color: #f8d57e;
     color: black;
     font-size: 20px;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+    cursor: pointer;  
 
-    &:hover {
-      opacity: 0.5;
+    &:disabled{
+      background-color: #FFFFFF;
+      border: 1px solid #F8D57E;
+      transition: 0.3;
+      opacity: 0.3;
+    }
+    &:disabled:hover {
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+    &:enabled {
+      background-color: #f8d57e;
+      transition: 0.3;
+    }
+    &:enabled:hover {
+     opacity: 0.5;
+     transition: opacity 0.2s ease;
     }
   }
   &__cancel-btn {
@@ -151,7 +164,6 @@
     font-size: 14px;
     font-weight: 400;
     border: none;
-    border-bottom: 1px solid #7f7e88;
     padding-left: 10px;
     cursor: pointer;
 

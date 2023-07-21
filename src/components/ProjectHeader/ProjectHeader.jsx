@@ -12,7 +12,7 @@ export default function ProjectHeader({ onProject, selectListProject }) {
             className={
               onProject.is_active
                 ? 'projectHeader__status-actived'
-                : 'project__status-closed'}>
+                : 'projectHeader__status-closed'}>
             {onProject.is_active ? 'Активен' : 'Завершен'}
           </div>
         </h2>

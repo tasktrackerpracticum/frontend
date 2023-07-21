@@ -42,7 +42,7 @@ export default function Projects({ openTaskCreate, onClick, selectListProject })
             {projects.length !== 0 && (projects.map((item) => {
               return (
                 <li key={item.id} className="projects__container" onClick={() => handlerProject(item)}>
-                <Project title={item.title} />
+                <Project title={item.title} start={item.date_start} finish={item.date_finish} isActive={item.is_active}/>
                 </li>
               )
             }))}
