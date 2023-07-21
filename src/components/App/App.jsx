@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Header from '../Header/Header.jsx';
 import Register from '../Register/Register.jsx';
@@ -42,34 +42,35 @@ function App() {
       {error && <h2>{error}</h2>}
 
         <div className='page__container'>
-          <Switch>
-            <ProtectedRoute exact path='/' isLoggedIn={token} components={(
-              <>
-                <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
-                <Profile active={profileActive} setActive={setProfileActive} />
-                <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
-                <Main openTaskCreate={openTaskCreate} active={isOpenTaskCreate}  setActive={setOpenTaskCreate}/>
-              </>
+          <Routes>
+            <Route exact path='/' element={
+              <ProtectedRoute isLoggedIn={token} components={(
+                <>
+                  <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
+                  <Profile active={profileActive} setActive={setProfileActive} />
+                  <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
+                  <Main openTaskCreate={openTaskCreate} active={isOpenTaskCreate}  setActive={setOpenTaskCreate}/>
+                </>
               )}
+              />
+            }
             />
-            <Route path={SIGN_UP}>
-              {!isLoggedIn ?
+            <Route path={SIGN_UP} element={
+              !isLoggedIn ?
                 <Register onRegister={handleRegister} />
               :
-                <Redirect to='/' />
+                <Navigate to='/' />
               }
-            </Route>
-            <Route path={SIGN_IN}>
-              {!isLoggedIn ?
+            />
+            <Route path={SIGN_IN} element={
+              !isLoggedIn ?
                 <Login onLogin={handleLogin} />
               :
-                <Redirect to='/' />
+                <Navigate to='/' />
               }
-            </Route>
-            <Route path='*'>
-              <NotFoundPage />
-            </Route>
-          </Switch>
+            />
+            <Route path='*' element={<NotFoundPage />} />
+          </Routes>
         </div>
       </div>
     </>

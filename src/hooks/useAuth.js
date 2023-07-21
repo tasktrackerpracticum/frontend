@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as MainApi from '../utils/MainApi';
 import { getToken } from '../utils/TokenApi';
 import { SIGN_IN } from '../constatnts/constants.js';
@@ -9,7 +9,7 @@ function useAuth() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [resStatus, setResStatus] = React.useState('');
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogin = (email, password) => {
     getToken(email, password)
@@ -18,7 +18,7 @@ function useAuth() {
         setResStatus('');
 				localStorage.setItem('refreshToken', res.refresh);
       	localStorage.setItem('accessToken', res.access);
-        history.push('/');
+        navigate.push('/');
       })
       .catch((err) => {
         setResStatus(err);
@@ -39,7 +39,7 @@ function useAuth() {
 	const handleLogout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
-    history.push(SIGN_IN);
+    navigate.push(SIGN_IN);
   };
 
   const handleResStatus = () => {
