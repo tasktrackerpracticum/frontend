@@ -2,12 +2,12 @@ import avatar from '../../images/user-avatar-profile.png';
 import { activeType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { fetchUserMe, updateUser } from '../../services/usersSlice';
+import { fetchUserMe, updateUser } from '../../services/userSlice';
 
 function Profile({ active, setActive }) {
   const dispatch = useDispatch();
 
-  const currentUser = useSelector((state) => state.users.users);
+  const currentUser = useSelector((state) => state.user.user);
   
   useEffect(() => {
     dispatch(fetchUserMe());
@@ -54,6 +54,7 @@ function Profile({ active, setActive }) {
       setDisabled(true);
     }
     setEmail(evt.target.value);
+    
   }
 
   function handleActionChange(evt) {
@@ -128,7 +129,7 @@ function Profile({ active, setActive }) {
               className='profile__input'
               value={email}
               onChange={handleEmailChange}
-              id='email-input'
+              id='email'
               type='email'
               name='email'
               minLength='7'
