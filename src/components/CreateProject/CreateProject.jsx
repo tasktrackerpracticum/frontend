@@ -3,12 +3,15 @@ import useValidation from '../../hooks/useValidation';
 import { activeType, functionType } from '../../constatnts/prop-types';
 import { useDispatch } from 'react-redux';
 import { addProject } from '../../services/projectsSlice';
+import avatar from '../../images/user-avatar-profile.png';
+
 
 function CreateProject({ active, setActive }) {
   const { values, handleChange } = useValidation();
   const [title, setTitle] = useState();
   const [date_start, setDateStart] = useState('');
   const [date_finish, setDateFinish] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
 
   const dispatch = useDispatch();
@@ -19,12 +22,30 @@ function CreateProject({ active, setActive }) {
   };
 
   const handleNameChange = (event) => {
+    event.preventDefault();
+    if (event.target.value !== title) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setTitle(event.target.value);
   };
   const handleDateStartChange = (event) => {
+    event.preventDefault();
+    if (event.target.value !== date_start) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setDateStart(event.target.value);
   };
   const handleDateFinishChange = (event) => {
+    event.preventDefault();
+    if (event.target.value !== date_finish) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setDateFinish(event.target.value);
   };
 
@@ -32,7 +53,16 @@ function CreateProject({ active, setActive }) {
     <section className={active ? 'createProject__active' : 'createProject'}>
       <div className='createProject__wrap'>
         <div className='createProject__info-content'>
-          <h1 className='createProject__title'>Новый Проект</h1>
+        <input
+              className='createProject__title'
+              value={title || ''}
+              onChange={handleNameChange}
+              id='date-begin-input'
+              type='text'
+              placeholder='Название проекта'
+              name='title'
+              required
+            />
         </div>
         <button
           className='createProject__cancel-btn'
@@ -42,19 +72,6 @@ function CreateProject({ active, setActive }) {
 
       <div className='createProject__content'>
         <form className='createProject__info'>
-          <div className='createProject__container'>
-            <h2 className='createProject__subtitle'>Название проекта</h2>
-            <input
-              className='createProject__input'
-              value={title}
-              onChange={handleNameChange}
-              id='date-begin-input'
-              type='text'
-              placeholder='Название проекта'
-              name='title'
-              required
-            />
-          </div>
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Дата начала</h2>
             <input
@@ -83,18 +100,10 @@ function CreateProject({ active, setActive }) {
           </div>
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Автор</h2>
-            <input
-              className='createProject__input'
-              value={values.author}
-              onChange={handleChange}
-              id='author-input'
-              type='text'
-              placeholder='Создатель проекта'
-              name='text'
-              minLength='5'
-              maxLength='20'
-              required
-            />
+            <dic className="createProject__creator">
+              <img src={avatar} className="createProject__creator-avatar" alt="avatar" />
+              <p className="createProject__creator-name">Текущий пользователь</p>
+            </dic>
           </div>
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Исполнитель</h2>
@@ -104,13 +113,14 @@ function CreateProject({ active, setActive }) {
               onChange={handleChange}
               id='performer-input'
               type='text'
-              placeholder='Добавить исполнителя'
+              placeholder='+ Добавить исполнителя'
               name='performer'
               required
             />
           </div>
           <div className='createProject__container-btn'>
             <button
+            disabled = {disabled}
               className='createProject__submit-btn'
               type='submit'
               onClick={handleAction}
