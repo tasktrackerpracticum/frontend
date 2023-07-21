@@ -19,11 +19,11 @@ function App() {
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.profile)
 
-  const email = "admin@admin.com";
-  const password = "admin";
+   const email = "admin@admin.com";
+   const password = "admin";
 //Запрос токена с админскими данными временный. Убрать после настройки авторизации
   useEffect(() => {
-    dispatch(fetchToken({email, password}))
+    dispatch(fetchToken({email,password}))
   }, [dispatch]);
 
 

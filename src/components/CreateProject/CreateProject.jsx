@@ -18,13 +18,33 @@ function CreateProject({ active, setActive }) {
     setActive(!active);
   };
 
+  const [disabled, setDisabled] = useState(true);
+
   const handleNameChange = (event) => {
+    event.preventDefault();
+    if (event.target.value !== '') {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setTitle(event.target.value);
   };
   const handleDateStartChange = (event) => {
+    event.preventDefault();
+    if (event.target.value !== '') {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setDateStart(event.target.value);
   };
   const handleDateFinishChange = (event) => {
+    event.preventDefault();
+    if (event.target.value !== '') {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setDateFinish(event.target.value);
   };
 
@@ -32,7 +52,16 @@ function CreateProject({ active, setActive }) {
     <section className={active ? 'createProject__active' : 'createProject'}>
       <div className='createProject__wrap'>
         <div className='createProject__info-content'>
-          <h1 className='createProject__title'>Новый Проект</h1>
+          <input
+              className='createProject__title'
+              value={title}
+              onChange={handleNameChange}
+              id='date-begin-input'
+              type='text'
+              placeholder='Название проекта'
+              name='title'
+              required
+            />
         </div>
         <button
           className='createProject__cancel-btn'
@@ -42,19 +71,7 @@ function CreateProject({ active, setActive }) {
 
       <div className='createProject__content'>
         <form className='createProject__info'>
-          <div className='createProject__container'>
-            <h2 className='createProject__subtitle'>Название проекта</h2>
-            <input
-              className='createProject__input'
-              value={title}
-              onChange={handleNameChange}
-              id='date-begin-input'
-              type='text'
-              placeholder='Название проекта'
-              name='title'
-              required
-            />
-          </div>
+     
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Дата начала</h2>
             <input
@@ -110,7 +127,7 @@ function CreateProject({ active, setActive }) {
             />
           </div>
           <div className='createProject__container-btn'>
-            <button
+            <button disabled={disabled}
               className='createProject__submit-btn'
               type='submit'
               onClick={handleAction}
