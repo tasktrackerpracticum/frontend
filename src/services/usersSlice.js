@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUsers, getUserMe } from '../utils/UsersApi';
+import { getUsers } from '../utils/UsersApi';
 
 export const fetchUsers = createAsyncThunk(
-  'users/fetchToken',
+  'users/fetchUsers',
 	async (_, { rejectWithValue }) => {
     try {
       const response = await getUsers();
@@ -13,21 +13,6 @@ export const fetchUsers = createAsyncThunk(
   },
 );
 
-export const fetchUserMe = createAsyncThunk(
-  'users/fetchToken',
-	async (_, { rejectWithValue }) => {
-    try {
-      const response = await getUserMe();
-			console.log(response);
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  },
-);
-
-
-
 
 const usersSlice = createSlice({
   name: 'users',
@@ -37,7 +22,6 @@ const usersSlice = createSlice({
     error: null,
   },
   reducers: {
-
 	},
   extraReducers: (builder) => {
     builder
@@ -57,4 +41,5 @@ const usersSlice = createSlice({
   },
 });
 
+export const {updateUser, updatePhoto} = usersSlice.actions;
 export default usersSlice.reducer;
