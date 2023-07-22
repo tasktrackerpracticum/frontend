@@ -32,17 +32,17 @@ export default function SearchForm({ onSearchTask }) {
       >
         <div className='search-form__container'>
           <div className='search-form__icon' />
-          <div className='search-form__title'> Поиск</div>
           <input
             className='search-form__input'
             value={name || ''}
             onChange={handleChange}
             type='text'
-            placeholder='Поиск задач...'
+            placeholder='Поиск'
             name='name'
             minLength='1'
             maxLength='30'
           />
+          <div className='search-form__icon' />
           <span className='search-form__search-error'>
             {searchErrorMessage ? `${searchErrorMessage}` : ''}
           </span>

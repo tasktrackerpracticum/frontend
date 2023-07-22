@@ -62,4 +62,16 @@
     justify-content: flex-start;
     gap: 24px;
   }
+
+  &__projectTimeline {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__team {
+    width: 90px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+  }
 }
