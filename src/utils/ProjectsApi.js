@@ -23,8 +23,8 @@ export const createProject = (data) => {
     },
      body: JSON.stringify({
 			title: data.title,
-			// date_start: data.date_start,
-			// date_finish: data.date_finish,
+			 date_start: data.date_start,
+			 date_finish: data.date_finish,
 			is_active: data.is_active,
 		 })
   });

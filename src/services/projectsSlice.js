@@ -16,22 +16,18 @@ export const fetchProjects = createAsyncThunk(
 export const createNewProjects = createAsyncThunk(
   'projects/createProjects',
   async ({ title, date_start, date_finish}, { rejectWithValue, dispatch }) => {
-		debugger;
 		const newProject = {
 			title: title,
-			// date_start: date_start,
-			// date_finish: date_finish,
+			 date_start: date_start,
+			 date_finish: date_finish,
 			is_active: true,
 			id: 15
 		}
 		console.log(newProject);
     try {
-debugger;
+
       const response = await createProject(newProject);
 			const data = response.json();
-			console.log(response);
-			console.log('--------------------');
-			console.log(data);
 			dispatch(addProject(data));
 			if (!response.ok) {
 				throw new Error('Can\'t add project. Server error.');
@@ -53,7 +49,6 @@ const projectsSlice = createSlice({
   reducers: {
     addProject(state, action) {
       state.projects.push({
-        // добавить поле создатателя-автора и поля исполнителей после их подключения в стору
         id: state.projects.length + 1,
         title: action.payload.title,
         date_finish: action.payload.date_finish,
