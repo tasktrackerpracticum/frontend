@@ -19,8 +19,8 @@ export const createNewProjects = createAsyncThunk(
 		debugger;
 		const newProject = {
 			title: title,
-			date_start: date_start,
-			date_finish: date_finish,
+			// date_start: date_start,
+			// date_finish: date_finish,
 			is_active: true,
 			id: 15
 		}

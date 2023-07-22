@@ -14,7 +14,7 @@ const organization_id = 1;
 
 export const createProject = (data) => {
   const token = localStorage.getItem('accessToken');
-  return request(`${ORGANIZATIONS_API}${organization_id}/projects`, {
+  return request(`${ORGANIZATIONS_API}?organization_id=${organization_id}/projects/`, {
 		method: "POST",
     headers: {
       Authorization: 'Bearer ' + token,
@@ -23,8 +23,8 @@ export const createProject = (data) => {
     },
      body: JSON.stringify({
 			title: data.title,
-			date_start: data.date_start,
-			date_finish: data.date_finish,
+			// date_start: data.date_start,
+			// date_finish: data.date_finish,
 			is_active: data.is_active,
 		 })
   });
