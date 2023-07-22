@@ -2,8 +2,8 @@
 
 .projects {
   @include reset;
-  width: 1380px;
-  margin: 130px 40px;
+  max-width: 1380px;
+  margin: 0 40px 40px;
   border-radius: 40px;
   background: #f5f1ed;
 
