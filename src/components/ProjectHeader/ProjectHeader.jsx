@@ -1,4 +1,6 @@
 import { activeType, objectType } from '../../constatnts/prop-types.js';
+import TeamProject from '../TeamProject/TeamProject';
+import Deadline from '../Deadline/Deadline.jsx';
 
 export default function ProjectHeader({ onProject, selectListProject }) {
 
@@ -18,9 +20,11 @@ export default function ProjectHeader({ onProject, selectListProject }) {
         </h2>
         <div className='projectHeader__container'>
           <p className='projectHeader__projectTimeline'>
-            Сроки проекта: {onProject.date_start} - {onProject.date_finish}
+            Сроки проекта: <Deadline start={onProject.date_start} finish= {onProject.date_finish}/>
+             
           </p>
-          <p className='projectHeader__team'>Команда:</p>
+          <div className='projectHeader__team'>Команда: <TeamProject />
+          </div>
         </div>
       </div>
 
