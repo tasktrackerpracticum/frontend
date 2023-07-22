@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import useValidation from '../../hooks/useValidation';
 import { activeType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProject } from '../../services/projectsSlice';
+import { addProject, createNewProjects } from '../../services/projectsSlice';
 import { fetchUserMe } from '../../services/userSlice';
 import avatar from '../../images/user-avatar-profile.png';
 
@@ -20,6 +20,7 @@ function CreateProject({ active, setActive }) {
 
   const handleAction = () => {
     dispatch(addProject({ title, date_start, date_finish}));
+    dispatch(createNewProjects({ title, date_start, date_finish}));
     setActive(!active);
   };
 
