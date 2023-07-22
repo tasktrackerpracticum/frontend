@@ -2,7 +2,7 @@ import avatar from '../../images/user-avatar-profile.png';
 import { activeType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { fetchUserMe, updateUser } from '../../services/userSlice';
+import { fetchUserMe, reducerUpdateUser, updateUserMe } from '../../services/userSlice';
 
 function Profile({ active, setActive }) {
   const dispatch = useDispatch();
@@ -59,7 +59,8 @@ function Profile({ active, setActive }) {
 
   function handleActionChange(evt) {
     evt.preventDefault();
-  dispatch(updateUser({position, timezone, email, phone}))
+  dispatch(reducerUpdateUser({position, timezone, email, phone}))
+  dispatch(updateUserMe());
     setActive(!active);
   }
 

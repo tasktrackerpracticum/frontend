@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUserMe } from '../utils/UserApi';
+import { getUserMe, setUser } from '../utils/UserApi';
+
 
 export const fetchUserMe = createAsyncThunk(
   'user/fetchUser',
@@ -7,6 +8,20 @@ export const fetchUserMe = createAsyncThunk(
     try {
       const response = await getUserMe();
       return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateUserMe = createAsyncThunk(
+  'user/updateUserMe',
+  async (_, { rejectWithValue, getState }) => {
+		const user = getState().user.user; // текущий стэйт
+		console.log(user);
+    try {
+      const response = await setUser (user);
+			console.log(response);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -34,13 +49,15 @@ const userSlice = createSlice({
     error: null,
   },
   reducers: {
-    updateUser(state, action) {
+    reducerUpdateUser(state, action) {
+
       state.user.position = action.payload.position;
       state.user.email = action.payload.email;
       state.user.phone = action.payload.phone;
       state.user.timezone = action.payload.timezone;
+
     },
-    updatePhoto(state, action) {
+    reducerupdatePhoto(state, action) {
       console.log(action);
       state.users.photo = action.payload.photo;
     },
@@ -63,5 +80,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateUser, updatePhoto } = userSlice.actions;
+export const { reducerUpdateUser, reducerupdatePhoto } = userSlice.actions;
 export default userSlice.reducer;
