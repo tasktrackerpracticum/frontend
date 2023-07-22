@@ -34,7 +34,7 @@ export default function ListProject({
           projects.map((item) => {
             return ( 
             <li key={item.id} className="listProject__container"  onClick={() => openProject(item)}>
-              <PostProject title={item.title} is_active={item.is_active} />
+              <PostProject title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
 
             </li>
             );

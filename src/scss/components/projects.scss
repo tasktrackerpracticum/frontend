@@ -2,8 +2,8 @@
 
 .projects {
   @include reset;
-  width: 1380px;
-  margin: 130px 40px;
+  max-width: 1380px;
+  margin: 0 40px 40px;
   border-radius: 40px;
   background: #f5f1ed;
 
@@ -54,17 +54,36 @@
     padding: 0;
     margin-top: 10px;
     gap: 24px;
-    justify-content: space-between
 
   }
   &__tag-name {
-    padding: 0 32px;
     max-width: 480px;
     font-size: 24px;
     font-weight: 400;
     line-height: 31px;
     color: #9D8E80;
     margin: 0;
+
+    &:nth-child(1) {
+      padding: 0 32px;
+      width: 420px;
+    }
+    &:nth-child(2) {
+      display: flex;
+      justify-content: center;
+      padding-right: 32px;
+      width: 320px;
+    }
+    &:nth-child(3) {
+      padding: 0 32px;
+      width: 219px;
+    }
+    &:nth-child(4) {
+      padding: 0 32px;
+      display: flex;
+      justify-content: flex-end;
+      width: 125px;
+    }
   }
 
   &__list {
