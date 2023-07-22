@@ -1,16 +1,14 @@
-import { stringType } from "../../constatnts/prop-types";
+import { stringType } from '../../constatnts/prop-types';
 
-export default function Deadline({start, finish}) {
+export default function Deadline({ start, finish }) {
   return (
-   <section className="deadline">
-    {start} - {finish}
-   </section>
-  )
+    <section className='deadline'>
+      {start} - {finish}
+    </section>
+  );
 }
 
-
-
 Deadline.propTypes = {
-    start: stringType,
-    finish: stringType,
-  };
+  start: stringType,
+  finish: stringType,
+};

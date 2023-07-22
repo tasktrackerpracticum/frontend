@@ -8,11 +8,11 @@ export default function PostProject({ title, is_active, start, finish }) {
       <div className='postProject__project-title'>{title}</div>
       <div className='postProject__project-info'>
         <div className='postProject__project-time'>
-         <Deadline start={start} finish={finish} />
+          <Deadline start={start} finish={finish} />
         </div>
         <div className='postProject__wrap'>
           <div className='postProject__project-member'>
-          <TeamProject />
+            <TeamProject />
           </div>
           <div
             className={
