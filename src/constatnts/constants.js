@@ -9,7 +9,7 @@ export const TOKEN_CREATE_API = `${baseUrl}/jwt/create/`;
 export const REGISTER_API = `${baseUrl}/users/`;
 // ------/user
 export const USERS_API = `${baseUrl}/users`; //Посмотреть в swgger
-export const USER_ME_API = `${baseUrl}/users/me`; //Посмотреть в swgger
+export const USER_ME_API = `${baseUrl}/users/me/`; //Посмотреть в swgger
 // ------/organizations
 export const ORGANIZATIONS_API = `${baseUrl}/organizations/`;
 // ------/projects
