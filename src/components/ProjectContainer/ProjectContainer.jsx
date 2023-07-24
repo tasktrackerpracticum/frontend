@@ -10,7 +10,7 @@ export default function ProjectContainer() {
   const { status, error } = useSelector(state => state.tasks);
   const tasks = groupBy(useSelector(state => state.tasks.tasks), "column");
 
-  const project_id = 1;
+  const project_id = 1; //Запрос за данными временный. Убрать после настройки авторизации
 
   function groupBy(objectArray, property) {
     return objectArray.reduce((acc, obj) => {
