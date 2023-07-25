@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getProjects } from '../utils/ProjectsApi';
+import { MockProjects } from '../constatnts/constants';
 
 export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
@@ -16,7 +17,7 @@ export const fetchProjects = createAsyncThunk(
 const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
-    projects: [],
+    projects: MockProjects, //--------- Удалить моковые данные после получения данных с сервера
     status: null,
     error: null,
   },

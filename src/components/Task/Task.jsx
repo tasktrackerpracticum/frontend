@@ -1,9 +1,74 @@
-import '../../scss/components/task.scss';
 import { taskContainerType } from "../../constatnts/prop-types";
+import { useDrag } from 'react-dnd';
+// import { useRef } from 'react';
 
-export default function Task({ title, deadline }) {
+export default function Task({ title, deadline, id }) {
+
+  // const ref = useRef(null);
+
+  const [{isDrag}, dragRef] = useDrag({
+    type: "sort_task",
+    item: () => {
+      // Определяем элемент
+      return { id }
+    },
+    collect: monitor => ({
+      isDrag: monitor.isDragging()
+    })
+  });
+
+  // const [{handlerId}, drop] = useDrop({
+  //   accept: "task",
+  //   collect: monitor => ({
+  //     handlerId: monitor.getHandlerId()
+  //   }),
+  //   hover(item, monitor) {
+  //     if (!ref.current) {
+  //       return;
+  //     }
+
+  //     // Индекс перемещаемого элемента
+  //     const dragIndex = item.index;
+  //     // Индекс текущего элемента (над которым находится курсор при dnd)
+  //     const hoverIndex = key;
+  //     // console.log('hoverIndex', hoverIndex)
+  //     // Выходим, если индексы сопадают
+  //     if (dragIndex === hoverIndex) {
+  //       // console.log('dragIndex === hoverIndex')
+  //       return
+  //     };
+  //     // Получаем положение текущего элемента относительно экрана
+  //     const hoverBoundingRect = ref.current?.getBoundingClientRect();
+  //     // Получаем центр текущего элемента по вертикали
+  //     const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+  //      // Получаем положение курсора
+	// 	  const clientOffset = monitor.getClientOffset() || { y: 0 };
+  //     // Получаем положение курсора относительно текущего элемента
+	// 	  const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+  //     // Выходим, если перемещаемый элемент ниже, чем 50% от высоты текущего
+  //     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+  //       return
+  //     };
+  //     // Выходим, если перемещаемый элемент выше, чем 50% от высоты текущего
+  //     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+  //       return
+  //     };
+
+  //     // dispatch({
+  //     //   type: MOVE_USER_ITEM,
+  //     //   from: dragIndex,
+  //     //   to: hoverIndex,
+  //     // });
+  //     // Сразу меняем индекс перемещаемого элемента
+  //     item.key = hoverIndex;
+  //   },
+  // });
+
+  const opacity = isDrag ? 0 : 1;
+  // drag(drop(ref));
+
   return (
-    <article className='task'>
+    <article ref={dragRef} className='task' style={{opacity}}>
       <h2 className='task__header'>{title}</h2>
       <div className='task__content'>
         <div className='task__timeContainer'>
@@ -19,4 +84,6 @@ export default function Task({ title, deadline }) {
 Task.propTypes = {
   title: taskContainerType,
   deadline: taskContainerType,
+  key: taskContainerType,
+  id: taskContainerType,
 }
