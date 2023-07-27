@@ -35,9 +35,10 @@ export const items = [
 // ------/ссылки для для досок задач
 export const projectContainers = [
   { value: 'Беклог', column: 'backlog', id: uuid() },
-  { value: 'В работе', column: 'at_work', id: uuid() },
+  { value: 'В работе', column: 'todo', id: uuid() },
   { value: 'Тестирование', column: 'testing', id: uuid() },
   { value: 'Завершено', column: 'done', id: uuid() },
+  { value: 'Удалено', column: 'deleted', id: uuid() },
 ];
 
 // ------/projects/ удалить после плучения данных с сервера
@@ -209,7 +210,7 @@ export const MockTasks = [
     title: 'Решить что будем кушать вечером',
     description: 'Надо порешать...',
     id: uuid(),
-    column: 'at_work',
+    column: 'todo',
     users: [
       {
         id: 7,
@@ -254,7 +255,7 @@ export const MockTasks = [
     description:
       'Очень длинное длинное длинное длинное длинное длинное длинное длинное длинное длинное',
     id: uuid(),
-    column: 'at_work',
+    column: 'todo',
     users: [
       {
         id: 7,

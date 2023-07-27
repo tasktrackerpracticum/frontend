@@ -60,6 +60,13 @@ export default function ProjectContainer() {
             column={item.column}
             key={i} />
           )
+        } else if (item.value === 'Удалено') {
+          return (
+            <TaskContainer
+            boradHeader={item.value}
+            column={item.column}
+            key={i} />
+          )
         }
       }))
       }

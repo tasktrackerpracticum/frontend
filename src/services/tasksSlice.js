@@ -29,6 +29,18 @@ const tasksSlice = createSlice({
           : task;
       });
     },
+    moveTask(state, action) {
+      const tasks = [...state.tasks];
+      tasks.splice(
+        action.payload.to,
+        0,
+        tasks.splice(action.payload.from, 1)[0],
+      );
+      return {
+        ...state,
+        tasks,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -48,5 +60,5 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { updateColumn } = tasksSlice.actions;
+export const { updateColumn, moveTask } = tasksSlice.actions;
 export default tasksSlice.reducer;

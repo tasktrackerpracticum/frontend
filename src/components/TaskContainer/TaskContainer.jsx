@@ -13,10 +13,12 @@ export default function TaskContainer({ boradHeader, column }) {
     collect: monitor => ({
       isHover: monitor.isOver(),
     }),
-    drop: ({ id }) => dispatch(updateColumn({ id, column })) //taskId - Это item: id из useDrag в Task.jsx
+    drop: ({ id, taskColumn }) => {
+      if (taskColumn !== column) dispatch(updateColumn({ id, column }))
+    }
   });
 
-  const opacity = isHover ? 0.7 : 1;
+  const opacity = isHover ? 1 : 1;
 
   return(
     <section className="taskContainer" ref={drop} style={{opacity}}>
@@ -31,6 +33,7 @@ export default function TaskContainer({ boradHeader, column }) {
               title={item.title}
               deadline={item.deadline}
               id={item.id}
+              taskColumn={item.column}
               index={index}/>
           </li>
           )
