@@ -1,9 +1,9 @@
 .listProject {
-  height: 90%;
-  margin-top: 50px;
+  max-height: 100vh;
   border-radius: 40px;
   background: #f5f1ed;
   padding: 60px 30px;
+  overflow-y: auto;
 
   &__create {
     width: 56px;

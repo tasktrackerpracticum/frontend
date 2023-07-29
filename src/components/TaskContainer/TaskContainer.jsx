@@ -1,88 +1,40 @@
-import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { taskContainerType } from "../../constatnts/prop-types";
 import Task from "../Task/Task";
-import { useDrag, useDrop } from 'react-dnd';
-import uuid from "react-uuid";
+import { useDrop } from "react-dnd";
+import { updateColumn } from "../../services/tasksSlice";
 
-export default function TaskContainer({ tasks, taskHeader, key }) {
+export default function TaskContainer({ boradHeader, column }) {
+  const dispatch = useDispatch();
+  const tasks = useSelector(state => state.tasks.tasks);
 
-  const ref = useRef(null);
-
-  // const [{isDrag}, drag] = useDrag({
-
-  const [, drag] = useDrag({
-    type: "sort_project_boards",
-    item: () => {
-      return { key }
-    },
+  const [{ isHover }, drop] = useDrop({
+    accept: "sort_task",
     collect: monitor => ({
-      isDrag: monitor.isDragging()
-    })
-  });
-
-  const [{handlerId}, drop] = useDrop({
-    accept: "sort_project_boards",
-    collect: monitor => ({
-      handlerId: monitor.getHandlerId()
+      isHover: monitor.isOver(),
     }),
-    hover(item, monitor) {
-      if (!ref.current) {
-        return;
-      }
-
-      // Индекс перемещаемого элемента
-      const dragIndex = item.key;
-      // Индекс текущего элемента (над которым находится курсор при dnd)
-      const hoverIndex = key;
-      // console.log('hoverIndex', hoverIndex)
-      // Выходим, если индексы сопадают
-      if (dragIndex === hoverIndex) {
-        // console.log('dragIndex === hoverIndex')
-        return
-      };
-      // Получаем положение текущего элемента относительно экрана
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
-      // Получаем центр текущего элемента по вертикали
-      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-       // Получаем положение курсора
-		  const clientOffset = monitor.getClientOffset() || { y: 0 };
-      // Получаем положение курсора относительно текущего элемента
-		  const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      // Выходим, если перемещаемый элемент ниже, чем 50% от высоты текущего
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return
-      };
-      // Выходим, если перемещаемый элемент выше, чем 50% от высоты текущего
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return
-      };
-
-      // dispatch({
-      //   type: MOVE_USER_ITEM,
-      //   from: dragIndex,
-      //   to: hoverIndex,
-      // });
-      // // Сразу меняем индекс перемещаемого элемента
-      item.key = hoverIndex;
-    },
+    drop: ({ id, taskColumn }) => {
+      if (taskColumn !== column) dispatch(updateColumn({ id, column }))
+    }
   });
 
-
-  drag(drop(ref));
+  const opacity = isHover ? 1 : 1;
 
   return(
-    <section ref={ref} data-handler-id={handlerId} className="taskContainer">
+    <section className="taskContainer" ref={drop} style={{opacity}}>
       <div className="taskContainer__content"> 
-      <h2 className="taskContainer__header">{ taskHeader }</h2>
-      {taskHeader === 'Беклог' && <button className="taskContainer__button">Новая задача</button>}
+      <h2 className="taskContainer__header">{ boradHeader }</h2>
+      {boradHeader === 'Беклог' && <button className="taskContainer__button">Новая задача</button>}
       <ul className="taskContainer__tasks">
-        {tasks && (tasks.map((item) => {
+        {tasks && (tasks.filter(task => task.column === column).map((item, index) => {
           return (
-          <li key={key} className="taskContainer__task">
+          <li key={index} className="taskContainer__task">
             <Task
               title={item.title}
               deadline={item.deadline}
-              key={uuid()}/>
+              id={item.id}
+              taskColumn={item.column}
+              index={index}/>
           </li>
           )
         }))}
@@ -93,7 +45,6 @@ export default function TaskContainer({ tasks, taskHeader, key }) {
 }
 
 TaskContainer.propTypes = {
-  taskHeader: taskContainerType,
-  key: taskContainerType,
-  tasks: taskContainerType
+  boradHeader: taskContainerType,
+  column: taskContainerType
 }

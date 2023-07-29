@@ -6,8 +6,9 @@ import { DndProvider } from 'react-dnd/dist/core';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { openType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fetchProjects } from '../../services/projectsSlice';
+import Scroll from '../Scroll/Scroll';
 
 export default function Main({ openTaskCreate }) {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function Main({ openTaskCreate }) {
     setProject(project);
   };
 
-  function selectListProject()  {
+  function selectListProject() {
     setSelectListProject(!onSelectListProject);
   }
 
@@ -28,23 +29,35 @@ export default function Main({ openTaskCreate }) {
     dispatch(fetchProjects());
   }, [dispatch]);
 
+  const cardsRef = useRef(null);
+
   return (
     <DndProvider backend={HTML5Backend}>
-      { onSelectListProject ? <Projects  openTaskCreate={openTaskCreate} onClick={openProject} selectListProject={selectListProject}/> :
-      <main className='main'>
-        <ListProject
-        openTaskCreate={openTaskCreate}
-          projects={projects}
-          status={status}
-          error={error}
+      {onSelectListProject ? (
+        <Projects
+          openTaskCreate={openTaskCreate}
           onClick={openProject}
+          selectListProject={selectListProject}
         />
-        <div className='main__container'>
-          <ProjectHeader onProject={onProject} selectListProject={selectListProject}/>
-          <ProjectContainer />
-        </div>
-      </main>
-       }
+      ) : (
+        <main className='main'>
+          <ListProject
+            openTaskCreate={openTaskCreate}
+            projects={projects}
+            status={status}
+            error={error}
+            onClick={openProject}
+          />
+          <div className='main__container' ref={cardsRef}>
+            <Scroll cardsRef={cardsRef} />
+            <ProjectHeader
+              onProject={onProject}
+              selectListProject={selectListProject}
+            />
+            <ProjectContainer />
+          </div>
+        </main>
+      )}
     </DndProvider>
   );
 }

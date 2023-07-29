@@ -41,7 +41,7 @@ export const createNewProjects = createAsyncThunk(
 const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
-    projects: [],
+    projects: MockProjects, //--------- Удалить моковые данные после получения данных с сервера
     status: null,
     error: null,
   },

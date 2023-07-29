@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getTasks } from '../utils/tasksApi';
+import { MockTasks } from '../constatnts/constants';
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
@@ -16,11 +17,31 @@ export const fetchTasks = createAsyncThunk(
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {
-    tasks: [],
+    tasks: MockTasks,
     status: null,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    updateColumn(state, action) {
+      state.tasks.map((task) => {
+        task.id === action.payload.id
+          ? { ...(task.column = action.payload.column) }
+          : task;
+      });
+    },
+    moveTask(state, action) {
+      const tasks = [...state.tasks];
+      tasks.splice(
+        action.payload.to,
+        0,
+        tasks.splice(action.payload.from, 1)[0],
+      );
+      return {
+        ...state,
+        tasks,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTasks.pending, (state) => {
@@ -39,4 +60,5 @@ const tasksSlice = createSlice({
   },
 });
 
+export const { updateColumn, moveTask } = tasksSlice.actions;
 export default tasksSlice.reducer;
