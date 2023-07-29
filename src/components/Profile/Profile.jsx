@@ -83,7 +83,7 @@ function Profile({ active, setActive }) {
       <div className='profile__wrap'>
         <img src={currentUser.photo !== '' ? avatar: currentUser.photo } alt='место для аватара' className='profile__avatar'/>
         <div className='profile__info-content'>
-          <h1 className='profile__title'>{currentUser.username} {currentUser.first_name} {currentUser.last_name}</h1>
+          <h1 className='profile__title'>{currentUser.first_name} {currentUser.last_name}</h1>
           <h2 className='profile__date'>{currentUser.date_of_birth}</h2>
         </div>
 		<button

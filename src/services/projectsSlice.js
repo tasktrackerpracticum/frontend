@@ -21,7 +21,6 @@ export const createNewProjects = createAsyncThunk(
 			 date_start: date_start,
 			 date_finish: date_finish,
 			is_active: true,
-			id: 15
 		}
 		console.log(newProject);
     try {
@@ -48,6 +47,8 @@ const projectsSlice = createSlice({
   },
   reducers: {
     addProject(state, action) {
+			console.log(state);
+			console.log(action);
       state.projects.push({
         id: state.projects.length + 1,
         title: action.payload.title,

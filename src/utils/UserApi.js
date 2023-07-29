@@ -30,7 +30,8 @@ export const setUser = (data) => {
 			date_of_birth: data.date_of_birth,
 			gender: data.gender,
 			country: data.country,
-			timezone: data.timezone
+			timezone: data.timezone,
+			last_login: data.last_login
 		})
 	})
 }
