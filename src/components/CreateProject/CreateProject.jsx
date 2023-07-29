@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import useValidation from '../../hooks/useValidation';
 import { activeType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProject, createNewProjects } from '../../services/projectsSlice';
 import { fetchUserMe } from '../../services/userSlice';
 import avatar from '../../images/user-avatar-profile.png';
+import Select from '../Select/Select';
 
 function CreateProject({ active, setActive }) {
-  const { values, handleChange } = useValidation();
+  const [isActiveListPerformer, setActliveListPerformer] = useState(false);
   const [title, setTitle] = useState();
   const [date_start, setDateStart] = useState('');
   const [date_finish, setDateFinish] = useState('');
@@ -16,11 +16,9 @@ function CreateProject({ active, setActive }) {
   const currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
-
-
   const handleAction = () => {
-    dispatch(addProject({ title, date_start, date_finish}));
-    dispatch(createNewProjects({ title, date_start, date_finish}));
+    dispatch(addProject({ title, date_start, date_finish }));
+    dispatch(createNewProjects({ title, date_start, date_finish }));
     setActive(!active);
   };
 
@@ -55,6 +53,10 @@ function CreateProject({ active, setActive }) {
     }
     setDateFinish(event.target.value);
   };
+
+  const toggleListPerformer = () => {
+    setActliveListPerformer(!isActiveListPerformer);
+  }
 
   return (
     <section className={active ? 'createProject__active' : 'createProject'}>
@@ -120,16 +122,11 @@ function CreateProject({ active, setActive }) {
           </div>
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Исполнитель</h2>
-            <input
-              className='createProject__input'
-              value={values.performer}
-              onChange={handleChange}
-              id='performer-input'
-              type='text'
-              placeholder='+ Добавить исполнителя'
-              name='performer'
-              required
-            />
+            <div className="createProject__performer" onClick={toggleListPerformer}>
+              <div className="createProject__add-performer"> + Добавить</div>
+              <Select isActiveListPerformer={isActiveListPerformer}
+            setActliveListPerformer={setActliveListPerformer}/>
+            </div>
           </div>
           <div className='createProject__container-btn'>
             <button

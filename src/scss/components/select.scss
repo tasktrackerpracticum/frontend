@@ -1,0 +1,44 @@
+.select {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    outline: none;
+    border: none;
+    appearance: none;
+
+&__hidden {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    outline: none;
+    border: none;
+    appearance: none;
+    visibility: hidden;
+}
+
+    &__active {
+        width: 240px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        outline: none;
+        border: none;
+        appearance: none;
+        visibility: visible;
+    }
+
+
+    &__container {
+        list-style-type: none;
+        display: flex;
+        gap: 8px;
+    }
+    &__avatar-performer {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 1px solid #EAE2DA;
+    }
+}
