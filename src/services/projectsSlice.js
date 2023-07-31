@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getProjects } from '../utils/ProjectsApi';
-import { MockProjects } from '../constatnts/constants';
+import { getProjects, createProject } from '../utils/ProjectsApi';
 
 export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
@@ -14,20 +13,43 @@ export const fetchProjects = createAsyncThunk(
   },
 );
 
+export const createNewProjects = createAsyncThunk(
+  'projects/createProjects',
+  async ({ title, date_start, date_finish}, { rejectWithValue, dispatch }) => {
+		const newProject = {
+			title: title,
+			 date_start: date_start,
+			 date_finish: date_finish,
+			is_active: true,
+		}
+		console.log(newProject);
+    try {
+
+      const response = await createProject(newProject);
+			const data = response.json();
+			dispatch(addProject(data));
+			if (!response.ok) {
+				throw new Error('Can\'t add project. Server error.');
+		}
+
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
-    projects: MockProjects, //--------- Удалить моковые данные после получения данных с сервера
+    projects: [],
     status: null,
     error: null,
   },
   reducers: {
     addProject(state, action) {
-      console.log(state);
-      console.log(action);
-
+			console.log(state);
+			console.log(action);
       state.projects.push({
-        // добавить поле создатателя-автора и поля исполнителей после их подключения в стору
         id: state.projects.length + 1,
         title: action.payload.title,
         date_finish: action.payload.date_finish,

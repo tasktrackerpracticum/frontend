@@ -1,6 +1,6 @@
 import uuid from 'react-uuid';
 
-const baseUrl = 'http://localhost:8000';
+const baseUrl = 'http://45.86.183.34';
 
 export const RESET_PASSWORD_API = `${baseUrl}/users/reset_password/`;
 // ------/token
@@ -8,12 +8,12 @@ export const TOKEN_CREATE_API = `${baseUrl}/jwt/create/`;
 // ------/auth
 export const REGISTER_API = `${baseUrl}/users/`;
 // ------/user
-export const USERS_API = `${baseUrl}/users`; //Посмотреть в swgger
-export const USER_ME_API = `${baseUrl}/users/me/`; //Посмотреть в swgger
+export const USERS_API = `${baseUrl}/api/v1/users`; //Посмотреть в swgger
+export const USER_ME_API = `${baseUrl}/api/v1/users/me/`; //Посмотреть в swgger
 // ------/organizations
 export const ORGANIZATIONS_API = `${baseUrl}/organizations/`;
 // ------/projects
-export const PROJECTS_API = `${baseUrl}/projects/`;
+export const PROJECTS_API = `${baseUrl}/api/v1/projects/`;
 // ------/tasks
 export const TASKS_API = `${baseUrl}/tasks/`;
 

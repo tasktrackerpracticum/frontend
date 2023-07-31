@@ -7,6 +7,7 @@ import { updateColumn } from "../../services/tasksSlice";
 export default function TaskContainer({ boradHeader, column }) {
   const dispatch = useDispatch();
   const tasks = useSelector(state => state.tasks.tasks);
+  console.log(tasks);
 
   const [{ isHover }, drop] = useDrop({
     accept: "sort_task",
