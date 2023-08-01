@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getTasks } from '../utils/tasksApi';
+import { getTasks, createTask } from '../utils/tasksApi';
 import { MockTasks } from '../constatnts/constants';
 
 export const fetchTasks = createAsyncThunk(
@@ -14,14 +14,49 @@ export const fetchTasks = createAsyncThunk(
   },
 );
 
+export const createNewTasks = createAsyncThunk(
+  'tasks/createTasks',
+  async ({ title, description, deadline}, { rejectWithValue, dispatch }) => {
+		const newTask = {
+			title: title,
+			description: description,
+			column: 'backlog',
+			deadline: deadline,
+		}
+		console.log(newTask);
+    try {
+
+      const response = await createTask(newTask);
+			const data = response.json();
+			dispatch(addTask(data));
+			if (!response.ok) {
+				throw new Error('Can\'t add task. Server error.');
+		}
+
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 const tasksSlice = createSlice({
-  name: 'tasks',
+  name: [],
   initialState: {
     tasks: MockTasks,
     status: null,
     error: null,
   },
   reducers: {
+		addTask(state, action) {
+			console.log(state);
+			console.log(action);
+      state.tasks.push({
+        id: state.tasks.length + 1,
+        title: action.payload.title,
+				description: action.payload.description,
+        deadline: action.payload.deadline,
+      });
+    },
     updateColumn(state, action) {
       state.tasks.map((task) => {
         task.id === action.payload.id
@@ -60,5 +95,5 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { updateColumn, moveTask } = tasksSlice.actions;
+export const { addTask, updateColumn, moveTask } = tasksSlice.actions;
 export default tasksSlice.reducer;
