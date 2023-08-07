@@ -1,6 +1,6 @@
 import uuid from 'react-uuid';
 
-const baseUrl = 'http://45.86.183.34';
+const baseUrl = 'https://taksa-tracker.ru';
 
 export const RESET_PASSWORD_API = `${baseUrl}/users/reset_password/`;
 // ------/token
