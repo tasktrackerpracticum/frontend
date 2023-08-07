@@ -16,11 +16,11 @@ export const fetchTasks = createAsyncThunk(
 
 export const createNewTasks = createAsyncThunk(
   'tasks/createTasks',
-  async ({ title, description, deadline}, { rejectWithValue, dispatch }) => {
+  async ({ title, deadline}, { rejectWithValue, dispatch }) => {
 		const newTask = {
 			title: title,
-			description: description,
 			column: 'backlog',
+			status: 'nonurgent',
 			deadline: deadline,
 		}
 		console.log(newTask);
@@ -53,7 +53,8 @@ const tasksSlice = createSlice({
       state.tasks.push({
         id: state.tasks.length + 1,
         title: action.payload.title,
-				description: action.payload.description,
+				column: 'backlog',
+				status: 'nonurgent',
         deadline: action.payload.deadline,
       });
     },

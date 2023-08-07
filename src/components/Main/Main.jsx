@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { fetchProjects } from '../../services/projectsSlice';
 import Scroll from '../Scroll/Scroll';
 
-export default function Main({ openTaskCreate }) {
+export default function Main({ openProjectCreate, openTaskCreate }) {
   const dispatch = useDispatch();
   const { status, error, projects } = useSelector((state) => state.projects);
   const [onProject, setProject] = useState([projects]);
@@ -42,7 +42,7 @@ export default function Main({ openTaskCreate }) {
       ) : (
         <main className='main'>
           <ListProject
-            openTaskCreate={openTaskCreate}
+            openProjectCreate={openProjectCreate}
             projects={projects}
             status={status}
             error={error}
@@ -54,7 +54,7 @@ export default function Main({ openTaskCreate }) {
               onProject={onProject}
               selectListProject={selectListProject}
             />
-            <ProjectContainer />
+            <ProjectContainer openTaskCreate={openTaskCreate} />
           </div>
         </main>
       )}
@@ -63,5 +63,6 @@ export default function Main({ openTaskCreate }) {
 }
 
 Main.propTypes = {
+  openProjectCreate: openType,
   openTaskCreate: openType,
 };
