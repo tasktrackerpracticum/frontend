@@ -42,7 +42,7 @@ export default function SearchForm({ onSearchTask }) {
             minLength='1'
             maxLength='30'
           />
-          <div className='search-form__icon' />
+          <div className='search-form__icon search-form__icon_deactivate' />
           <span className='search-form__search-error'>
             {searchErrorMessage ? `${searchErrorMessage}` : ''}
           </span>

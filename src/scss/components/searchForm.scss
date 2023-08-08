@@ -27,7 +27,15 @@
 		width: 20px;
 		height: 20px;
 		background-position: center;
+		&_activate {
+			background-image: url("../../images/close-search.svg");
+		}
+		&_deactivate {
+			background-image: none;
+		}
 	}
+
+	
 
     &__input {
         width: 100%;
