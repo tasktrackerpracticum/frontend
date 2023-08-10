@@ -3,6 +3,7 @@ import { activeType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector }  from "react-redux";
 import { fetchProjects } from '../../services/projectsSlice';
 import Project from '../Project/Project';
+import ProjectTabs from '../ProjectTabs/ProjectTabs';
 
 export default function Projects({ openTaskCreate, onClick, selectListProject }) {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ export default function Projects({ openTaskCreate, onClick, selectListProject })
             Новый проект
           </button>
         </div>
+        <div className='projects__tabs'>
+          <ProjectTabs />
+        </div>
         {status === 'loading' && <h2>loading...</h2>} {/* потом добавить спиннер и убрать */}
         {error && <h2>{error}</h2>}                   {/* потом добавить модалку ошибки и убрать */}
         <div className='projects__content'>
@@ -42,6 +46,7 @@ export default function Projects({ openTaskCreate, onClick, selectListProject })
             {projects.length !== 0 && (projects.map((item) => {
               return (
                 <li key={item.id} className="projects__container" onClick={() => handlerProject(item)}>
+                
                 <Project title={item.title} start={item.date_start} finish={item.date_finish} isActive={item.is_active}/>
                 </li>
               )
