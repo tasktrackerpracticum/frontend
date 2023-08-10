@@ -29,6 +29,9 @@
 		background-position: center;
 		&_activate {
 			background-image: url("../../images/close-search.svg");
+			background-color: #FFFFFF;
+			border: none;
+			cursor: pointer;
 		}
 		&_deactivate {
 			background-image: none;
