@@ -8,6 +8,7 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Main from '../Main/Main.jsx';
 import Profile from '../Profile/Profile.jsx';
 import CreateProject from '../CreateProject/CreateProject';
+import CreateTask from '../CreateTask/CreateTask';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from '../../services/profileSlice';
 import { SIGN_IN, SIGN_UP } from '../../constatnts/constants.js';
@@ -17,6 +18,7 @@ function App() {
   const token = localStorage.getItem('accessToken');
   const { handleLogin, handleRegister, handleLogout, isLoggedIn } = useAuth();
   const [profileActive, setProfileActive] = useState(false);
+  const [isOpenProjectCreate, setOpenProjectCreate] = useState(false);
   const [isOpenTaskCreate, setOpenTaskCreate] = useState(false);
 
   const dispatch = useDispatch();
@@ -29,6 +31,9 @@ function App() {
     dispatch(fetchToken({email, password}))
   }, [dispatch]);
 
+  function openProjectCreate()  {
+    setOpenProjectCreate(!isOpenProjectCreate);
+  }
 
   function openTaskCreate()  {
     setOpenTaskCreate(!isOpenTaskCreate);
@@ -48,8 +53,9 @@ function App() {
                 <>
                   <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
                   <Profile active={profileActive} setActive={setProfileActive} />
-                  <CreateProject active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
-                  <Main openTaskCreate={openTaskCreate} active={isOpenTaskCreate}  setActive={setOpenTaskCreate}/>
+                  <CreateProject active={isOpenProjectCreate} setActive={setOpenProjectCreate}/>
+                  <CreateTask active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
+                  <Main openProjectCreate={openProjectCreate} openTaskCreate={openTaskCreate} />
                 </>
               )}
               />

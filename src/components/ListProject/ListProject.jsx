@@ -6,7 +6,7 @@ import {
 import PostProject from "../PostProject/PostProject.jsx";
 
 export default function ListProject({
-  openTaskCreate,
+  openProjectCreate,
   projects,
   status,
   error,
@@ -23,7 +23,7 @@ export default function ListProject({
       <div className='listProject__create'>
         <button
           className='listProject__create-btn'
-          onClick={openTaskCreate}
+          onClick={openProjectCreate}
         ></button>
       </div>
       {status === 'loading' && <h2>loading...</h2>}{' '}
@@ -45,7 +45,7 @@ export default function ListProject({
 }
 
 ListProject.propTypes = {
-  openTaskCreate: openType,
+  openProjectCreate: openType,
   projects: objectType,
   onClick: functionType,
   status: objectType,

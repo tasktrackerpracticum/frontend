@@ -52,7 +52,7 @@ function CreateTask({ active, setActive }) {
   }
 
   return (
-    <section className='createTask'>
+    <section className='createTask createTask__active'>
       <div className='createTask__wrap'>
         <div className='createTask__info-content'>
           <input

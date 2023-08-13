@@ -4,7 +4,7 @@ import { useDispatch, useSelector }  from "react-redux";
 import { fetchProjects } from '../../services/projectsSlice';
 import Project from '../Project/Project';
 
-export default function Projects({ openTaskCreate, onClick, selectListProject }) {
+export default function Projects({ openProjectCreate, onClick, selectListProject }) {
   const dispatch = useDispatch();
   const { status, error, projects } = useSelector(state => state.projects);
 
@@ -24,7 +24,7 @@ export default function Projects({ openTaskCreate, onClick, selectListProject })
 
       <div className='projects__wrap'>
         <div className='projects__create'>
-          <button className='projects__create-btn' onClick={openTaskCreate}>
+          <button className='projects__create-btn' onClick={openProjectCreate}>
             <div className='projects__icon-create' />
             Новый проект
           </button>
@@ -54,7 +54,7 @@ export default function Projects({ openTaskCreate, onClick, selectListProject })
 }
 
 Projects.propTypes = {
-  openTaskCreate: activeType,
+  openProjectCreate: activeType,
   selectListProject: activeType,
   onClick: functionType
 };

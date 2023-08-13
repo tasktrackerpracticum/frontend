@@ -35,7 +35,7 @@ export default function Main({ openProjectCreate, openTaskCreate }) {
     <DndProvider backend={HTML5Backend}>
       {onSelectListProject ? (
         <Projects
-          openTaskCreate={openTaskCreate}
+          openProjectCreate={openProjectCreate}
           onClick={openProject}
           selectListProject={selectListProject}
         />
