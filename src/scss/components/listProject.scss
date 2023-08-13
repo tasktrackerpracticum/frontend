@@ -4,6 +4,11 @@
   background: #f5f1ed;
   padding: 60px 30px;
   overflow-y: auto;
+ 
+  &__tabs {
+    padding-top: 40px;
+    width: 240px;
+  }
 
   &__create {
     width: 56px;

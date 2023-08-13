@@ -4,6 +4,7 @@ import {
   functionType,
 } from '../../constatnts/prop-types';
 import PostProject from "../PostProject/PostProject.jsx";
+import ProjectTabs from '../ProjectTabs/ProjectTabs';
 
 export default function ListProject({
   openTaskCreate,
@@ -29,6 +30,9 @@ export default function ListProject({
       {status === 'loading' && <h2>loading...</h2>}{' '}
       {/* потом добавить спиннер и убрать */}
       {error && <h2>{error}</h2>} {/* потом добавить модалку ошибки и убрать */}
+      <div className='listProject__tabs'>
+        <ProjectTabs />
+      </div>
       <div className='listProject__content'>
         {projects.length !== 0 &&
           projects.map((item) => {
