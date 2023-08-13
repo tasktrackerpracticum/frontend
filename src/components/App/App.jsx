@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Header from '../Header/Header.jsx';
-import Register from '../Register/Register.jsx';
 import Login from '../Login/Login.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Main from '../Main/Main.jsx';
@@ -10,23 +9,23 @@ import Profile from '../Profile/Profile.jsx';
 import CreateProject from '../CreateProject/CreateProject';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from '../../services/profileSlice';
-import { SIGN_IN, SIGN_UP } from '../../constatnts/constants.js';
+import { SIGN_IN } from '../../constatnts/constants.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const token = localStorage.getItem('accessToken');
-  const { handleLogin, handleRegister, handleLogout, isLoggedIn } = useAuth();
+  const { handleLogin, handleLogout, isLoggedIn } = useAuth();
   const [profileActive, setProfileActive] = useState(false);
   const [isOpenTaskCreate, setOpenTaskCreate] = useState(false);
 
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.profile)
 
-   const email = "admin@admin.com";
-   const password = "admin";
+  //  const email = "admin@admin.com";
+  //  const password = "admin";
 //Запрос токена с админскими данными временный. Убрать после настройки авторизации
   useEffect(() => {
-    dispatch(fetchToken({email, password}))
+    dispatch(fetchToken())
   }, [dispatch]);
 
 
@@ -54,13 +53,6 @@ function App() {
               )}
               />
             }
-            />
-            <Route path={SIGN_UP} element={
-              !isLoggedIn ?
-                <Register onRegister={handleRegister} />
-              :
-                <Navigate to='/' />
-              }
             />
             <Route path={SIGN_IN} element={
               !isLoggedIn ?

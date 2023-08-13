@@ -2,6 +2,7 @@
 @import "../utils/variable.scss";
 
 .auth {
+  max-width: 1440px;
   display: flex;
   height: calc(100vh - 160px);
   padding: 80px;
@@ -9,7 +10,7 @@
   gap: 80px;
 
   &__block {
-    min-width: 600px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +19,7 @@
 
   &__block_right {
     display: block;
-    max-width: 600px
+    max-width: 600px;
   }
 
   &__container {
@@ -32,7 +33,7 @@
 
   &__container_left {
     background-color: $secondColor;
-    border-radius: 52px;
+    border-radius: 40px;
   }
 
   &__top {
@@ -40,7 +41,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 56px;
   }
+
+  &__logo-container {
+    @include reset;
+    margin-bottom: 120px;
+		display: flex;
+		gap: 19px;
+		align-items: center;
+		cursor: pointer;
+		text-decoration: none;
+
+		&:hover {
+			opacity: 0.4;
+		}
+  }
+
+  &__logo {
+    width: 41px;
+		height: 41px;
+		border-radius: 50%;
+		border: 1px solid rgba(234, 226, 218, 1);
+		box-sizing: border-box;
+  }
+
+  &__title {
+		@include text-format(500, 32px, 24px);
+		@include text;
+		color: black;
+	}
 
   &__name {
     font-size: 32px;
@@ -50,17 +80,9 @@
     margin: 56px auto 120px;
     color: #2F261B;
   }
-
-  &__title {
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 24px;
-    margin-bottom: 0 0 48px;
-    text-align: left;
-  }
   
   &__form {
-    width: 488px;
+    width: 484px;
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -68,15 +90,15 @@
   }
   
   &__input {
-    width: calc(100% - 24px);
-    height: 59px;
-    border: 1px solid #9D8E80;
-    border-radius: 16px;
+    width: calc(100% - 16px);
+    height: 56px;
+    border: 1px solid #8A8A8A66;
+    border-radius: 8px;
     font-size: 18px;
     font-weight: 400;
     line-height: 24px;
     color: #9D8E80;
-    padding: 0 0 0 24px;
+    padding: 0 0 0 16px;
     outline: none;
   }
   
@@ -95,22 +117,22 @@
     color: #2F261B;
     cursor: pointer;
     margin-bottom: 40px;
-  }
-  
-  &__submit-button:hover {
-    opacity: 0.8;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
-  &__link {
+  &__bottom {
     font-size: 16px;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 21px;
     text-align: center;
     color: #2F261B;
-    margin-bottom: 8px;
+    margin-bottom: 80px;
   }
   
-  &__link:hover {
+  &__bottom:hover {
     opacity: 0.7;
   }
   
@@ -122,22 +144,19 @@
     display: none;
   }
 
-  &__bottom {
+  &__agree {
     width: 488px;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
     color: #9D8E80;
     text-align: center;
-    margin-bottom: 80px;
-    text-align: center;
   }
 
-  &__bottom-link {
+  &__agree-link {
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
-    color: #9D8E80;
-    text-decoration: none;
+    color: #2F261B;    
   }
 }

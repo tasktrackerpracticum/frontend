@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as MainApi from '../utils/MainApi';
 import { getToken } from '../utils/TokenApi';
 import { SIGN_IN } from '../constatnts/constants.js';
 
@@ -19,17 +18,6 @@ function useAuth() {
 				localStorage.setItem('refreshToken', res.refresh);
       	localStorage.setItem('accessToken', res.access);
         navigate.push('/');
-      })
-      .catch((err) => {
-        setResStatus(err);
-      });
-  };
-
-  const handleRegister = (email, password) => {
-    MainApi.register(email, password)
-      .then(() => {
-        handleLogin(email, password);
-        setResStatus('');
       })
       .catch((err) => {
         setResStatus(err);
@@ -56,7 +44,6 @@ function useAuth() {
     resStatus,
     isLoggedIn,
     handleLogin,
-    handleRegister,
 		handleLogout,
     handleResStatus,
   };

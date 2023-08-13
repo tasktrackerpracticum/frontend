@@ -5,8 +5,6 @@ const baseUrl = 'https://taksa-tracker.ru';
 export const RESET_PASSWORD_API = `${baseUrl}/users/reset_password/`;
 // ------/token
 export const TOKEN_CREATE_API = `${baseUrl}/jwt/create/`;
-// ------/auth
-export const REGISTER_API = `${baseUrl}/users/`;
 // ------/user
 export const USERS_API = `${baseUrl}/api/v1/users`; //Посмотреть в swgger
 export const USER_ME_API = `${baseUrl}/api/v1/users/me/`; //Посмотреть в swgger
