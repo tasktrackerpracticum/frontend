@@ -5,7 +5,7 @@ import { getToken } from '../utils/TokenApi';
 import { SIGN_IN } from '../constatnts/constants.js';
 
 function useAuth() {
-	const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('accessToken');
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [resStatus, setResStatus] = React.useState('');
 
@@ -16,8 +16,8 @@ function useAuth() {
       .then((res) => {
         setIsLoggedIn(true);
         setResStatus('');
-				localStorage.setItem('refreshToken', res.refresh);
-      	localStorage.setItem('accessToken', res.access);
+        localStorage.setItem('refreshToken', res.refresh);
+        localStorage.setItem('accessToken', res.access);
         navigate.push('/');
       })
       .catch((err) => {
@@ -36,7 +36,7 @@ function useAuth() {
       });
   };
 
-	const handleLogout = () => {
+  const handleLogout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
     navigate.push(SIGN_IN);
@@ -46,18 +46,18 @@ function useAuth() {
     setResStatus('');
   };
 
-	React.useEffect(() => {
-		if (token) {
-			setIsLoggedIn(true)
-		}
-  }, []);
+  React.useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, [token]);
 
   return {
     resStatus,
     isLoggedIn,
     handleLogin,
     handleRegister,
-		handleLogout,
+    handleLogout,
     handleResStatus,
   };
 }

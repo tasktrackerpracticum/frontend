@@ -1,5 +1,5 @@
 import avatar from '../../images/user-avatar-profile.png';
-import { activeType } from '../../constatnts/prop-types';
+import { activeType, setActiveType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchUserMe, reducerUpdateUser, updateUserMe } from '../../services/userSlice';
@@ -180,5 +180,5 @@ export default Profile;
 
 Profile.propTypes = {
   active: activeType,
-  setActive: activeType,
+  setActive: setActiveType,
 };
