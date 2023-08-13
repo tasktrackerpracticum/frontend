@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { activeType, functionType } from '../../constatnts/prop-types';
+import { activeType, setActiveType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProject, createNewProjects } from '../../services/projectsSlice';
 import { fetchUserMe } from '../../services/userSlice';
@@ -148,6 +148,5 @@ export default CreateProject;
 
 CreateProject.propTypes = {
   active: activeType,
-  setActive: activeType,
-  addProject: functionType,
+  setActive: setActiveType
 };

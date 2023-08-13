@@ -19,7 +19,7 @@ export default function TaskContainer({ boradHeader, column }) {
     }
   });
 
-  const opacity = isHover ? 1 : 1;
+  const opacity = isHover ? 0.7 : 1;
 
   return(
     <section className="taskContainer" ref={drop} style={{opacity}}>
@@ -29,7 +29,7 @@ export default function TaskContainer({ boradHeader, column }) {
       <ul className="taskContainer__tasks">
         {tasks && (tasks.filter(task => task.column === column).map((item, index) => {
           return (
-          <li key={index} className="taskContainer__task">
+          <li key={item.id} className="taskContainer__task">
             <Task
               title={item.title}
               deadline={item.deadline}
