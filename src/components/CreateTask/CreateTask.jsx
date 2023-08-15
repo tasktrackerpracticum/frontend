@@ -12,6 +12,9 @@ function CreateTask({ active, setActive }) {
   const [deadline, setDeadline] = useState('');
   const [disabled, setDisabled] = useState(true);
 
+  console.log('active', active)
+  console.log('setActive', setActive)
+
   let currentDate = new Date();
 
   const currentUser = useSelector((state) => state.user.user);
@@ -52,7 +55,7 @@ function CreateTask({ active, setActive }) {
   }
 
   return (
-    <section className='createTask createTask__active'>
+    <section className={active ? 'createTask__active' : 'createTask'}>
       <div className='createTask__wrap'>
         <div className='createTask__info-content'>
           <input

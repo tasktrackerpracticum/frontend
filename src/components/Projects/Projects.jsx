@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { functionType } from '../../constatnts/prop-types';
+import { boolType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector }  from "react-redux";
 import { fetchProjects } from '../../services/projectsSlice';
 import Project from '../Project/Project';
@@ -56,5 +56,6 @@ export default function Projects({ openProjectCreate, onClick, selectListProject
 Projects.propTypes = {
   openTaskCreate: functionType,
   selectListProject: functionType,
-  onClick: functionType
+  onClick: functionType,
+  openProjectCreate: boolType
 };
