@@ -4,7 +4,7 @@ import ListProject from '../ListProject/ListProject';
 import Projects from '../Projects/Projects';
 import { DndProvider } from 'react-dnd/dist/core';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { openType } from '../../constatnts/prop-types';
+import { functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { fetchProjects } from '../../services/projectsSlice';
@@ -63,6 +63,5 @@ export default function Main({ openProjectCreate, openTaskCreate }) {
 }
 
 Main.propTypes = {
-  openProjectCreate: openType,
-  openTaskCreate: openType,
+  openTaskCreate: functionType,
 };

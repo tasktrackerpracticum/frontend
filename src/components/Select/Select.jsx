@@ -1,16 +1,18 @@
-// import React from 'react'; // закомментировала ошибки Реакта
 import avatar from '../../images/user-avatar-profile.png';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../services/usersSlice';
-import { activeType } from '../../constatnts/prop-types';
+import { activeType, functionType } from '../../constatnts/prop-types';
+
+// export default function Select({
+//   setActliveListPerformer,
+//   isActiveListPerformer,
+// }) {
 
 export default function Select({
-  // setActliveListPerformer,
   isActiveListPerformer,
 }) {
   const dispatch = useDispatch();
-  // const { status, error, users } = useSelector((state) => state.users);
   const { users } = useSelector((state) => state.users);
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export default function Select({
 
 
 Select.propTypes = {
-    setActliveListPerformer: activeType,
+    setActliveListPerformer: functionType,
     isActiveListPerformer: activeType,
 
   };

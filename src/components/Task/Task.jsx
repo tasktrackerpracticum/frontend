@@ -65,7 +65,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
     },
   });
 
-  const opacity = isDrag ? 0.5 : 1;
+  const opacity = isDrag ? 0 : 1;
   const transition = isDrag ? '0.5s ease-in-out' : '0.5s ease-in-out';
   drag(drop(ref));
 

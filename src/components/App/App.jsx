@@ -49,7 +49,7 @@ function App() {
         <div className='page__container'>
           <Routes>
             <Route exact path='/' element={
-              <ProtectedRoute isLoggedIn={token} components={(
+              <ProtectedRoute isLoggedIn={token ? true : false} components={(
                 <>
                   <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
                   <Profile active={profileActive} setActive={setProfileActive} />
