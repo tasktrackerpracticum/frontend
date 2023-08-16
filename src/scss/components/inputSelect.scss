@@ -1,0 +1,58 @@
+.inputSelect {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 176px;
+  max-height: 376px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  border: 1px solid #8a8a8a66;
+
+
+&__chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 400px;
+  max-height: 300px;
+}
+  &__chip {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 4px;
+    list-style-type: none;
+    width: 165px;
+    height: 32px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    border: 1px solid #8a8a8a66;
+  }
+
+  &__chip-container-photo {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__chip-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+
+  &__chip-text {
+    width: 100px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__chip-delete {
+    width: 9px;
+    height: 9px;
+    background-image: url('../../images/close.svg');
+    background-size: cover;
+  }
+}

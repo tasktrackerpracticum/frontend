@@ -1,50 +1,59 @@
-import React from 'react';
 import avatar from '../../images/user-avatar-profile.png';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../services/usersSlice';
-import { activeType } from '../../constatnts/prop-types';
+import { activeType, numberType} from '../../constatnts/prop-types';
+import { addUsersToCreateReducer } from '../../services/projectsSlice';
 
-export default function Select({
-  setActliveListPerformer,
-  isActiveListPerformer,
-}) {
+export default function Select({ openList, currentUser }) {
   const dispatch = useDispatch();
-  const { status, error, users } = useSelector((state) => state.users);
-
+  const { users } = useSelector((state) => state.users);
+	const performers = useSelector((state) => state.projects.userProject);
+	
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-
-  console.log(users);
+  
+  
 
   return (
     <div
-      className={isActiveListPerformer ? 'select__active' : 'select__hidden'}
+      className={!openList ? 'select__active' : 'select__hidden'}
     >
       {users.length !== 0 &&
-        users.map((item) => {
-          return (
-            <li key={item.id} className='select__container'>
-              <img
-                src={avatar}
-                className='select__avatar-performer'
-                alt='avatar'
-              />
-              <div className='select__perfomer'>
-                {item.first_name} {item.last_name}
-              </div>
-            </li>
-          );
+        users.map((user) => {
+          if (currentUser !== user.id) {
+            return (
+              <li key={user.id} className='select__container'>
+                <img
+                  src={!user.photo ? avatar : user.photo}
+                  className='select__avatar-performer'
+                  alt='avatar'
+                />
+                <div
+                  className='select__performer'
+                  onClick={() => {
+							
+										if (!performers.map((item) => item.id).includes(user.id)) {
+
+											dispatch(addUsersToCreateReducer({ user }));
+										}
+										
+                   
+                  }}
+                >
+                  {user.first_name} {user.last_name}
+                </div>
+              </li>
+            );
+          }
         })}
     </div>
   );
 }
 
-
 Select.propTypes = {
-    setActliveListPerformer: activeType,
-    isActiveListPerformer: activeType,
-
-  };
-  
+  openList: activeType,
+  isActiveListPerformer: activeType,
+  currentUser: numberType,
+};

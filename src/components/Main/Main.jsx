@@ -4,13 +4,13 @@ import ListProject from '../ListProject/ListProject';
 import Projects from '../Projects/Projects';
 import { DndProvider } from 'react-dnd/dist/core';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { openType } from '../../constatnts/prop-types';
+import { functionType, openType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { fetchProjects } from '../../services/projectsSlice';
 import Scroll from '../Scroll/Scroll';
 
-export default function Main({ openTaskCreate }) {
+export default function Main({ openTaskCreate, closeModal }) {
   const dispatch = useDispatch();
   const { status, error, projects } = useSelector((state) => state.projects);
   const [onProject, setProject] = useState([projects]);
@@ -38,9 +38,10 @@ export default function Main({ openTaskCreate }) {
           openTaskCreate={openTaskCreate}
           onClick={openProject}
           selectListProject={selectListProject}
+          
         />
       ) : (
-        <main className='main'>
+        <main className='main' onClick={closeModal}>
           <ListProject
             openTaskCreate={openTaskCreate}
             projects={projects}
@@ -64,4 +65,5 @@ export default function Main({ openTaskCreate }) {
 
 Main.propTypes = {
   openTaskCreate: openType,
+  closeModal: functionType,
 };

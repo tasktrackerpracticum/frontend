@@ -6,6 +6,7 @@
   height: 100vh;
   right: 0;
   transform: translateX(-100%);
+  justify-content: center;
 
   &__active {
     position: fixed;
@@ -25,8 +26,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
-    padding: 0 40px;
-    color: #8a8a8a;
+    padding: 0 20px;
   }
 
   &__info-content {
@@ -44,7 +44,25 @@
     font-weight: 500;
     outline: none;
     border: none;
-    color: #8A8A8A;
+  }
+
+  &__container-description {
+    margin-top: 10px;
+    height: 106px;
+    width: 360px;
+  }
+
+  &__input-description {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    outline: none;
+    border: none;
+    resize: none;
+    overflow: none;
   }
   &__date {
     margin: 0;
@@ -56,7 +74,7 @@
   }
 
   &__content {
-    padding: 0 40px 30px;
+    padding: 0 20px 30px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -84,10 +102,6 @@
     align-items: center;
     justify-content: space-between;
     align-items: flex-start;
-    color: #8A8A8A;
-    &:hover {
-        color: black;
-    }
   }
 
   &__container-btn {
@@ -163,10 +177,6 @@
     display: flex;
     align-items: center;
     gap: 120px;
-    color: #8A8A8A;
-    &:hover {
-        color: black;
-    }
   }
 
   &__creator {
@@ -191,6 +201,13 @@
   }
 
   &__add-performer {
+    color: #8A8A8A;
     margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  &__performer-edit-icon {
+    width: 13px;
+    height: 13px;
   }
 }

@@ -66,19 +66,23 @@
 
     &:nth-child(1) {
       padding: 0 32px;
-      width: 420px;
+      width: 200px;
     }
     &:nth-child(2) {
       display: flex;
       justify-content: center;
       padding-right: 32px;
-      width: 320px;
+      width: 200px;
     }
     &:nth-child(3) {
       padding: 0 32px;
-      width: 219px;
+      width: 250px;
     }
     &:nth-child(4) {
+      padding: 0 32px;
+      width: 200px;
+    }
+    &:nth-child(5) {
       padding: 0 32px;
       display: flex;
       justify-content: flex-end;

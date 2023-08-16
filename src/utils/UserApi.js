@@ -35,3 +35,20 @@ export const setUser = (data) => {
 		})
 	})
 }
+
+export const updateAvatar = (data) => {
+	const token = localStorage.getItem('accessToken');
+	return fetch(USER_ME_API, {
+		method: 'PATCH',
+		headers: {
+      Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+		body: JSON.stringify({
+			email: data.email,
+			photo: data.photo,
+
+		})
+	})
+}

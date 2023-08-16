@@ -41,4 +41,13 @@
         border-radius: 50%;
         border: 1px solid #EAE2DA;
     }
+    &__performer {
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
 }

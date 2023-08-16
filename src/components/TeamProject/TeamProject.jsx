@@ -1,6 +1,9 @@
+import { arrayType } from '../../constatnts/prop-types';
 import avatar from '../../images/user-avatar-profile.png';
 
-function TeamProject() {
+function TeamProject({users}) {
+  const usersProject = structuredClone(users);
+
   return (
     <section className='teamProject'>
       <div className='teamProject__avatar'>
@@ -20,9 +23,13 @@ function TeamProject() {
           alt='тут аватар'
         />
       </div>
-      <div className='teamProject__count'>+10</div>
+      <div className='teamProject__count'> +{usersProject.length}</div>
     </section>
   );
 }
 
 export default TeamProject;
+
+TeamProject.propTypes = {
+ users: arrayType
+};
