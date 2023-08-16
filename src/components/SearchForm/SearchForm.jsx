@@ -1,6 +1,6 @@
 import React from 'react';
 import useValidation from '../../hooks/useValidation.js';
-import { functionType } from '../../constatnts/prop-types.js';
+import { searchFunctionType } from '../../constatnts/prop-types.js';
 
 export default function SearchForm({ onSearchTask }) {
   const { values, handleChange, isValid } =
@@ -53,5 +53,5 @@ export default function SearchForm({ onSearchTask }) {
 }
 
 SearchForm.propTypes = {
-  onSearchTask: functionType,
+  onSearchTask: searchFunctionType,
 };

@@ -1,6 +1,4 @@
-import { activeType, boolType } from '../../constatnts/prop-types';
-import { useState, useEffect } from 'react';
-import { activeType, setActiveType } from '../../constatnts/prop-types';
+import { boolType, setActiveType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addProjectReducer,
