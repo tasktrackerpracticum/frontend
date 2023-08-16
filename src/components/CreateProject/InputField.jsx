@@ -24,15 +24,13 @@ function InputField({ active, setActive }) {
   const [isOpenSelectPerformer, setOpenSelectPerformer] = useState(false);
   const [isHiddenPerformers, setHiddenPerformers] = useState(true);
 
-
   function openInputSelect() {
     setOpenSelectPerformer(!isOpenSelectPerformer);
   }
 
   const isHide = () => {
-  
     setHiddenPerformers(!isHiddenPerformers);
-  }
+  };
 
   const handleNameChange = (event) => {
     event.preventDefault();
@@ -52,7 +50,6 @@ function InputField({ active, setActive }) {
     event.preventDefault();
     setDateFinish(event.target.value);
   };
-
 
   return (
     <section className='createProject__input-fields'>
@@ -105,8 +102,7 @@ function InputField({ active, setActive }) {
             />
           </div>
 
-     
-            <div className='createProject__container'>
+          <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Дата начала</h2>
             <input
               className='createProject__input'
@@ -119,10 +115,7 @@ function InputField({ active, setActive }) {
               onChange={handleDateStartChange}
             />
           </div>
-       
 
-      
-        
           <div className='createProject__container'>
             <h2 className='createProject__subtitle'>Дата окончания</h2>
             <input
@@ -172,39 +165,47 @@ function InputField({ active, setActive }) {
               </div>
             </div>
           )}
-          <div className='createProject__list-performers-container'>
-            <div className='createProject__list-performers'>
-              {performers.slice(0, isHiddenPerformers ? 3 : performers.length).map((item) => {
-                return (
-                  <div key={item.id} className='createProject__user'>
-                    <img
-                      className='createProject__performer-user-avatar'
-                      src={item.photo}
-                    />
-                    <div className='createProject__performer-text'>
-                      {item.first_name} {item.last_name}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-         
-          </div>
-          {(performers.length == 0 || performers.length < 4) ? (
-              ''
-            ) : (
-              <div className='createProject__hidden-performers' onClick={isHide}>
-                <div className="createProject__hidden-border" />
-                <div className="createProject__hidden-text">
-                  
-                  <div className={isHiddenPerformers ? 'createProject__hidden-arrow' : 'createProject__hidden-arrow_less'} />
-                  Развернуть список ({isHiddenPerformers ? performers.length : 0}){' '}
-                  </div>
-                  <div className="createProject__hidden-border" />
-             
-               
+
+          {isOpenSelectPerformer == false && (
+            <div className='createProject__list-performers-container'>
+              <div className='createProject__list-performers'>
+                {performers
+                  .slice(0, isHiddenPerformers ? 3 : performers.length)
+                  .map((item) => {
+                    return (
+                      <div key={item.id} className='createProject__user'>
+                        <img
+                          className='createProject__performer-user-avatar'
+                          src={item.photo}
+                        />
+                        <div className='createProject__performer-text'>
+                          {item.first_name} {item.last_name}
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
-            )}
+            </div>
+          )}
+
+          {performers.length == 0 || performers.length < 4? (
+            ''
+          ) : (
+            <div className='createProject__hidden-performers' onClick={isHide}>
+              <div className='createProject__hidden-border' />
+              <div className='createProject__hidden-text'>
+                <div
+                  className={
+                    isHiddenPerformers
+                      ? 'createProject__hidden-arrow'
+                      : 'createProject__hidden-arrow_less'
+                  }
+                />
+                Развернуть список ({isHiddenPerformers ? performers.length : 0}){' '}
+              </div>
+              <div className='createProject__hidden-border' />
+            </div>
+          )}
         </div>
       </div>
     </section>
