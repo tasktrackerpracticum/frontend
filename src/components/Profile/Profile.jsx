@@ -3,7 +3,7 @@ import { activeType, boolType, functionType } from '../../constatnts/prop-types'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchUserMe, updateUserMe } from '../../services/userSlice';
-import InputForm from '../Input/InputForm';
+import InputForm from '../InputForm/InputForm';
 import { useForm } from 'react-hook-form';
 
 function Profile({ active, setActive, openModalAvatar }) {
