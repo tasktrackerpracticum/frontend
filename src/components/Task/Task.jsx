@@ -8,7 +8,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
   const dispatch = useDispatch();
   const ref = useRef(null);
 
-  console.log('index', index)
+  // console.log('index', index)
 
   const [{isDrag}, drag] = useDrag({
     type: "sort_task",

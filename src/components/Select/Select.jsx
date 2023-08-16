@@ -19,7 +19,7 @@ export default function Select({
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  console.log(users);
+  // console.log(users);
 
   return (
     <div

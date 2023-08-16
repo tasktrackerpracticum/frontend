@@ -21,6 +21,7 @@ export const PROJECTS_API = `${baseUrl}/api/v1/projects/`;
 export const SIGN_IN = '/sign-in';
 export const SIGN_UP = '/sign-up';
 export const FORGOT_PASSWORD = '/forgot-password';
+export const PROJECTS = '/projects';
 // ------/текст
 export const USER_IS_NOT_EXIST =
   'Извините, но такойго пользователя нет в нашей базе. Попробуйте ввести свой email ещё раз';

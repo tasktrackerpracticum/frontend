@@ -12,10 +12,11 @@ function CreateTask({ active, setActive }) {
   const [deadline, setDeadline] = useState('');
   const [disabled, setDisabled] = useState(true);
 
-  console.log('active', active)
-  console.log('setActive', setActive)
-
-  let currentDate = new Date();
+  const todayDate = new Date(); 
+  const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
+  const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()}`: todayDate.getMonth();
+  const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
+  const currentDate = formattedDate;
 
   const currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
@@ -143,6 +144,5 @@ export default CreateTask;
 
 CreateTask.propTypes = {
   active: activeType,
-  setActive: activeType,
-  addTask: functionType,
+  setActive: functionType,
 };

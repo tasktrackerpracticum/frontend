@@ -1,7 +1,7 @@
 import {
-  openType,
   objectType,
   functionType,
+  arrayType,
 } from '../../constatnts/prop-types';
 import PostProject from "../PostProject/PostProject.jsx";
 
@@ -45,8 +45,8 @@ export default function ListProject({
 }
 
 ListProject.propTypes = {
-  openProjectCreate: openType,
-  projects: objectType,
+  openProjectCreate: functionType,
+  projects: arrayType,
   onClick: functionType,
   status: objectType,
   error: objectType,
