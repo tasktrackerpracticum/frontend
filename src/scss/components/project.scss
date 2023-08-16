@@ -1,0 +1,76 @@
+.project {
+    margin: 0;
+    height: 75px;
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #FFFFFF;
+    cursor: pointer;
+
+    &:hover {
+      background: #9A7F6633;
+    }
+  
+
+  &__list-name {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 31px;
+
+    &:nth-child(1) {
+      width: 420px;
+      padding: 0 32px;
+    }
+
+    &:nth-child(2) {
+      width: 320px;
+      padding: 0 32px;
+    }
+    &:nth-child(3) {
+      width: 219px;
+      padding-right: 32px;
+    }
+    &:nth-child(4) {
+    display: flex;
+    justify-content: flex-end;
+      padding-left: 32px;
+      width: 125px;
+    }
+
+  }
+
+  &__list-status-active {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    width: 125px;
+    height: 35px;
+    border-radius: 4px;
+    border: 1px solid #F8D57E66;;
+    background: #F8D57E66;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  &__list-status-close {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    width: 125px;
+    height: 35px;
+    border-radius: 4px;
+    border: 1px solid #F1F1F1;
+    background: #F1F1F1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+}

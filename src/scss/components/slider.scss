@@ -1,0 +1,32 @@
+@import "../utils/mixins.scss";
+
+.slider {
+    max-width: 600px;
+
+    &__slide {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title {
+        color: #2F261B;
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 48px;
+    }
+
+    &__subtitle {
+        color: #2F261B;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 31px;
+    }
+
+}

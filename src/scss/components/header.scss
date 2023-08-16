@@ -1,0 +1,92 @@
+@import "../utils/mixins.scss";
+
+.header {
+	margin: 44px 40px 60px;
+	background-color: #fff;
+	max-width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__hidden {
+		visibility: hidden;
+	}
+
+	&__container {
+		@include reset;
+		display: flex;
+		gap: 19px;
+		align-items: center;
+		cursor: pointer;
+		text-decoration: none;
+
+		&:hover {
+			opacity: 0.4;
+		}
+	}
+
+
+	&__logo {
+		width: 41px;
+		height: 41px;
+		border-radius: 50%;
+		border: 1px solid rgba(234, 226, 218, 1);
+		box-sizing: border-box;
+	}
+
+	&__title {
+		@include text-format(500, 32px, 24px);
+		@include text;
+		margin: 0;
+		color: black;
+	}
+
+	&__link-container {
+		display: flex;
+		gap: 24px;
+	}
+
+	&__exit {
+		width: 24px;
+		height: 24px;
+		background: transparent;
+		margin: auto;
+
+		&:hover {
+			opacity: 0.8;
+			transition: opacity 0.3s linear 0s;
+		}
+	}
+	&__exit-icon {
+		width: 24px;
+		height: 24px;
+		object-fit: cover;
+		cursor: pointer;
+		&:hover {
+			opacity: 0.8;
+			transition: opacity 0.3s linear 0s;
+		}
+	}
+
+	&__avatar-profile {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: transparent;
+		cursor: pointer;
+
+		&:hover {
+			opacity: 0.8;
+			transition: opacity 0.3s linear 0s;
+		}
+	}
+
+	&__avatar-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+}

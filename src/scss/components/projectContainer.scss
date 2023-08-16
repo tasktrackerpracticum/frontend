@@ -1,0 +1,13 @@
+@import "../utils/mixins.scss";
+
+
+.projectContainer {
+  @include reset;
+  display: flex;
+  margin: 0;
+  padding: 0 0 0 30px;
+  flex-direction: row;
+  column-gap: 20px;
+
+
+}

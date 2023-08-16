@@ -1,0 +1,58 @@
+@import "../utils/mixins.scss";
+@import "../utils/variable.scss";
+
+.taskContainer {
+  @include reset;
+  height: 689px;
+  min-width: 300px;
+  background-color: $secondColor;
+  border-right: 2px solid #2F261B1A;
+
+  &:last-child {
+    border: none;
+    margin: 0;
+  }
+
+  &__content {
+    height: 689px;
+    width: 280px;
+    border-radius: $borderRadiusTaskContainer;
+  }
+
+  &__header {
+    @include text-format(500, 24px, 24px);
+    color: #9D8E80;
+  }
+
+  &__button {
+    @include reset;
+    height: 96px;
+    width: 277px;
+    border: 2px dashed #9D8E80;
+    border-radius: 16px;
+    background: transparent;
+    margin-bottom: 15px;
+  }
+
+  &__tasks {
+    @include reset;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+    transition: 0.2;
+  }
+  
+  &__task {
+    @include reset;
+    list-style: none;
+    cursor: pointer;
+
+    // &:hover {
+    //   background: #93939366;
+    // }
+  }
+
+
+}

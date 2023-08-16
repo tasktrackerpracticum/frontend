@@ -1,0 +1,36 @@
+@import "../utils/mixins.scss";
+@import "../utils/variable.scss";
+
+.task {
+  @include reset;
+  height: 120px;
+  width: 277px;
+  background-color: $cardColor;
+  border-radius: $borderRadiusTask;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__header {
+    @include reset;
+    @include text-format(500, 16px, 20px);
+    width: 248px;
+    color: #8A8A8A;
+    text-align: left;
+    padding: 10px 0;
+    margin: 0 auto;
+
+
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 15px;
+  }
+
+  &__timeContainer {
+    @include reset;
+
+  }
+}

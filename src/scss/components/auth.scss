@@ -1,0 +1,143 @@
+@import '../utils/mixins.scss';
+@import "../utils/variable.scss";
+
+.auth {
+  display: flex;
+  height: calc(100vh - 160px);
+  padding: 80px;
+  margin: auto;
+  gap: 80px;
+
+  &__block {
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__block_right {
+    display: block;
+    max-width: 600px
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+  }
+
+  &__container_left {
+    background-color: $secondColor;
+    border-radius: 52px;
+  }
+
+  &__top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__name {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 41px;
+    text-align: center;
+    margin: 56px auto 120px;
+    color: #2F261B;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 0 0 48px;
+    text-align: left;
+  }
+  
+  &__form {
+    width: 488px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 24px;
+  }
+  
+  &__input {
+    width: calc(100% - 24px);
+    height: 59px;
+    border: 1px solid #9D8E80;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #9D8E80;
+    padding: 0 0 0 24px;
+    outline: none;
+  }
+  
+  &__submit-button {
+    padding: 0;
+    border: none;
+    outline: none;
+    background: #F8D57E;
+    border-radius: 100px;
+    width: 100%;
+    height: 56px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
+    color: #2F261B;
+    cursor: pointer;
+    margin-bottom: 40px;
+  }
+  
+  &__submit-button:hover {
+    opacity: 0.8;
+  }
+
+  &__link {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: #2F261B;
+    margin-bottom: 8px;
+  }
+  
+  &__link:hover {
+    opacity: 0.7;
+  }
+  
+  &__error {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #FF4062;
+    display: none;
+  }
+
+  &__bottom {
+    width: 488px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #9D8E80;
+    text-align: center;
+    margin-bottom: 80px;
+    text-align: center;
+  }
+
+  &__bottom-link {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #9D8E80;
+    text-decoration: none;
+  }
+}

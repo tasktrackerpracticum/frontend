@@ -1,0 +1,177 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  right: 0;
+  transform: translateX(-100%);
+
+  &__active {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
+    right: 0;
+    width: 480px;
+    height: 100%;
+    z-index: 100;
+    background-color: white;
+  }
+
+  &__wrap {
+    max-width: 868px;
+    width: 100%;
+    text-align: right;
+    display: flex;
+    padding-left: 30px;
+    border-bottom: 1px solid #d9d9d9;
+  }
+
+  &__info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    margin: 0;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+    margin-right: 15px;
+    font-weight: 500;
+  }
+  &__date {
+    margin: 0;
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #7f7e88;
+    text-align: left;
+  }
+
+  &__content {
+    padding-left: 30px;
+    padding-bottom: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  &__avatar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+  }
+  &__container {
+    margin-top: 30px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__container-check {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  &__check-email {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #7f7e88;
+    cursor: pointer;
+  }
+  &__input-check {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__container-btn {
+    width: 400px;
+    padding-top: 385px;
+    display: flex;
+    gap: 15px;
+  }
+  &__submit-btn {
+    width: 400px;
+    border: none;
+    height: 53px;
+    border-radius: 15px;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;  
+
+    &:disabled{
+      background-color: #FFFFFF;
+      border: 1px solid #F8D57E;
+      transition: 0.3;
+      opacity: 0.3;
+    }
+    &:disabled:hover {
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+    &:enabled {
+      background-color: #f8d57e;
+      transition: 0.3;
+    }
+    &:enabled:hover {
+     opacity: 0.5;
+     transition: opacity 0.2s ease;
+    }
+  }
+  &__cancel-btn {
+    width: 147px;
+    height: 53px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    background: url(../../images/close.svg) no-repeat right;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0 0 6px;
+    font-weight: 500;
+  }
+
+  &__input {
+    max-width: 100%;
+    height: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+    padding-left: 10px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
