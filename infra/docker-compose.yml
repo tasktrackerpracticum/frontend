@@ -4,4 +4,4 @@ services:
   frontend:
     image: catstyle1101/tasktracker_frontend:latest
     volumes:
-      - ./build:/app/result_build/
+      - .:/app/result_build/
