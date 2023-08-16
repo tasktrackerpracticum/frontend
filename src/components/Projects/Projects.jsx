@@ -23,7 +23,6 @@ export default function Projects({ openProjectCreate }) {
 
   return (
     <section className='projects'>
-
       <div className='projects__wrap'>
         <div className='projects__create'>
           <button className='projects__create-btn' onClick={openProjectCreate}>
