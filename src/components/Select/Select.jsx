@@ -2,14 +2,20 @@ import avatar from '../../images/user-avatar-profile.png';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../services/usersSlice';
-import { activeType, numberType} from '../../constatnts/prop-types';
-import { addUsersToCreateReducer } from '../../services/projectsSlice';
+import { activeType, functionType } from '../../constatnts/prop-types';
 
-export default function Select({ openList, currentUser }) {
+// export default function Select({
+//   setActliveListPerformer,
+//   isActiveListPerformer,
+// }) {
+
+export default function Select({
+  setActliveListPerformer,
+  isActiveListPerformer,
+}) {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.users);
-	const performers = useSelector((state) => state.projects.userProject);
-	
+  const { status, error, users } = useSelector((state) => state.users);
+
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
@@ -53,7 +59,8 @@ export default function Select({ openList, currentUser }) {
 }
 
 Select.propTypes = {
-  openList: activeType,
-  isActiveListPerformer: activeType,
-  currentUser: numberType,
-};
+    setActliveListPerformer: functionType,
+    isActiveListPerformer: activeType,
+
+  };
+  

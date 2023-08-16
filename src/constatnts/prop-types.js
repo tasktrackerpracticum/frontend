@@ -4,6 +4,8 @@ export const taskContainerType = string.isRequired;
 
 export const loginFunctionType = func.isRequired;
 
+
+export const setActiveType = func.isRequired;
 export const activeType = func.isRequired;
 
 export const openType = func.isRequired;
@@ -23,4 +25,3 @@ export const stringType = string;
 export const boolType = bool.isRequired;
 
 export const reactElement = element;
-

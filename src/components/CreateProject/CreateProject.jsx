@@ -1,4 +1,6 @@
 import { activeType, boolType } from '../../constatnts/prop-types';
+import { useState, useEffect } from 'react';
+import { activeType, setActiveType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addProjectReducer,
@@ -70,5 +72,5 @@ export default CreateProject;
 
 CreateProject.propTypes = {
   active: boolType,
-  setActive: activeType,
+  setActive: setActiveType,
 };

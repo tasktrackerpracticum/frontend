@@ -67,7 +67,7 @@ function App() {
             <Route path='input'>
             </Route>
             <Route exact path='/' element={
-              <ProtectedRoute isLoggedIn={token} components={(
+              <ProtectedRoute isLoggedIn={token ? true : false} components={(
                 <>
                   <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
                   <Profile active={profileActive} setActive={setProfileActive} openModalAvatar={openModalAvatar}/>

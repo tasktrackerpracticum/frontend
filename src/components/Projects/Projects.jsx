@@ -1,5 +1,6 @@
 import { functionType } from '../../constatnts/prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector }  from "react-redux";
+
 import Project from '../Project/Project';
 
 

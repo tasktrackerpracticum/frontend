@@ -1,5 +1,5 @@
 import avatar from '../../images/user-avatar-profile.png';
-import { activeType, boolType, functionType } from '../../constatnts/prop-types';
+import { activeType, setActiveType, boolType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchUserMe, updateUserMe } from '../../services/userSlice';
@@ -206,7 +206,7 @@ function Profile({ active, setActive, openModalAvatar }) {
 export default Profile;
 
 Profile.propTypes = {
-  active: boolType,
-  setActive: activeType,
+  active: activeType,
+  setActive: setActiveType,
   openModalAvatar: functionType,
 };

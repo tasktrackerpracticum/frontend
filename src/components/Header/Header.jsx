@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import avatar from '../../images/user-avatar-profile.png';
 import exit from '../../images/exit.svg';
 import logo from '../../images/logo.svg';
-import { activeType, boolType, loginFunctionType } from '../../constatnts/prop-types';
+import { activeType, boolType, functionType } from '../../constatnts/prop-types';
 import SearchForm from '../SearchForm/SearchForm.jsx';
 import { useSelector } from 'react-redux';
 
@@ -40,5 +40,5 @@ export default function Header({ active, setActive, onLogout }) {
 Header.propTypes = {
   active: boolType,
   setActive: activeType,
-  onLogout: loginFunctionType
+  onLogout: functionType
 };
