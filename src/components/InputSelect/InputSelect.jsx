@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  functionType,
-  stringType,
-} from '../../constatnts/prop-types';
+import { functionType, stringType } from '../../constatnts/prop-types';
 import { useFormContext, Controller } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUsersToCreateReducer } from '../../services/projectsSlice';
@@ -10,7 +7,6 @@ import ReactSelect from 'react-select';
 import avatar from '../../images/user-avatar-profile.png';
 
 function InputSelect({ isOpen, title }) {
-
   const users = useSelector((state) => state.users.users);
 
   const currentUser = useSelector((state) => state.user.user);
@@ -71,12 +67,11 @@ function InputSelect({ isOpen, title }) {
               control={control}
               name='users'
               render={({ field: { onChange, value } }) => (
-               
                 <ReactSelect
-    
                   options={options}
                   value={value}
                   onChange={(newValue) => {
+                    console.log(value);
                     updatePerformers(newValue);
                     onChange(newValue);
                   }}

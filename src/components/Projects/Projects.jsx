@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { functionType } from '../../constatnts/prop-types';
-import { useSelector }  from "react-redux";
+import { useSelector } from 'react-redux';
 
 import Project from '../Project/Project';
-
 
 export default function Projects({
   openTaskCreate,
@@ -10,13 +10,13 @@ export default function Projects({
   selectListProject,
 }) {
   const { status, error, projects } = useSelector((state) => state.projects);
+  const [isSortName, setSortName] = useState(false);
 
   const handlerProject = (evt) => {
     const project = evt;
     onClick(project);
     selectListProject();
   };
-
 
   return (
     <section className='projects'>
@@ -32,8 +32,20 @@ export default function Projects({
         {error && <h2>{error}</h2>}{' '}
         {/* потом добавить модалку ошибки и убрать */}
         <div className='projects__content'>
-          <div className='projects__tag'>
-            <h2 className='projects__tag-name'>Проект</h2>
+          <div
+            className='projects__tag'
+            onClick={() => setSortName(!isSortName)}
+          >
+            <h2 className='projects__tag-name'>
+              <div className='projects__text-tag'>Проект</div>
+              <div
+                className={
+                  isSortName
+                    ? 'projects__tag-sort-more '
+                    : 'projects__tag-sort-less '
+                }
+              />
+            </h2>
             <h2 className='projects__tag-name'>Начало</h2>
             <h2 className='projects__tag-name'>Дедлайн</h2>
             <h2 className='projects__tag-name'>Автор</h2>
@@ -49,7 +61,6 @@ export default function Projects({
                     onClick={() => handlerProject(item)}
                   >
                     <Project
-                
                       title={item.title}
                       start={item.date_start}
                       finish={item.date_finish}
