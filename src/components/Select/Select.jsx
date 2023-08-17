@@ -1,7 +1,5 @@
 import avatar from '../../images/user-avatar-profile.png';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../../services/usersSlice';
+import {  useSelector } from 'react-redux';
 import { activeType, functionType } from '../../constatnts/prop-types';
 
 // export default function Select({
@@ -10,27 +8,22 @@ import { activeType, functionType } from '../../constatnts/prop-types';
 // }) {
 
 export default function Select({
-  setActliveListPerformer,
   isActiveListPerformer,
+  setValue
 }) {
-  const dispatch = useDispatch();
-  const { status, error, users } = useSelector((state) => state.users);
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
   
-  
+  const {  users } = useSelector((state) => state.users);
+  const currentUser = useSelector((state) => state.user.user);
 
   return (
-    <div
-      className={!openList ? 'select__active' : 'select__hidden'}
+    <section
+      className={!isActiveListPerformer ? 'select__active' : 'select__hidden'}
     >
       {users.length !== 0 &&
         users.map((user) => {
           if (currentUser !== user.id) {
             return (
-              <li key={user.id} className='select__container'>
+              <li selected key={user.id} className='select__container'>
                 <img
                   src={!user.photo ? avatar : user.photo}
                   className='select__avatar-performer'
@@ -39,11 +32,11 @@ export default function Select({
                 <div
                   className='select__performer'
                   onClick={() => {
-							
-										if (!performers.map((item) => item.id).includes(user.id)) {
+                    setValue('users', user);
+										// if (!performers.map((item) => item.id).includes(user.id)) {
 
-											dispatch(addUsersToCreateReducer({ user }));
-										}
+										// 	dispatch(addUsersToCreateReducer({ user }));
+										// }
 										
                    
                   }}
@@ -54,13 +47,13 @@ export default function Select({
             );
           }
         })}
-    </div>
+    </section>
   );
 }
 
 Select.propTypes = {
-    setActliveListPerformer: functionType,
     isActiveListPerformer: activeType,
+    setValue: functionType
 
   };
   

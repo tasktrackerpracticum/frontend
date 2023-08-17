@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { functionType, stringType } from '../../constatnts/prop-types';
 import { useFormContext, Controller } from 'react-hook-form';
@@ -29,12 +30,14 @@ function InputSelect({ isOpen, title }) {
     }))
     .filter((item) => item.value !== currentUser.id);
 
-  const { control } = useFormContext();
+  const { control} = useFormContext();
 
   const savePerformers = () => {
     dispatch(addUsersToCreateReducer(performers));
     isOpen();
   };
+
+
 
   const updatePerformers = (value) => {
     if (!performers.map((item) => item.id).includes(value.value)) {
@@ -71,7 +74,6 @@ function InputSelect({ isOpen, title }) {
                   options={options}
                   value={value}
                   onChange={(newValue) => {
-                    console.log(value);
                     updatePerformers(newValue);
                     onChange(newValue);
                   }}
@@ -82,6 +84,9 @@ function InputSelect({ isOpen, title }) {
                     }),
                   }}
                 />
+
+  
+          
               )}
             />
           </div>

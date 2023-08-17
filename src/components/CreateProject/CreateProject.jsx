@@ -2,7 +2,7 @@ import { boolType, setActiveType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addProjectReducer,
-  createNewProjects,
+ createNewProjects,
 } from '../../services/projectsSlice';
 import InputField from './InputField';
 import { useForm, FormProvider } from 'react-hook-form';
