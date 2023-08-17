@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addUsersToCreateReducer } from '../../services/projectsSlice';
 import ReactSelect from 'react-select';
 import avatar from '../../images/user-avatar-profile.png';
+import { Option } from './Option';
 
 function InputSelect({ isOpen, title }) {
   const users = useSelector((state) => state.users.users);
@@ -71,6 +72,7 @@ function InputSelect({ isOpen, title }) {
               name='users'
               render={({ field: { onChange, value } }) => (
                 <ReactSelect
+                components={ {Option} }
                   options={options}
                   value={value}
                   onChange={(newValue) => {
@@ -81,7 +83,14 @@ function InputSelect({ isOpen, title }) {
                     control: (baseStyles) => ({
                       ...baseStyles,
                       width: '400px',
+                      
                     }),
+                    menuList: (baseStyles) => ({
+                      ...baseStyles,
+                      boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                    })
                   }}
                 />
 
