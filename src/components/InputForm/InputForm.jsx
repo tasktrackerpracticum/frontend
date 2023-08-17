@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {
-  arrayType,
   functionType,
   numberType,
+  objectType,
   stringType,
 } from '../../constatnts/prop-types';
 
@@ -17,21 +17,26 @@ function InputForm({
   register,
   value,
   errors,
-})  {
+  patternType,
+}) {
+  const [valueInput, setValueInput] = useState(value);
 
-const [valueInput, setValueInput] = useState(value);
-
-function handlerChange(evt) {
-  setValueInput(evt.target.value);
-}
-
+  function handlerChange(evt) {
+    setValueInput(evt.target.value);
+  }
 
   return (
     <section className='input'>
       <div className='input__title'>{title}:</div>
       <div className='input__content'>
         <div className='input__form'>
-          <div className={!errors[dataType] ?  'input__container' : " input__container input__container_errors"}>
+          <div
+            className={
+              !errors[dataType]
+                ? 'input__container'
+                : ' input__container input__container_errors'
+            }
+          >
             <input
               className='input__input-text'
               value={valueInput}
@@ -39,19 +44,29 @@ function handlerChange(evt) {
                 required: false,
                 maxLength: {
                   value: isMaxLength,
-                  message: `Должно быть не больше ${isMaxLength} символов`
-              },
-              minLength: {
-                value: isMinLength, 
-                message: `Должно быть не меньше ${isMinLength} символов`
-              }
-            })}
+                  message: `Должно быть не больше ${isMaxLength} символов`,
+                },
+                minLength: {
+                  value: isMinLength,
+                  message: `Должно быть не меньше ${isMinLength} символов`,
+                },
+                pattern: {
+                  value: patternType,
+                  message: 'Введите правильную почту',
+                },
+              })}
               type={inputType}
               maxLength={isMaxLength}
               onChange={handlerChange}
             />
-
-            <div className={!errors[dataType] ?  'input__close' : " input__close input__close_errors"} onClick={isOpen} />
+            <div
+              className={
+                !errors[dataType]
+                  ? 'input__close'
+                  : ' input__close input__close_errors'
+              }
+              onClick={isOpen}
+            />
           </div>
           <div className='input__error'>{errors[dataType]?.message}</div>
 
@@ -71,7 +86,7 @@ function handlerChange(evt) {
       </div>
     </section>
   );
-            }
+}
 export default InputForm;
 
 InputForm.propTypes = {
@@ -83,5 +98,6 @@ InputForm.propTypes = {
   dataType: stringType,
   isMinLength: numberType,
   register: functionType,
-  errors: arrayType,
+  errors: objectType,
+  patternType: stringType,
 };

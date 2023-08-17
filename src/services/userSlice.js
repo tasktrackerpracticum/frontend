@@ -22,6 +22,7 @@ export const updateUserMe = createAsyncThunk(
 	phone: !data.phone? getState().user.user.phone : data.phone,
 	timezone: !data.timezone ? getState().user.user.timezone : data.timezone,
 	email: !data.email ? getState().user.user.email : data.email,
+	telegram: !data.telegram ? getState().user.user.telegram : data.telegram,
  };
 
     try {
@@ -73,16 +74,19 @@ const userSlice = createSlice({
       position: null,
       timezone: null,
       username: null,
+			telegram: null,
     },
     status: null,
     error: null,
   },
   reducers: {
     reducerUpdateUser(state, action) {
+			console.log(action.payload)
       state.user.position = action.payload.position;
       state.user.email =  action.payload.email;
       state.user.phone =  action.payload.phone;
       state.user.timezone = action.payload.timezone;
+			state.user.telegram = action.payload.telegram;
 
     },
     reducerUpdatePhoto(state, action) {

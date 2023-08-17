@@ -31,7 +31,8 @@ export const setUser = (data) => {
 			gender: data.gender,
 			country: data.country,
 			timezone: data.timezone,
-			last_login: data.last_login
+			last_login: data.last_login,
+			telegram: data.telegram
 		})
 	})
 }

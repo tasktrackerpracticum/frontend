@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { fetchUserMe, updateUserMe } from '../../services/userSlice';
 import InputForm from '../InputForm/InputForm';
 import { useForm } from 'react-hook-form';
+import { patternsSchema } from '../../constatnts/constants'
 
 function Profile({ active, setActive, openModalAvatar }) {
   const dispatch = useDispatch();
@@ -18,9 +19,11 @@ function Profile({ active, setActive, openModalAvatar }) {
     register,
     formState: { errors },
     handleSubmit,
+    reset
   } = useForm();
 
   const onSubmit = (data) => {
+   console.log(data)
     handleActionChange(data);
     closeInput();
   };
@@ -36,18 +39,23 @@ function Profile({ active, setActive, openModalAvatar }) {
   const [isOpenTelegramInput, setOpenTelegramInput] = useState(false);
 
   function openInputPosition() {
+    reset();
     setOpenPositionInput(!isOpenPoisitionInput);
   }
   function openInputPhone() {
+    reset();
     setOpenPhoneInput(!isOpenPhoneInput);
   }
   function openInputEmail() {
+    reset();
     setOpenEmailInput(!isOpenEmailInput);
   }
   function openInputTimezone() {
+    reset();
     setOpenTimezoneInput(!isOpenTimezoneInput);
   }
   function openInputTelegram() {
+    reset();
     setOpenTelegramInput(!isOpenTelegramInput);
   }
 
@@ -58,6 +66,7 @@ function Profile({ active, setActive, openModalAvatar }) {
       setOpenPhoneInput(false),
       setOpenPositionInput(false);
   }
+
 
   return (
     <section className={active ? 'profile__active' : 'profile'}>
@@ -94,9 +103,10 @@ function Profile({ active, setActive, openModalAvatar }) {
               inputType={'text'}
               register={register}
               dataType={'position'}
-              isMaxLength={'15'}
-              isMinLength={'5'}
+              isMaxLength={15}
+              isMinLength={5}
               errors={errors}
+              
             />
           ) : (
             <div className='profile__container' onClick={openInputPosition}>
@@ -113,8 +123,9 @@ function Profile({ active, setActive, openModalAvatar }) {
               register={register}
               dataType={'phone'}
               errors={errors}
-              isMaxLength={'12'}
-              isMinLength={'12'}
+              isMaxLength={12}
+              isMinLength={12}
+     
             />
           ) : (
             <div className='profile__container' onClick={openInputPhone}>
@@ -132,8 +143,10 @@ function Profile({ active, setActive, openModalAvatar }) {
               register={register}
               dataType={'email'}
               errors={errors}
-              isMaxLength={15}
+              isMaxLength={20}
               isMinLength={5}
+              patternType={patternsSchema.patternEmail}
+
             />
           ) : (
             <div className='profile__container' onClick={openInputEmail}>
@@ -151,6 +164,10 @@ function Profile({ active, setActive, openModalAvatar }) {
               register={register}
               dataType={'telegram'}
               errors={errors}
+              patternType = {patternsSchema.patternTelegram}
+              isMaxLength={15}
+              isMinLength={2}
+   
             />
           ) : (
             <div className='profile__container' onClick={openInputTelegram}>
@@ -168,6 +185,7 @@ function Profile({ active, setActive, openModalAvatar }) {
               register={register}
               dataType={'timezone'}
               errors={errors}
+ 
             />
           ) : (
             <div className='profile__container' onClick={openInputTimezone}>

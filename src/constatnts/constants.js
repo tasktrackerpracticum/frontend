@@ -448,3 +448,9 @@ export const MockTasks = [
     comments: [],
   },
 ];
+
+
+ export const patternsSchema = {
+	patternEmail: "([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})",
+	patternTelegram: "/^@[a-z0-9_-%]{5,32}$/g"
+}
