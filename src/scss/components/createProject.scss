@@ -289,4 +289,11 @@
    border: 1px solid #8A8A8A;
     }
 
+    &__errors {
+      display: flex;
+      color: red;
+      font-size: 14px;
+      font-weight: 400;
+      transition: 2s;
+    }
 }
