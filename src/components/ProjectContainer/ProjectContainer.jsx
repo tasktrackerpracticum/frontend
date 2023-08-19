@@ -1,10 +1,11 @@
 import TaskContainer from "../TaskContainer/TaskContainer";
 import { projectContainers } from "../../constatnts/constants"; //удалить MockTasks после получения данных с сервера
 import { useSelector } from "react-redux";
+import { openType } from '../../constatnts/prop-types';
 // import { useEffect } from "react";
 // import { fetchTasks } from "../../services/tasksSlice";
 
-export default function ProjectContainer() {
+export default function ProjectContainer({ openTaskCreate }) {
 
   // const dispatch = useDispatch();
   // const { status, error } = useSelector(state => state.tasks); //лучше убрать деструктуризацию
@@ -35,6 +36,7 @@ export default function ProjectContainer() {
         if (item.value === 'Беклог') {
           return (
             <TaskContainer
+              openTaskCreate={openTaskCreate}
               boradHeader={item.value}
               column={item.column}
               key={i} />
@@ -73,6 +75,10 @@ export default function ProjectContainer() {
     </div>
   )
 }
+
+ProjectContainer.propTypes = {
+  openTaskCreate: openType,
+};
 
 // return(
 //   <div className="projectContainer">

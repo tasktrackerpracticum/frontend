@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { functionType } from '../../constatnts/prop-types';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector }  from "react-redux";
+import { fetchProjects } from '../../services/projectsSlice';
 import Project from '../Project/Project';
+import { PROJECTS } from '../../constatnts/constants';
+import { Link } from 'react-router-dom';
 
 export default function Projects({
+  openProjectCreate,
   openTaskCreate,
   onClick,
   selectListProject,
@@ -12,17 +15,17 @@ export default function Projects({
   const { status, error, projects } = useSelector((state) => state.projects);
   const [isSortName, setSortName] = useState(false);
 
-  const handlerProject = (evt) => {
-    const project = evt;
-    onClick(project);
-    selectListProject();
-  };
+  // const handlerProject = (evt) => {
+  //   const project = evt;
+  //   onClick(project);
+  //   selectListProject();
+  // };
 
   return (
     <section className='projects'>
       <div className='projects__wrap'>
         <div className='projects__create'>
-          <button className='projects__create-btn' onClick={openTaskCreate}>
+          <button className='projects__create-btn' onClick={openProjectCreate}>
             <div className='projects__icon-create' />
             Новый проект
           </button>
@@ -52,24 +55,15 @@ export default function Projects({
             <h2 className='projects__tag-name'>Статус</h2>
           </div>
           <div className='projects__list'>
-            {projects.length !== 0 &&
-              projects.map((item) => {
-                return (
-                  <li
-                    key={item.id}
-                    className='projects__container'
-                    onClick={() => handlerProject(item)}
-                  >
-                    <Project
-                      title={item.title}
-                      start={item.date_start}
-                      finish={item.date_finish}
-                      isActive={item.is_active}
-                      users={item.users}
-                    />
-                  </li>
-                );
-              })}
+
+            {projects.length !== 0 && (projects.map((item) => {
+              return (
+                <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="projects__container">
+                  <Project users={item.users} title={item.title} start={item.date_start} finish={item.date_finish} isActive={item.is_active}/>
+                </Link>
+              )
+            }))}
+
           </div>
         </div>
       </div>
@@ -81,4 +75,6 @@ Projects.propTypes = {
   openTaskCreate: functionType,
   selectListProject: functionType,
   onClick: functionType,
+  openProjectCreate: functionType
+
 };

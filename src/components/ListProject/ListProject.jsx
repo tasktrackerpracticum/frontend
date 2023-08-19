@@ -1,28 +1,31 @@
+import { Link } from 'react-router-dom';
+import { PROJECTS } from '../../constatnts/constants';
 import {
-  openType,
   objectType,
   functionType,
+  arrayType,
 } from '../../constatnts/prop-types';
 import PostProject from '../PostProject/PostProject.jsx';
 
 export default function ListProject({
-  openTaskCreate,
+  openProjectCreate,
   projects,
   status,
   error,
-  onClick,
 }) {
-  const openProject = (evt) => {
-    const project = evt;
-    onClick(project);
-  };
+  // const openProject = (evt) => {
+  //   const project = evt;
+  //   onClick(project);
+  // };
+  
+
 
   return (
     <section className='listProject' onClick={(e) => e.stopPropagation()}>
       <div className='listProject__create'>
         <button
           className='listProject__create-btn'
-          onClick={openTaskCreate}
+          onClick={openProjectCreate}
         ></button>
       </div>
       {status === 'loading' && <h2>loading...</h2>}{' '}
@@ -32,19 +35,11 @@ export default function ListProject({
         {projects.length !== 0 &&
           projects.map((item) => {
             return (
-              <li
-                key={item.id}
-                className='listProject__container'
-                onClick={() => openProject(item)}
-              >
-                <PostProject
-                  users={item.users.find((item) => item.role == 'pm')}
-                  title={item.title}
-                  is_active={item.is_active}
-                  start={item.date_start}
-                  finish={item.date_finish}
-                />
-              </li>
+
+              <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="listProject__container">
+                <PostProject users={item.users.find((item) => item.role == 'pm')} title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
+              </Link>
+
             );
           })}
       </div>
@@ -53,8 +48,8 @@ export default function ListProject({
 }
 
 ListProject.propTypes = {
-  openTaskCreate: openType,
-  projects: objectType,
+  openProjectCreate: functionType,
+  projects: arrayType,
   onClick: functionType,
   status: objectType,
   error: objectType,
