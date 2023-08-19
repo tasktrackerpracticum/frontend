@@ -31,6 +31,7 @@ export default function TaskContainer({ boradHeader, column }) {
           return (
           <li key={item.id} className="taskContainer__task">
             <Task
+              
               title={item.title}
               deadline={item.deadline}
               id={item.id}

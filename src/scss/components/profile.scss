@@ -26,6 +26,9 @@
     display: flex;
     padding-left: 30px;
     border-bottom: 1px solid #d9d9d9;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   &__info-content {
@@ -39,8 +42,9 @@
     height: 24px;
     font-size: 24px;
     line-height: 24px;
-    margin-right: 15px;
+    padding-right: 15px;
     font-weight: 500;
+    padding-left: 10px;
   }
   &__date {
     margin: 0;
@@ -61,28 +65,61 @@
     justify-content: space-between;
   }
 
-  &__avatar {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-right: 10px;
+
+  &__avatar-overlay {
     width: 48px;
     height: 48px;
-    object-fit: cover;
+    padding: 0;
+    position: absolute;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    background-color: rgb(0, 0, 0);
+    opacity: 0;
+
+    &:hover {
+      opacity: .4;
+      transition: opacity .3s linear 0s;
+      background-image: url('../../images/edit_avatar.png');
+      background-repeat: no-repeat;
+      outline: 1px solid black;
+      background-position: center;
+    }
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #9A7F6633;
   }
 
   &__info {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
   }
   &__container {
-    margin-top: 30px;
+    
     width: 400px;
+    height: 43px;
+    gap: 10px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
+    padding-left: 16px;
     justify-content: space-between;
+    &:hover {
+      transition: background-color 2s;
+      background-color: #F1F1F1;
+      border: 1px solid #8A8A8A66;
+    }
   }
 
   &__container-check {
+    margin-top: 30px;
+    padding-left: 16px;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -158,17 +195,19 @@
   }
 
   &__input {
-    max-width: 100%;
+    width: 250px;
     height: 15px;
     font-size: 14px;
     font-weight: 400;
     border: none;
     padding-left: 10px;
     cursor: pointer;
+    
 
     &:hover {
       opacity: 0.5;
     }
+
 
     &:focus {
       outline: none;

@@ -1,0 +1,20 @@
+.option{
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ gap: 8px;
+ padding: 3px 3px 3px 6px;
+ height: 38px;
+
+ &:hover {
+    background-color: #F1F1F1;
+    transition: background-color 0.5s;
+ }
+    
+
+    &__avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+    }
+}

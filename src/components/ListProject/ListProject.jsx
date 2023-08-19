@@ -3,7 +3,7 @@ import {
   objectType,
   functionType,
 } from '../../constatnts/prop-types';
-import PostProject from "../PostProject/PostProject.jsx";
+import PostProject from '../PostProject/PostProject.jsx';
 
 export default function ListProject({
   openTaskCreate,
@@ -16,10 +16,9 @@ export default function ListProject({
     const project = evt;
     onClick(project);
   };
-  
 
   return (
-    <section className='listProject'>
+    <section className='listProject' onClick={(e) => e.stopPropagation()}>
       <div className='listProject__create'>
         <button
           className='listProject__create-btn'
@@ -32,11 +31,20 @@ export default function ListProject({
       <div className='listProject__content'>
         {projects.length !== 0 &&
           projects.map((item) => {
-            return ( 
-            <li key={item.id} className="listProject__container"  onClick={() => openProject(item)}>
-              <PostProject title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
-
-            </li>
+            return (
+              <li
+                key={item.id}
+                className='listProject__container'
+                onClick={() => openProject(item)}
+              >
+                <PostProject
+                  users={item.users.find((item) => item.role == 'pm')}
+                  title={item.title}
+                  is_active={item.is_active}
+                  start={item.date_start}
+                  finish={item.date_finish}
+                />
+              </li>
             );
           })}
       </div>

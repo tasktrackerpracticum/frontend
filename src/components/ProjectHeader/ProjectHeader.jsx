@@ -3,6 +3,7 @@ import TeamProject from '../TeamProject/TeamProject';
 import Deadline from '../Deadline/Deadline.jsx';
 
 export default function ProjectHeader({ onProject, selectListProject }) {
+  console.log(onProject);
 
   return (
     
@@ -23,7 +24,7 @@ export default function ProjectHeader({ onProject, selectListProject }) {
             Сроки проекта: <Deadline start={onProject.date_start} finish= {onProject.date_finish}/>
              
           </p>
-          <div className='projectHeader__team'>Команда: <TeamProject />
+          <div className='projectHeader__team'>Команда: <TeamProject users={onProject.users}/>
           </div>
         </div>
       </div>
