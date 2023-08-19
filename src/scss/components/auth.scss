@@ -44,41 +44,8 @@
     margin-top: 56px;
   }
 
-  &__logo-container {
-    @include reset;
-    margin-bottom: 120px;
-		display: flex;
-		gap: 19px;
-		align-items: center;
-		cursor: pointer;
-		text-decoration: none;
-
-		&:hover {
-			opacity: 0.4;
-		}
-  }
-
   &__logo {
-    width: 41px;
-		height: 41px;
-		border-radius: 50%;
-		border: 1px solid rgba(234, 226, 218, 1);
-		box-sizing: border-box;
-  }
-
-  &__title {
-		@include text-format(500, 32px, 24px);
-		@include text;
-		color: black;
-	}
-
-  &__name {
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 41px;
-    text-align: center;
-    margin: 56px auto 120px;
-    color: #2F261B;
+    margin-bottom: 120px;
   }
   
   &__form {
@@ -120,6 +87,16 @@
 
     &:hover {
       opacity: 0.8;
+    }
+
+    &:disabled {
+      background: #DEDEDE;
+      color: #8A8A8A;
+      cursor: auto;
+    }
+
+    &:disabled:hover {
+      opacity: 1;
     }
   }
 

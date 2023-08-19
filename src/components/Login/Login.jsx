@@ -6,20 +6,20 @@ import logo from '../../images/logo.svg';
 
 function Login({ onLogin }) {
   const { values, handleChange } = useValidation();
+
   function handleSubmit(evt) {
     evt.preventDefault();
     onLogin(values.email, values.password);
   };
-  
+
+  const isDisabled = !(values.email && values.password);
+
   return (
     <section className='auth'>
       <div className='auth__block auth__block_left'>
         <div className='auth__container auth__container_left'>
           <div className='auth__top'>
-            <NavLink to='/' className='auth__logo-container'>
-              <img className='auth__logo' src={logo} alt='logo' />
-              <h1 className='auth__title'>Лого</h1>
-            </NavLink>
+            <img className='auth__logo' src={logo} alt='logo' />
             <form className='auth__form' onSubmit={handleSubmit}>
               <input
                 className='auth__input auth__input_type_email'
@@ -47,7 +47,7 @@ function Login({ onLogin }) {
               <span className='auth__error' id='password-error'>
                 Ошибка
               </span>
-              <button className='auth__submit-button' type='submit'>
+              <button className='auth__submit-button' type='submit' disabled={isDisabled}>
                 Войти
               </button>
               <span className='auth__error' id='res-error'>
