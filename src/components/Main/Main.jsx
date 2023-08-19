@@ -3,13 +3,14 @@ import ProjectContainer from '../ProjectContainer/ProjectContainer';
 import ListProject from '../ListProject/ListProject';
 import { DndProvider } from 'react-dnd/dist/core';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { functionType } from '../../constatnts/prop-types';
+import { functionType, openType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import { fetchProjects } from '../../services/projectsSlice';
 import Scroll from '../Scroll/Scroll';
 
-export default function Main({ openProjectCreate, openTaskCreate }) {
+
+export default function Main({ openTaskCreate, closeModal, openTaskCreate }) {
   const dispatch = useDispatch();
   const { status, error, projects } = useSelector((state) => state.projects);
 
@@ -21,7 +22,16 @@ export default function Main({ openProjectCreate, openTaskCreate }) {
 
   return (
     <DndProvider backend={HTML5Backend}>
-        <main className='main'>
+
+//       {onSelectListProject ? (
+//         <Projects
+//           openTaskCreate={openTaskCreate}
+//           onClick={openProject}
+//           selectListProject={selectListProject}
+          
+//         />
+//       ) : (
+//         <main className='main' onClick={closeModal}>
           <ListProject
             openProjectCreate={openProjectCreate}
             projects={projects}
@@ -39,6 +49,8 @@ export default function Main({ openProjectCreate, openTaskCreate }) {
 }
 
 Main.propTypes = {
-  openTaskCreate: functionType,
-  openProjectCreate: functionType
+
+  openTaskCreate: openType,
+  closeModal: functionType,
+   openProjectCreate: functionType
 };

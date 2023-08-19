@@ -14,6 +14,8 @@ import { fetchToken } from '../../services/profileSlice';
 import { PROJECTS, SIGN_IN, SIGN_UP } from '../../constatnts/constants.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Projects from '../Projects/Projects';
+import ModalEditAvatar from '../ModalEditAvatar/ModalEditAvatar';
+import { fetchUsers } from '../../services/usersSlice';
 
 function App() {
   const token = localStorage.getItem('accessToken');
@@ -22,14 +24,20 @@ function App() {
   const [isOpenProjectCreate, setOpenProjectCreate] = useState(false);
   const [isOpenTaskCreate, setOpenTaskCreate] = useState(false);
 
+
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.profile)
+
+	
+
+
 
    const email = "admin@admin.com";
    const password = "admin";
 //Запрос токена с админскими данными временный. Убрать после настройки авторизации
   useEffect(() => {
     dispatch(fetchToken({email, password}))
+    dispatch(fetchUsers());
   }, [dispatch]);
 
   function openProjectCreate()  {
@@ -40,9 +48,22 @@ function App() {
     setOpenTaskCreate(!isOpenTaskCreate);
   }
 
+  const [activeModalAvatar, setActiveModalAvatar] = useState(false);
+
+  const openModalAvatar = () => {
+    setActiveModalAvatar(!activeModalAvatar);
+  }
+
+  const closeModal = () => {
+    setActiveModalAvatar(false);
+    setProfileActive(false);
+    setOpenTaskCreate(false);
+  }
+
+
   return (
     <>
-      <div className='page'>
+      <div className='page' onClick={closeModal}>
 
       {status === 'loading' && <h2>loading...</h2>}
       {error && <h2>{error}</h2>}
@@ -56,8 +77,9 @@ function App() {
               <CreateTask active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
             </>
           )}
-
           <Routes>
+            <Route path='input'>
+            </Route>
             <Route exact path='/' element={
               <ProtectedRoute isLoggedIn={token ? true : false} components={(
                 <Projects />
@@ -68,6 +90,7 @@ function App() {
                 <Main openProjectCreate={openProjectCreate} openTaskCreate={openTaskCreate} />
               )} />
             } />
+
             <Route path={SIGN_UP} element={
               isLoggedIn ? <Navigate to='/' /> : <Register onRegister={handleRegister} />
             } />

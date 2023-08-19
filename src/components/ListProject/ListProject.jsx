@@ -5,7 +5,7 @@ import {
   functionType,
   arrayType,
 } from '../../constatnts/prop-types';
-import PostProject from "../PostProject/PostProject.jsx";
+import PostProject from '../PostProject/PostProject.jsx';
 
 export default function ListProject({
   openProjectCreate,
@@ -19,8 +19,9 @@ export default function ListProject({
   // };
   
 
+
   return (
-    <section className='listProject'>
+    <section className='listProject' onClick={(e) => e.stopPropagation()}>
       <div className='listProject__create'>
         <button
           className='listProject__create-btn'
@@ -34,9 +35,11 @@ export default function ListProject({
         {projects.length !== 0 &&
           projects.map((item) => {
             return (
+
               <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="listProject__container">
-                <PostProject title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
+                <PostProject users={item.users.find((item) => item.role == 'pm')} title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
               </Link>
+
             );
           })}
       </div>

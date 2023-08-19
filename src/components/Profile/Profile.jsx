@@ -1,157 +1,199 @@
 import avatar from '../../images/user-avatar-profile.png';
-import { activeType, setActiveType } from '../../constatnts/prop-types';
+import { setActiveType, boolType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { fetchUserMe, reducerUpdateUser, updateUserMe } from '../../services/userSlice';
+import { fetchUserMe, updateUserMe } from '../../services/userSlice';
+import InputForm from '../InputForm/InputForm';
+import { useForm } from 'react-hook-form';
+import { patternsSchema } from '../../constatnts/constants'
 
-function Profile({ active, setActive }) {
+function Profile({ active, setActive, openModalAvatar }) {
   const dispatch = useDispatch();
-
   const currentUser = useSelector((state) => state.user.user);
-  
+
   useEffect(() => {
     dispatch(fetchUserMe());
   }, [dispatch]);
 
-  const [position, setPosition] = useState('');
-  const [phone, setPhone] = useState();
-  const [email, setEmail] = useState('');
-  const [timezone, setTimezone] = useState('');
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset
+  } = useForm();
 
-  function handlePositionChange(evt) {
-    evt.preventDefault();
-    if (evt.target.value !== currentUser.position) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-    setPosition(evt.target.value);
-  }
-  function handlePhoneChange(evt) {
-    evt.preventDefault();
-    if (evt.target.value !== currentUser.phone) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-    setPhone(evt.target.value);
-  }
-  function handleTimezoneChange(evt) {
-    evt.preventDefault();
-    if (evt.target.value !== currentUser.timezone) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-    
-    setTimezone(evt.target.value);
-  }
-  function handleEmailChange(evt) {
-    evt.preventDefault();
-    if (evt.target.value !== currentUser.email) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-    setEmail(evt.target.value);
-    
+  const onSubmit = (data) => {
+   console.log(data)
+    handleActionChange(data);
+    closeInput();
+  };
+
+  function handleActionChange(data) {
+    dispatch(updateUserMe({ data }));
   }
 
-  function handleActionChange(evt) {
-    evt.preventDefault();
-  dispatch(reducerUpdateUser({position, timezone, email, phone}))
-  dispatch(updateUserMe());
-    setActive(!active);
+  const [isOpenPoisitionInput, setOpenPositionInput] = useState(false);
+  const [isOpenPhoneInput, setOpenPhoneInput] = useState(false);
+  const [isOpenEmailInput, setOpenEmailInput] = useState(false);
+  const [isOpenTimezoneInput, setOpenTimezoneInput] = useState(false);
+  const [isOpenTelegramInput, setOpenTelegramInput] = useState(false);
+
+  function openInputPosition() {
+    reset();
+    setOpenPositionInput(!isOpenPoisitionInput);
+  }
+  function openInputPhone() {
+    reset();
+    setOpenPhoneInput(!isOpenPhoneInput);
+  }
+  function openInputEmail() {
+    reset();
+    setOpenEmailInput(!isOpenEmailInput);
+  }
+  function openInputTimezone() {
+    reset();
+    setOpenTimezoneInput(!isOpenTimezoneInput);
+  }
+  function openInputTelegram() {
+    reset();
+    setOpenTelegramInput(!isOpenTelegramInput);
   }
 
-  const [disabled, setDisabled] = useState(true);
-
-  useEffect(() => {
-    if (currentUser.position && currentUser.phone && currentUser.email) {
-      setPosition(currentUser.position);
-      setPhone(currentUser.phone);
-      setEmail(currentUser.email);
-      setTimezone(currentUser.timezone)
-    }
-  }, [currentUser.position, currentUser.phone, currentUser.email, currentUser.timezone])
-
-  
+  function closeInput() {
+    setOpenTelegramInput(false),
+      setOpenTimezoneInput(false),
+      setOpenEmailInput(false),
+      setOpenPhoneInput(false),
+      setOpenPositionInput(false);
+  }
 
 
   return (
     <section className={active ? 'profile__active' : 'profile'}>
       <div className='profile__wrap'>
-        <img src={currentUser.photo !== '' ? avatar: currentUser.photo } alt='место для аватара' className='profile__avatar'/>
+        <div
+          className='profile__avatar-overlay'
+          onClick={openModalAvatar}
+        ></div>
+        <img
+          src={currentUser.photo ? currentUser.photo : avatar}
+          alt='место для аватара'
+          className='profile__avatar'
+        />
+
         <div className='profile__info-content'>
-          <h1 className='profile__title'>{currentUser.first_name} {currentUser.last_name}</h1>
+          <h1 className='profile__title'>
+            {currentUser.first_name} {currentUser.last_name}
+          </h1>
           <h2 className='profile__date'>{currentUser.date_of_birth}</h2>
         </div>
-		<button
-            className='profile__cancel-btn'
-            onClick={() => setActive(!active)}
-          >
-          </button>
+        <button
+          className='profile__cancel-btn'
+          onClick={() => setActive(!active)}
+        ></button>
       </div>
 
-      <form className='profile__content'>
+      <form className='profile__content' onSubmit={handleSubmit(onSubmit)}>
         <div className='profile__info'>
-          <div className='profile__container'>
-            <h2 className='profile__subtitle'>Должность:</h2>
-            <input
-              className='profile__input'
-              value={position}
-              onChange={handlePositionChange}
-              id='position-input'
-              type='text'
-              name='work'
-              minLength='2'
-              maxLength='10'
-              required
+          {isOpenPoisitionInput ? (
+            <InputForm
+              isOpen={openInputPosition}
+              value={currentUser.position}
+              title={'Должность'}
+              inputType={'text'}
+              register={register}
+              dataType={'position'}
+              isMaxLength={15}
+              isMinLength={5}
+              errors={errors}
+              
             />
-          </div>
-          <div className='profile__container'>
-            <h2 className='profile__subtitle'>Телефон:</h2>
-            <input
-              className='profile__input'
-              value={phone}
-              onChange={handlePhoneChange}
-              id='phone-input'
-              type='tel'
-              placeholder={currentUser.phone}
-              name='phone'
-              minLength='9'
-              maxLength='11'
-              required
+          ) : (
+            <div className='profile__container' onClick={openInputPosition}>
+              <h2 className='profile__subtitle'>Должность:</h2>
+              <div className='profile__input'>{currentUser.position}</div>
+            </div>
+          )}
+          {isOpenPhoneInput ? (
+            <InputForm
+              isOpen={openInputPhone}
+              value={currentUser.phone}
+              title={'Телефон'}
+              inputType={'tel'}
+              register={register}
+              dataType={'phone'}
+              errors={errors}
+              isMaxLength={12}
+              isMinLength={12}
+     
             />
-          </div>
-          <div className='profile__container'>
-            <h2 className='profile__subtitle'>Email:</h2>
-            <input
-              className='profile__input'
-              value={email}
-              onChange={handleEmailChange}
-              id='email'
-              type='email'
-              name='email'
-              minLength='7'
-              maxLength='20'
-              required
+          ) : (
+            <div className='profile__container' onClick={openInputPhone}>
+              <h2 className='profile__subtitle'>Телефон:</h2>
+              <div className='profile__input'>{currentUser.phone}</div>
+            </div>
+          )}
+
+          {isOpenEmailInput ? (
+            <InputForm
+              isOpen={openInputEmail}
+              value={currentUser.email}
+              title={'Email'}
+              inputType={'email'}
+              register={register}
+              dataType={'email'}
+              errors={errors}
+              isMaxLength={20}
+              isMinLength={5}
+              patternType={patternsSchema.patternEmail}
+
             />
-          </div>
-          <div className='profile__container'>
-            <h2 className='profile__subtitle'>Часовой пояс:</h2>
-            <input
-              className='profile__input'
-              value={timezone}
-              onChange={handleTimezoneChange}
-              id='timezone-input'
-              type='text'
-              name='timezone'
-              required
+          ) : (
+            <div className='profile__container' onClick={openInputEmail}>
+              <h2 className='profile__subtitle'>Email:</h2>
+              <div className='profile__input'>{currentUser.email}</div>
+            </div>
+          )}
+
+          {isOpenTelegramInput ? (
+            <InputForm
+              isOpen={openInputTelegram}
+              value={currentUser.telegram}
+              title={'Telegram'}
+              inputType={'text'}
+              register={register}
+              dataType={'telegram'}
+              errors={errors}
+              patternType = {patternsSchema.patternTelegram}
+              isMaxLength={15}
+              isMinLength={2}
+   
             />
-          </div>
+          ) : (
+            <div className='profile__container' onClick={openInputTelegram}>
+              <h2 className='profile__subtitle'>Telegram:</h2>
+              <div className='profile__input'>{currentUser.telegram}</div>
+            </div>
+          )}
+
+          {isOpenTimezoneInput ? (
+            <InputForm
+              isOpen={openInputTimezone}
+              value={currentUser.timezone}
+              title={'Часовой пояс'}
+              inputType={'text'}
+              register={register}
+              dataType={'timezone'}
+              errors={errors}
+ 
+            />
+          ) : (
+            <div className='profile__container' onClick={openInputTimezone}>
+              <h2 className='profile__subtitle'>Часовой пояс:</h2>
+              <div className='profile__input'>{currentUser.timezone}</div>
+            </div>
+          )}
         </div>
-		
 
         <div className='profile__container-check'>
           <input
@@ -162,12 +204,15 @@ function Profile({ active, setActive }) {
           />
           <label htmlFor='check-input' className='profile__check-email'>
             {' '}
-            Уведомление на почту
+            Получать уведомления в Telegram
           </label>
         </div>
-
         <div className='profile__container-btn'>
-          <button disabled={disabled} className='profile__submit-btn' type='submit' onClick={handleActionChange}>
+          <button
+            className='profile__submit-btn'
+            type='submit'
+            onClick={handleActionChange}
+          >
             Сохранить изменения
           </button>
         </div>
@@ -179,6 +224,7 @@ function Profile({ active, setActive }) {
 export default Profile;
 
 Profile.propTypes = {
-  active: activeType,
+  active: boolType,
   setActive: setActiveType,
+  openModalAvatar: functionType,
 };

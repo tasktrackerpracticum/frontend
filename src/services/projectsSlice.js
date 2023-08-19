@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getProjects, createProject } from '../utils/ProjectsApi';
+import { addUserInProject } from '../utils/UsersApi';
 
 export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
@@ -15,23 +16,40 @@ export const fetchProjects = createAsyncThunk(
 
 export const createNewProjects = createAsyncThunk(
   'projects/createProjects',
-  async ({ title, date_start, date_finish}, { rejectWithValue, dispatch }) => {
-		const newProject = {
-			title: title,
-			 date_start: date_start,
-			 date_finish: date_finish,
-			is_active: true,
-		}
-		console.log(newProject);
+  async (data, { rejectWithValue, dispatch }) => {
+    const newProject = {
+      title: data.title,
+      date_start: data.date_start ? data.date_start : null,
+      date_finish: data.date_finish ? data.date_finish : null,
+      is_active: true,
+			users: data.users
+
+
+    };
     try {
-
       const response = await createProject(newProject);
-			const data = response.json();
-			dispatch(addProject(data));
-			if (!response.ok) {
-				throw new Error('Can\'t add project. Server error.');
-		}
+      const data = response.json();
+      dispatch(addProjectReducer(data));
+      if (!response.ok) {
+        throw new Error("Can't add project. Server error.");
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
+export const addUserProject = createAsyncThunk(
+  'projects/addUser',
+  async ({ performer, projectId }, { rejectWithValue }) => {
+    const data = {
+      email: performer.email,
+      projectId: projectId,
+      role: 'user',
+    };
+    try {
+      const response = await addUserInProject(data);
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -42,20 +60,32 @@ const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
     projects: [],
+    listUsersToCreateProject: [],
     status: null,
     error: null,
   },
   reducers: {
-    addProject(state, action) {
-			console.log(state);
-			console.log(action);
+    addProjectReducer(state, action) {
+			const creator = [
+				{user: action.payload.currentUser,
+					role: 'pm'}
+			]
       state.projects.push({
         id: state.projects.length + 1,
-        title: action.payload.title,
-        date_finish: action.payload.date_finish,
-        is_active: false, // не забыть сменить на true
-        date_start: action.payload.date_start,
+        title: action.payload.data.title,
+        date_finish: action.payload.data.date_finish
+          ? action.payload.data.date_finish
+          : null,
+        is_active: true,
+        date_start: action.payload.data.date_start
+          ? action.payload.data.date_start
+          : null,
+				users: creator
       });
+
+    },
+    addUsersToCreateReducer(state, action) {
+			state.listUsersToCreateProject = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -76,5 +106,6 @@ const projectsSlice = createSlice({
   },
 });
 
-export const { addProject } = projectsSlice.actions;
+export const { addProjectReducer, addUsersToCreateReducer } =
+  projectsSlice.actions;
 export default projectsSlice.reducer;

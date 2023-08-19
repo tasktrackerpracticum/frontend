@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Fragment } from 'react';
 
+
 export default function ProjectHeader() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -31,6 +32,7 @@ export default function ProjectHeader() {
             </p>
             <div className='projectHeader__team'>Команда: <TeamProject />
             </div>
+
           </div>
         </div>
         <button className='projectHeader__button' onClick={() => navigate('/')}/>

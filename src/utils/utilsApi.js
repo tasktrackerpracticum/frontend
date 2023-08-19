@@ -8,3 +8,5 @@ function checkResponse(res) {
 const request = (url, options) => fetch(url, options).then(checkResponse);
 
 export default request;
+
+
