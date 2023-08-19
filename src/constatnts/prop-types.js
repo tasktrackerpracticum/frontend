@@ -1,5 +1,4 @@
-
-import { string, bool, object, element, number, array, func } from 'prop-types';
+import { string, bool, object, element, number, func, array } from 'prop-types';
 
 export const taskContainerType = string.isRequired;
 
@@ -12,12 +11,11 @@ export const activeType = func.isRequired;
 
 export const openType = func.isRequired;
 
+export const arrayType = array.isRequired;
+
 export const searchFunctionType = func;
 
 export const objectType = object.isRequired;
-export const arrayType = array.isRequired;
-
-export const arrayType = array.isRequired;
 
 export const functionType = func.isRequired;
 

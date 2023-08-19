@@ -1,4 +1,4 @@
-import { arrayType } from '../../constatnts/prop-types';
+import { objectType } from '../../constatnts/prop-types';
 import avatar from '../../images/user-avatar-profile.png';
 
 function TeamProject({users}) {
@@ -31,5 +31,5 @@ function TeamProject({users}) {
 export default TeamProject;
 
 TeamProject.propTypes = {
- users: arrayType
+ users: objectType
 };

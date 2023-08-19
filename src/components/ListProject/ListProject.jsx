@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
-import { PROJECTS } from '../../constatnts/constants';
+//import { Link } from 'react-router-dom';
+//import { PROJECTS } from '../../constatnts/constants';
 import {
   objectType,
   functionType,
-  arrayType,
 } from '../../constatnts/prop-types';
 import PostProject from '../PostProject/PostProject.jsx';
 
@@ -12,11 +11,12 @@ export default function ListProject({
   projects,
   status,
   error,
+  onClick,
 }) {
-  // const openProject = (evt) => {
-  //   const project = evt;
-  //   onClick(project);
-  // };
+  const openProject = (evt) => {
+    const project = evt;
+    onClick(project);
+  };
   
 
 
@@ -36,9 +36,23 @@ export default function ListProject({
           projects.map((item) => {
             return (
 
-              <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="listProject__container">
-                <PostProject users={item.users.find((item) => item.role == 'pm')} title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
-              </Link>
+              <li
+              key={item.id}
+              className='listProject__container'
+              onClick={() => openProject(item)}
+            >
+              <PostProject
+                users={item.users.find((item) => item.role == 'pm')}
+                title={item.title}
+                is_active={item.is_active}
+                start={item.date_start}
+                finish={item.date_finish}
+              />
+            </li>
+
+              // <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="listProject__container">
+              //   <PostProject users={item.users.find((item) => item.role == 'pm')} title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
+              // </Link>
 
             );
           })}
@@ -49,7 +63,7 @@ export default function ListProject({
 
 ListProject.propTypes = {
   openProjectCreate: functionType,
-  projects: arrayType,
+  projects: objectType,
   onClick: functionType,
   status: objectType,
   error: objectType,

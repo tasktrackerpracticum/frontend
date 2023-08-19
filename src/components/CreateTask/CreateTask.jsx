@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { activeType, functionType } from '../../constatnts/prop-types';
+import { boolType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask, createNewTasks } from '../../services/tasksSlice';
 import { fetchUserMe } from '../../services/userSlice';
@@ -143,6 +143,6 @@ function CreateTask({ active, setActive }) {
 export default CreateTask;
 
 CreateTask.propTypes = {
-  active: activeType,
+  active: boolType,
   setActive: functionType,
 };

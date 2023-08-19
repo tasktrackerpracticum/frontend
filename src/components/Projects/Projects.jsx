@@ -1,25 +1,23 @@
 import { useState } from 'react';
 import { functionType } from '../../constatnts/prop-types';
-import { useDispatch, useSelector }  from "react-redux";
-import { fetchProjects } from '../../services/projectsSlice';
+import { useSelector } from 'react-redux';
 import Project from '../Project/Project';
-import { PROJECTS } from '../../constatnts/constants';
-import { Link } from 'react-router-dom';
+// import { PROJECTS } from '../../constatnts/constants';
+// import { Link } from 'react-router-dom';
 
 export default function Projects({
   openProjectCreate,
-  openTaskCreate,
   onClick,
   selectListProject,
 }) {
   const { status, error, projects } = useSelector((state) => state.projects);
   const [isSortName, setSortName] = useState(false);
 
-  // const handlerProject = (evt) => {
-  //   const project = evt;
-  //   onClick(project);
-  //   selectListProject();
-  // };
+  const handlerProject = (evt) => {
+    const project = evt;
+    onClick(project);
+    selectListProject();
+  };
 
   return (
     <section className='projects'>
@@ -55,15 +53,28 @@ export default function Projects({
             <h2 className='projects__tag-name'>Статус</h2>
           </div>
           <div className='projects__list'>
-
-            {projects.length !== 0 && (projects.map((item) => {
-              return (
-                <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="projects__container">
-                  <Project users={item.users} title={item.title} start={item.date_start} finish={item.date_finish} isActive={item.is_active}/>
-                </Link>
-              )
-            }))}
-
+            {projects.length !== 0 &&
+              projects.map((item) => {
+                return (
+                  <li
+                    key={item.id}
+                    className='projects__container'
+                    onClick={() => handlerProject(item)}
+                  >
+                    <Project
+                      title={item.title}
+                      start={item.date_start}
+                      finish={item.date_finish}
+                      isActive={item.is_active}
+                      users={item.users}
+                    />
+                  </li>
+                  // ------- не переходит по ссылке ------ Link это обертка тега <a>. Он поменял текст на синий цвет ---- исправить ---
+                  // <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="projects__container">
+                  //   <Project users={item.users} title={item.title} start={item.date_start} finish={item.date_finish} isActive={item.is_active}/>
+                  // </Link>
+                );
+              })}
           </div>
         </div>
       </div>
@@ -75,6 +86,5 @@ Projects.propTypes = {
   openTaskCreate: functionType,
   selectListProject: functionType,
   onClick: functionType,
-  openProjectCreate: functionType
-
+  openProjectCreate: functionType,
 };

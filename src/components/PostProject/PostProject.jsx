@@ -1,4 +1,4 @@
-import { stringType, boolType, arrayType } from '../../constatnts/prop-types';
+import { stringType, boolType, objectType } from '../../constatnts/prop-types';
 import Deadline from '../Deadline/Deadline';
 import avatar from '../../images/user-avatar-profile.png';
 
@@ -42,5 +42,5 @@ PostProject.propTypes = {
   finish: stringType,
   title: stringType,
   is_active: boolType,
-  users: arrayType
+  users: objectType
 };

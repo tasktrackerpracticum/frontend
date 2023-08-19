@@ -1,6 +1,6 @@
 import avatar from '../../images/user-avatar-profile.png';
 import {  useSelector } from 'react-redux';
-import { activeType, functionType } from '../../constatnts/prop-types';
+import { boolType } from '../../constatnts/prop-types';
 
 // export default function Select({
 //   setActliveListPerformer,
@@ -9,7 +9,6 @@ import { activeType, functionType } from '../../constatnts/prop-types';
 
 export default function Select({
   isActiveListPerformer,
-  setValue
 }) {
  
   const {  users } = useSelector((state) => state.users);
@@ -31,15 +30,6 @@ export default function Select({
                 />
                 <div
                   className='select__performer'
-                  onClick={() => {
-                    setValue('users', user);
-										// if (!performers.map((item) => item.id).includes(user.id)) {
-
-										// 	dispatch(addUsersToCreateReducer({ user }));
-										// }
-										
-                   
-                  }}
                 >
                   {user.first_name} {user.last_name}
                 </div>
@@ -52,8 +42,7 @@ export default function Select({
 }
 
 Select.propTypes = {
-    isActiveListPerformer: activeType,
-    setValue: functionType
+    isActiveListPerformer: boolType,
 
   };
   

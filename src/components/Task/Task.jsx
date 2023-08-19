@@ -1,4 +1,4 @@
-import { taskContainerType } from "../../constatnts/prop-types";
+import { numberType, taskContainerType } from "../../constatnts/prop-types";
 import { useDrag, useDrop } from 'react-dnd';
 import { useRef } from 'react';
 import { moveTask } from "../../services/tasksSlice";
@@ -86,7 +86,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
 Task.propTypes = {
   title: taskContainerType,
   deadline: taskContainerType,
-  index: taskContainerType,
+  index: numberType,
   taskColumn: taskContainerType,
   id: taskContainerType,
 }
