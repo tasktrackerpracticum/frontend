@@ -11,9 +11,9 @@ import CreateProject from '../CreateProject/CreateProject';
 import CreateTask from '../CreateTask/CreateTask';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from '../../services/profileSlice';
-import { SIGN_IN, SIGN_UP } from '../../constatnts/constants.js';
+import { PROJECTS, SIGN_IN, SIGN_UP } from '../../constatnts/constants.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-//import Projects from '../Projects/Projects';
+import Projects from '../Projects/Projects';
 import ModalEditAvatar from '../ModalEditAvatar/ModalEditAvatar';
 import { fetchUsers } from '../../services/usersSlice';
 import { fetchProjects } from '../../services/projectsSlice';
@@ -71,37 +71,25 @@ function App() {
       {error && <h2>{error}</h2>}
 
         <div className='page__container' onClick={(e) => e.stopPropagation()}>
+          {isLoggedIn && (
+            <>
+              <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
+              <Profile active={profileActive} setActive={setProfileActive}  openModalAvatar={openModalAvatar}/>
+              <ModalEditAvatar activeModal={openModalAvatar} active={activeModalAvatar} />
+              <CreateProject active={isOpenProjectCreate} setActive={setOpenProjectCreate} />
+              <CreateTask active={isOpenTaskCreate} setActive={setOpenTaskCreate} />
+            </>
+          )}
           <Routes>
-            <Route path='input'>
-            </Route>
-            <Route exact path='/' element={
-              <ProtectedRoute isLoggedIn={token ? true : false} components={(
-                <>
-                  <Header active={profileActive} setActive={setProfileActive} onLogout={handleLogout} />
-                  <Profile active={profileActive} setActive={setProfileActive} openModalAvatar={openModalAvatar}/>
-                  <ModalEditAvatar activeModal={openModalAvatar} active={activeModalAvatar}/>
-                  <CreateProject active={isOpenProjectCreate} setActive={setOpenProjectCreate}/>
-                  <CreateTask active={isOpenTaskCreate} setActive={setOpenTaskCreate}/>
-                  <Main openProjectCreate={openProjectCreate} openTaskCreate={openTaskCreate} closeModal={closeModal}/>
-                </>
-              )}
-              />
-            }
-            />
-            <Route path={SIGN_UP} element={
-              !isLoggedIn ?
-                <Register onRegister={handleRegister} />
-              :
-                <Navigate to='/' />
-              }
-            />
-            <Route path={SIGN_IN} element={
-              !isLoggedIn ?
-                <Login onLogin={handleLogin} />
-              :
-                <Navigate to='/' />
-              }
-            />
+            <Route path='input'></Route>
+            <Route exact path='/' element={ <ProtectedRoute isLoggedIn={token ? true : false} components={
+              <Projects openProjectCreate={openProjectCreate} />} />
+            }/>
+            <Route path={`${PROJECTS}/:id`} element={ <ProtectedRoute isLoggedIn={token ? true : false} components={
+              <Main openProjectCreate={openProjectCreate} openTaskCreate={openTaskCreate} />} />
+            }/>
+            <Route path={SIGN_UP} element={ isLoggedIn ? <Navigate to='/' /> : <Register onRegister={handleRegister} />} />
+            <Route path={SIGN_IN} element={ isLoggedIn ? <Navigate to='/' /> : <Login onLogin={handleLogin} />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </div>

@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { boolType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask, createNewTasks } from '../../services/tasksSlice';
-import { fetchUserMe } from '../../services/userSlice';
 import avatar from '../../images/user-avatar-profile.png';
 import Select from '../Select/Select';
 
@@ -26,10 +25,6 @@ function CreateTask({ active, setActive }) {
     dispatch(createNewTasks({ title, deadline }));
     setActive(!active);
   };
-
-  useEffect(() => {
-    dispatch(fetchUserMe());
-  }, [dispatch]);
 
   const handleTitleChange = (event) => {
     event.preventDefault();
