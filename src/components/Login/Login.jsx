@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useValidation from '../../hooks/useValidation';
 import { loginFunctionType } from '../../constatnts/prop-types';
@@ -5,14 +6,23 @@ import Slider from '../Slider/Slider';
 import logo from '../../images/logo.svg';
 
 function Login({ onLogin }) {
-  const { values, handleChange } = useValidation();
-
-  function handleSubmit(evt) {
+  const { values, handleChange, showPassword, handleTogglePassword } = useValidation();
+  const [isFocused, setIsFocused] = useState(false);
+ 
+  const handleSubmit = (evt) => {
     evt.preventDefault();
     onLogin(values.email, values.password);
   };
 
   const isDisabled = !(values.email && values.password);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
 
   return (
     <section className='auth'>
@@ -34,16 +44,21 @@ function Login({ onLogin }) {
               <span className='auth__error' id='email-error'>
                 Ошибка
               </span>
-              <input
-                className='auth__input auth__input_type_password'
-                id='password'
-                name='password'
-                type='password'
-                value={values.password || ''}
-                placeholder={'Пароль'}
-                required
-                onChange={handleChange}
-              />
+              <div className={`auth__input-wrap ${isFocused ? 'focused' : ''}`}>
+                <input
+                  className='auth__input auth__input_type_password'
+                  id='password'
+                  name='password'
+                  type={showPassword ? 'text' : 'password'}
+                  value={values.password || ''}
+                  placeholder={'Пароль'}
+                  required
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                />
+                <button className='auth__visibility-button' onClick={handleTogglePassword}></button>
+              </div>
               <span className='auth__error' id='password-error'>
                 Ошибка
               </span>
@@ -57,9 +72,9 @@ function Login({ onLogin }) {
             <span className='auth__agree'>
             Нажимая «Войти», вы соглашаетесь с {' '}
             <NavLink className='auth__agree-link' to='/'>
-              Условиями<br /> использования 
+              Условиями<br /> использования
             </NavLink>
-            и {' '}
+            &thinsp;и{' '}
             <NavLink className='auth__agree-link' to='/'>
               Политикой конфиденциальности
             </NavLink>{' '}
