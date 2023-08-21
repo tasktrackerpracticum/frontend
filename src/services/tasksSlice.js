@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getTasks, createTask } from '../utils/tasksApi';
-import { MockTasks } from '../constatnts/constants';
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
@@ -28,12 +27,7 @@ export const createNewTask = createAsyncThunk(
     };
     try {
       const response = await createTask(newTask);
-      const data = response.json();
-      console.log('redux', data);
-
-      if (!response.ok) {
-        throw new Error("Can't add task. Server error.");
-      }
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -43,22 +37,11 @@ export const createNewTask = createAsyncThunk(
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {
-    tasks: MockTasks,
+    tasks: [],
     status: null,
     error: null,
   },
   reducers: {
-    addTask(state, action) {
-      console.log(state);
-      console.log(action);
-      state.tasks.push({
-        id: state.tasks.length + 1,
-        title: action.payload.title,
-        column: 'backlog',
-        status: 'nonurgent',
-        deadline: action.payload.deadline,
-      });
-    },
     updateColumn(state, action) {
       state.tasks.map((task) => {
         task.id === action.payload.id
@@ -93,9 +76,22 @@ const tasksSlice = createSlice({
       .addCase(fetchTasks.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.payload;
+      })
+      .addCase(createNewTask.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(createNewTask.fulfilled, (state, action) => {
+        state.tasks = [...state.tasks, action.payload];
+        state.status = 'resolved';
+        state.error = null;
+      })
+      .addCase(createNewTask.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
       });
   },
 });
 
-export const { addTask, updateColumn, moveTask } = tasksSlice.actions;
+export const { updateColumn, moveTask } = tasksSlice.actions;
 export default tasksSlice.reducer;

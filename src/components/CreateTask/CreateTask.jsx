@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { boolType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTask, createNewTask } from '../../services/tasksSlice';
+import { createNewTask } from '../../services/tasksSlice';
 import avatar from '../../images/user-avatar-profile.png';
 import Select from '../Select/Select';
 import { useLocation } from 'react-router-dom';
@@ -26,7 +26,6 @@ function CreateTask({ active, setActive }) {
 
   const handleAction = (e) => {
     e.preventDefault();
-    dispatch(addTask({ title, deadline }));
     dispatch(createNewTask({ title, deadline, projectId }));
     setActive(!active);
   };
