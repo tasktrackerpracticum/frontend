@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { functionType } from '../../constatnts/prop-types';
 import {  useSelector }  from "react-redux";
-// import { fetchProjects } from '../../services/projectsSlice';
 import Project from '../Project/Project';
 import { PROJECTS } from '../../constatnts/constants';
 import { Link } from 'react-router-dom';
@@ -9,8 +8,6 @@ import { Link } from 'react-router-dom';
 export default function Projects({ openProjectCreate }) {
   const { status, error, projects } = useSelector((state) => state.projects);
   const [isSortName, setSortName] = useState(false);
-
-
 
   return (
     <section className='projects'>

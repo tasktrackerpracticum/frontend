@@ -4,18 +4,10 @@ import ListProject from '../ListProject/ListProject';
 import { DndProvider } from 'react-dnd/dist/core';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { functionType } from '../../constatnts/prop-types';
-import { useDispatch } from 'react-redux';
-import { useEffect, useRef } from 'react';
-import { fetchProjects } from '../../services/projectsSlice';
+import {  useRef } from 'react';
 import Scroll from '../Scroll/Scroll';
 
 export default function Main({ openProjectCreate, openTaskCreate }) {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
-
   const cardsRef = useRef(null);
 
   return (

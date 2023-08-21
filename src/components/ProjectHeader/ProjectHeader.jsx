@@ -11,7 +11,7 @@ export default function ProjectHeader() {
   const project = projects.find((item) => item.id === Number(id));
 
   return (
-<Fragment>
+    <Fragment>
       {project && (
         <div className='projectHeader'>
         <div className='projectHeader__content'>

@@ -5,7 +5,6 @@ import { useDrop } from "react-dnd";
 import { updateColumn } from "../../services/tasksSlice";
 
 export default function TaskContainer({ boradHeader, column, openTaskCreate }) {
-
   const dispatch = useDispatch();
   const tasks = useSelector(state => state.tasks.tasks);
 
