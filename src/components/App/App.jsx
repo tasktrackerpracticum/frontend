@@ -7,14 +7,15 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Main from '../Main/Main.jsx';
 import Profile from '../Profile/Profile.jsx';
 import CreateProject from '../CreateProject/CreateProject';
+import ForgetPassword from '../ForgetPassword/ForgetPassword';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from '../../services/profileSlice';
-import { SIGN_IN } from '../../constatnts/constants.js';
+import { SIGN_IN, FORGOT_PASSWORD } from '../../constatnts/constants.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const token = localStorage.getItem('accessToken');
-  const { handleLogin, handleLogout, isLoggedIn } = useAuth();
+  const { handleLogin, handleLogout, isLoggedIn, resStatus, handleResStatus } = useAuth();
   const [profileActive, setProfileActive] = useState(false);
   const [isOpenTaskCreate, setOpenTaskCreate] = useState(false);
 
@@ -56,11 +57,12 @@ function App() {
             />
             <Route path={SIGN_IN} element={
               !isLoggedIn ?
-                <Login onLogin={handleLogin} />
+                <Login onLogin={handleLogin} resStatus={resStatus} setResStatus={handleResStatus} />
               :
                 <Navigate to='/' />
               }
             />
+            <Route path={FORGOT_PASSWORD} element={<ForgetPassword />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </div>

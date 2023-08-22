@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useValidation from '../../hooks/useValidation';
-import { loginFunctionType } from '../../constatnts/prop-types';
+import { loginFunctionType, stringType } from '../../constatnts/prop-types';
 import Slider from '../Slider/Slider';
 import logo from '../../images/logo.svg';
+import { FORGOT_PASSWORD, UNAUTHORIZED } from '../../constatnts/constants.js';
 
-function Login({ onLogin }) {
+function Login({ onLogin, resStatus }) {
   const { values, handleChange, showPassword, handleTogglePassword } = useValidation();
   const [isFocused, setIsFocused] = useState(false);
  
@@ -24,6 +25,8 @@ function Login({ onLogin }) {
     setIsFocused(false);
   };
 
+  const authText = (resStatus === 401 ? UNAUTHORIZED : false);
+
   return (
     <section className='auth'>
       <div className='auth__block auth__block_left'>
@@ -41,9 +44,6 @@ function Login({ onLogin }) {
                 required
                 onChange={handleChange}
               />
-              <span className='auth__error' id='email-error'>
-                Ошибка
-              </span>
               <div className={`auth__input-wrap ${isFocused ? 'focused' : ''}`}>
                 <input
                   className='auth__input auth__input_type_password'
@@ -59,15 +59,12 @@ function Login({ onLogin }) {
                 />
                 <button className='auth__visibility-button' onClick={handleTogglePassword}></button>
               </div>
-              <span className='auth__error' id='password-error'>
-                Ошибка
+              <span className='auth__error' id='error'>
+                {authText}
               </span>
               <button className='auth__submit-button' type='submit' disabled={isDisabled}>
                 Войти
               </button>
-              <span className='auth__error' id='res-error'>
-                Ошибка
-              </span>
             </form>
             <span className='auth__agree'>
             Нажимая «Войти», вы соглашаетесь с {' '}
@@ -80,7 +77,7 @@ function Login({ onLogin }) {
             </NavLink>{' '}
           </span>
           </div>
-          <NavLink className='auth__bottom' to='/'>
+          <NavLink className='auth__bottom' to={FORGOT_PASSWORD}>
               Восстановить пароль
             </NavLink>
         </div>
@@ -95,5 +92,7 @@ function Login({ onLogin }) {
 export default Login;
 
 Login.propTypes = {
-  onLogin: loginFunctionType
+  onLogin: loginFunctionType,
+  resStatus: stringType,
+  setResStatus: stringType,
 }

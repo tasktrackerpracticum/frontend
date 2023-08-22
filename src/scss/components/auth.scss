@@ -179,9 +179,8 @@
   &__error {
     font-size: 14px;
     font-weight: 400;
-    line-height: 16px;
-    color: #FF4062;
-    display: none;
+    line-height: 17px;
+    color: #A70000;
   }
 
   &__agree {
@@ -197,6 +196,10 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
-    color: #2F261B;    
+    color: #2F261B;
+    
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
