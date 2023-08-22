@@ -5,11 +5,8 @@ import { useDrop } from "react-dnd";
 import { updateColumn } from "../../services/tasksSlice";
 
 export default function TaskContainer({ boradHeader, column, openTaskCreate }) {
-  
-
   const dispatch = useDispatch();
   const tasks = useSelector(state => state.tasks.tasks);
-  // console.log(tasks);
 
   const [{ isHover }, drop] = useDrop({
     accept: "sort_task",
@@ -33,7 +30,6 @@ export default function TaskContainer({ boradHeader, column, openTaskCreate }) {
           return (
           <li key={item.id} className="taskContainer__task">
             <Task
-              
               title={item.title}
               deadline={item.deadline}
               id={item.id}

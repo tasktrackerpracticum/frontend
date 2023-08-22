@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { boolType, functionType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTask, createNewTasks } from '../../services/tasksSlice';
-import { fetchUserMe } from '../../services/userSlice';
+import { createNewTask } from '../../services/tasksSlice';
 import avatar from '../../images/user-avatar-profile.png';
 import Select from '../Select/Select';
+import { useLocation } from 'react-router-dom';
 
 function CreateTask({ active, setActive }) {
   const [isActiveListPerformer, setActliveListPerformer] = useState(false);
@@ -21,15 +21,14 @@ function CreateTask({ active, setActive }) {
   const currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
-  const handleAction = () => {
-    dispatch(addTask({ title, deadline }));
-    dispatch(createNewTasks({ title, deadline }));
+  const location = useLocation();
+  const projectId = parseInt(location.pathname.match(/\d+/));
+
+  const handleAction = (e) => {
+    e.preventDefault();
+    dispatch(createNewTask({ title, deadline, projectId }));
     setActive(!active);
   };
-
-  useEffect(() => {
-    dispatch(fetchUserMe());
-  }, [dispatch]);
 
   const handleTitleChange = (event) => {
     event.preventDefault();
@@ -53,7 +52,7 @@ function CreateTask({ active, setActive }) {
 
   const toggleListPerformer = () => {
     setActliveListPerformer(!isActiveListPerformer);
-  }
+  };
 
   return (
     <section className={active ? 'createTask__active' : 'createTask'}>
@@ -72,8 +71,8 @@ function CreateTask({ active, setActive }) {
         </div>
         <button
           className='createTask__cancel-btn'
-          onClick={() => setActive(!active)}
-        ></button>
+          onClick={() => setActive(!active)}>
+        </button>
       </div>
 
       <div className='createTask__content'>

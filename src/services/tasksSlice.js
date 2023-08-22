@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getTasks, createTask } from '../utils/tasksApi';
-import { MockTasks } from '../constatnts/constants';
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
-  async ({ project_id }, { rejectWithValue }) => {
+  async (project_id, { rejectWithValue }) => {
     try {
       const response = await getTasks(project_id);
       return response;
@@ -14,25 +13,21 @@ export const fetchTasks = createAsyncThunk(
   },
 );
 
-export const createNewTasks = createAsyncThunk(
-  'tasks/createTasks',
-  async ({ title, deadline}, { rejectWithValue, dispatch }) => {
-		const newTask = {
-			title: title,
-			column: 'backlog',
-			status: 'nonurgent',
-			deadline: deadline,
-		}
-		console.log(newTask);
+export const createNewTask = createAsyncThunk(
+  'tasks/createTask',
+  async ({ title, deadline, projectId }, { rejectWithValue }) => {
+    const newTask = {
+      data: {
+        title: title,
+        column: 'backlog',
+        status: 'nonurgent',
+        deadline: deadline,
+      },
+      project_id: projectId,
+    };
     try {
-
       const response = await createTask(newTask);
-			const data = response.json();
-			dispatch(addTask(data));
-			if (!response.ok) {
-				throw new Error('Can\'t add task. Server error.');
-		}
-
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -40,24 +35,13 @@ export const createNewTasks = createAsyncThunk(
 );
 
 const tasksSlice = createSlice({
-  name: [],
+  name: 'tasks',
   initialState: {
-    tasks: MockTasks,
+    tasks: [],
     status: null,
     error: null,
   },
   reducers: {
-		addTask(state, action) {
-			console.log(state);
-			console.log(action);
-      state.tasks.push({
-        id: state.tasks.length + 1,
-        title: action.payload.title,
-				column: 'backlog',
-				status: 'nonurgent',
-        deadline: action.payload.deadline,
-      });
-    },
     updateColumn(state, action) {
       state.tasks.map((task) => {
         task.id === action.payload.id
@@ -92,9 +76,22 @@ const tasksSlice = createSlice({
       .addCase(fetchTasks.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.payload;
+      })
+      .addCase(createNewTask.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(createNewTask.fulfilled, (state, action) => {
+        state.tasks = [...state.tasks, action.payload];
+        state.status = 'resolved';
+        state.error = null;
+      })
+      .addCase(createNewTask.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
       });
   },
 });
 
-export const { addTask, updateColumn, moveTask } = tasksSlice.actions;
+export const { updateColumn, moveTask } = tasksSlice.actions;
 export default tasksSlice.reducer;
