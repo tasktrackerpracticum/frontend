@@ -1,8 +1,12 @@
-import { stringType, boolType } from '../../constatnts/prop-types';
-import TeamProject from '../TeamProject/TeamProject';
+import { stringType, boolType, objectType } from '../../constatnts/prop-types';
 import Deadline from '../Deadline/Deadline';
+import avatar from '../../images/user-avatar-profile.png';
 
-export default function PostProject({ title, is_active, start, finish }) {
+export default function PostProject({ title, is_active, start, finish, users }) {
+  const usersProject = structuredClone(users);
+  const creator = usersProject?.user;
+  const photo = creator?.photo;
+
   return (
     <form className='postProject'>
       <div className='postProject__project-title'>{title}</div>
@@ -12,7 +16,11 @@ export default function PostProject({ title, is_active, start, finish }) {
         </div>
         <div className='postProject__wrap'>
           <div className='postProject__project-member'>
-            <TeamProject />
+          <img src={photo !== null ? photo : avatar} className='postProject__creator-photo' />
+          <div className='postProject__creator'>
+          
+            {creator?.last_name} {creator?.last_name}
+          </div>
           </div>
           <div
             className={
@@ -34,4 +42,5 @@ PostProject.propTypes = {
   finish: stringType,
   title: stringType,
   is_active: boolType,
+  users: objectType
 };

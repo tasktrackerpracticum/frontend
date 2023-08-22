@@ -5,7 +5,7 @@ import { forgotPassword } from '../utils/MainApi';
 import { SIGN_IN } from '../constatnts/constants.js';
 
 function useAuth() {
-	const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('accessToken');
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [resStatus, setResStatus] = React.useState('');
   const [error, setError] = React.useState(null);
@@ -17,6 +17,8 @@ function useAuth() {
       .then((res) => {
         setIsLoggedIn(true);
         setResStatus('');
+        localStorage.setItem('refreshToken', res.refresh);
+        localStorage.setItem('accessToken', res.access);
         localStorage.setItem('refreshToken', res.refresh);
         localStorage.setItem('accessToken', res.access);
         navigate.push('/');
@@ -48,11 +50,11 @@ function useAuth() {
     setResStatus('');
   };
 
-	React.useEffect(() => {
-		if (token) {
-			setIsLoggedIn(true)
-		}
-  }, []);
+  React.useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, [token]);
 
   return {
     resStatus,

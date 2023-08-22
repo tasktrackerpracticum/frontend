@@ -13,12 +13,13 @@ export const ORGANIZATIONS_API = `${baseUrl}/organizations/`;
 // ------/projects
 export const PROJECTS_API = `${baseUrl}/api/v1/projects/`;
 // ------/tasks
-export const TASKS_API = `${baseUrl}/tasks/`;
+//export const TASKS_API = `${baseUrl}/tasks/`;
 
 // ------/роуты
 export const SIGN_IN = '/sign-in';
 export const SIGN_UP = '/sign-up';
 export const FORGOT_PASSWORD = '/forgot-password';
+export const PROJECTS = '/projects';
 // ------/текст
 export const USER_IS_NOT_EXIST =
   'Извините, но такого пользователя нет в нашей базе. Попробуйте ввести свой email ещё раз';
@@ -454,3 +455,9 @@ export const MockTasks = [
     comments: [],
   },
 ];
+
+
+ export const patternsSchema = {
+	patternEmail: "'/^((([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}.){1,2}[-A-Za-z]{2,})$/u'",
+	patternTelegram: "/^@[a-z0-9_-%]{5,32}$/g"
+}

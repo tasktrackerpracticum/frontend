@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUserMe, setUser } from '../utils/UserApi';
+import { getUserMe, setUser, updateAvatar } from '../utils/UserApi';
 
 
 export const fetchUserMe = createAsyncThunk(
@@ -16,17 +16,47 @@ export const fetchUserMe = createAsyncThunk(
 
 export const updateUserMe = createAsyncThunk(
   'user/updateUserMe',
-  async (_, { rejectWithValue, getState }) => {
-		const user = getState().user.user; // текущий стэйт
-		console.log(user);
+  async ({data}, { rejectWithValue, getState, dispatch}) => {
+ const updateData = {
+	position: !data.position ? getState().user.user.position : data.position,
+	phone: !data.phone? getState().user.user.phone : data.phone,
+	timezone: !data.timezone ? getState().user.user.timezone : data.timezone,
+	email: !data.email ? getState().user.user.email : data.email,
+	telegram: !data.telegram ? getState().user.user.telegram : data.telegram,
+ };
+
     try {
-      const response = await setUser (user);
-			console.log(response);
+      const response = await setUser (updateData);
+			if (!response.ok) {
+				throw new Error('Can\'t update user. Server error.');
+		} else {
+			dispatch(reducerUpdateUser(updateData))
+		}
     } catch (error) {
       return rejectWithValue(error.message);
     }
   },
 );
+
+
+export const updatePhoto = createAsyncThunk(
+  'user/updatePhoto',
+  async (_, { rejectWithValue, getState }) => {
+		const data = {
+			email: getState().user.user.email,
+			photo: getState().user.user.photo,
+		}
+    try {
+      const response = await updateAvatar (data);
+			if (!response.ok) {
+				throw new Error('Can\'t update user. Server error.');
+		}
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 
 const userSlice = createSlice({
   name: 'user',
@@ -44,23 +74,28 @@ const userSlice = createSlice({
       position: null,
       timezone: null,
       username: null,
+			telegram: null,
     },
     status: null,
     error: null,
   },
   reducers: {
     reducerUpdateUser(state, action) {
-
+			console.log(action.payload)
       state.user.position = action.payload.position;
-      state.user.email = action.payload.email;
-      state.user.phone = action.payload.phone;
+      state.user.email =  action.payload.email;
+      state.user.phone =  action.payload.phone;
       state.user.timezone = action.payload.timezone;
+			state.user.telegram = action.payload.telegram;
 
     },
-    reducerupdatePhoto(state, action) {
-      console.log(action);
-      state.users.photo = action.payload.photo;
+    reducerUpdatePhoto(state, action) {
+			state.user.photo  = action.payload.photoConvertBase64
+
     },
+		reducerDeletePhoto(state) {
+			state.user.photo = ""
+		}
   },
   extraReducers: (builder) => {
     builder
@@ -80,5 +115,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { reducerUpdateUser, reducerupdatePhoto } = userSlice.actions;
+export const { reducerUpdateUser, reducerUpdatePhoto, reducerDeletePhoto } = userSlice.actions;
 export default userSlice.reducer;

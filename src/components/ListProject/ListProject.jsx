@@ -1,29 +1,18 @@
-import {
-  openType,
-  objectType,
-  functionType,
-} from '../../constatnts/prop-types';
-import PostProject from "../PostProject/PostProject.jsx";
+import { Link } from 'react-router-dom';
+import { PROJECTS } from '../../constatnts/constants';
+import { functionType } from '../../constatnts/prop-types';
+import PostProject from '../PostProject/PostProject.jsx';
+import { useSelector } from 'react-redux';
 
-export default function ListProject({
-  openTaskCreate,
-  projects,
-  status,
-  error,
-  onClick,
-}) {
-  const openProject = (evt) => {
-    const project = evt;
-    onClick(project);
-  };
-  
+export default function ListProject({ openProjectCreate }) {
+  const { status, error, projects } = useSelector((state) => state.projects);
 
   return (
-    <section className='listProject'>
+    <section className='listProject' onClick={(e) => e.stopPropagation()}>
       <div className='listProject__create'>
         <button
           className='listProject__create-btn'
-          onClick={openTaskCreate}
+          onClick={openProjectCreate}
         ></button>
       </div>
       {status === 'loading' && <h2>loading...</h2>}{' '}
@@ -32,11 +21,10 @@ export default function ListProject({
       <div className='listProject__content'>
         {projects.length !== 0 &&
           projects.map((item) => {
-            return ( 
-            <li key={item.id} className="listProject__container"  onClick={() => openProject(item)}>
-              <PostProject title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
-
-            </li>
+            return (
+              <Link to={`${PROJECTS}/${item.id}`} key={item.id} className="listProject__container">
+                <PostProject users={item.users.find((item) => item.role == 'pm')} title={item.title} is_active={item.is_active} start={item.date_start} finish={item.date_finish}/>
+              </Link>
             );
           })}
       </div>
@@ -45,9 +33,5 @@ export default function ListProject({
 }
 
 ListProject.propTypes = {
-  openTaskCreate: openType,
-  projects: objectType,
-  onClick: functionType,
-  status: objectType,
-  error: objectType,
+  openProjectCreate: functionType,
 };

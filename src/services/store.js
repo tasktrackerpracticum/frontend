@@ -4,6 +4,7 @@ import profileSlice from './profileSlice';
 import tasksSlice from './tasksSlice';
 import usersSlice from './usersSlice';
 import userSlice from './userSlice';
+import projectSlice from './projectSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     tasks: tasksSlice,
 		users: usersSlice,
 		user: userSlice,
+		project: projectSlice
   },
 });

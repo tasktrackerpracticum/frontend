@@ -1,12 +1,32 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getTasks } from '../utils/tasksApi';
-import { MockTasks } from '../constatnts/constants';
+import { getTasks, createTask } from '../utils/tasksApi';
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
-  async ({ project_id }, { rejectWithValue }) => {
+  async (project_id, { rejectWithValue }) => {
     try {
       const response = await getTasks(project_id);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const createNewTask = createAsyncThunk(
+  'tasks/createTask',
+  async ({ title, deadline, projectId }, { rejectWithValue }) => {
+    const newTask = {
+      data: {
+        title: title,
+        column: 'backlog',
+        status: 'nonurgent',
+        deadline: deadline,
+      },
+      project_id: projectId,
+    };
+    try {
+      const response = await createTask(newTask);
       return response;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -17,7 +37,7 @@ export const fetchTasks = createAsyncThunk(
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {
-    tasks: MockTasks,
+    tasks: [],
     status: null,
     error: null,
   },
@@ -54,6 +74,19 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchTasks.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
+      })
+      .addCase(createNewTask.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(createNewTask.fulfilled, (state, action) => {
+        state.tasks = [...state.tasks, action.payload];
+        state.status = 'resolved';
+        state.error = null;
+      })
+      .addCase(createNewTask.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.payload;
       });

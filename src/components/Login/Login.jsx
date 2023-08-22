@@ -94,5 +94,4 @@ export default Login;
 Login.propTypes = {
   onLogin: loginFunctionType,
   resStatus: stringType,
-  setResStatus: stringType,
 }

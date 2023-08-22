@@ -4,5 +4,4 @@ COPY package*.json ./
 RUN npm install
 COPY . ./
 RUN npm run build
-EXPOSE 3000
-ENTRYPOINT [ "npm", "run", "start" ]
+CMD cp -r build result_build

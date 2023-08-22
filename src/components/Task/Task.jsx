@@ -1,4 +1,4 @@
-import { taskContainerType } from "../../constatnts/prop-types";
+import { numberType, taskContainerType } from "../../constatnts/prop-types";
 import { useDrag, useDrop } from 'react-dnd';
 import { useRef } from 'react';
 import { moveTask } from "../../services/tasksSlice";
@@ -8,7 +8,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
   const dispatch = useDispatch();
   const ref = useRef(null);
 
-  console.log('index', index)
+  // console.log('index', index)
 
   const [{isDrag}, drag] = useDrag({
     type: "sort_task",
@@ -65,7 +65,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
     },
   });
 
-  const opacity = isDrag ? 0.5 : 1;
+  const opacity = isDrag ? 0 : 1;
   const transition = isDrag ? '0.5s ease-in-out' : '0.5s ease-in-out';
   drag(drop(ref));
 
@@ -86,7 +86,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
 Task.propTypes = {
   title: taskContainerType,
   deadline: taskContainerType,
-  index: taskContainerType,
+  index: numberType,
   taskColumn: taskContainerType,
   id: taskContainerType,
 }

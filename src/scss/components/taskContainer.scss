@@ -32,6 +32,10 @@
     border-radius: 16px;
     background: transparent;
     margin-bottom: 15px;
+
+      &:hover {
+        background: #93939366;
+      }
   }
 
   &__tasks {
