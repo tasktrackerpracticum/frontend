@@ -24,13 +24,6 @@ export const PROJECTS = '/projects';
 export const USER_IS_NOT_EXIST =
   'Извините, но такого пользователя нет в нашей базе. Попробуйте ввести свой email ещё раз';
 export const UNAUTHORIZED = 'Неверный email или пароль';
-export const validNameText = 'Некорректный формат имени';
-export const validEmailText = 'Некорректный формат Email';
-export const validPasswordText = 'Пароль содержит менее 8 знаков';
-export const okUpdateText = 'Данные пользователя успешно обновлены';
-export const unauthorizedText = 'Введён неверный email пользователя или пароль';
-export const сonflictText =  'Пользователь с таким email уже существует';
-export const internalServerErrorText = 'На сервере произошла ошибка';
 // ------/ссылки для бокового меню
 export const items = [
   { value: 'Создать проект', href: '/' },
