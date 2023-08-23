@@ -88,5 +88,5 @@ Task.propTypes = {
   deadline: taskContainerType,
   index: numberType,
   taskColumn: taskContainerType,
-  id: taskContainerType,
+  id: numberType,
 }

@@ -2,10 +2,8 @@
 
 .projectHeader {
   @include reset;
-  margin: 50px 20px;
-  height: 56px;
+  margin: 40px 40px 0 40px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
   gap: 56px;
 
@@ -25,11 +23,26 @@
     }
   }
 
+  &__button-description {
+    @include reset;
+    @include text-format(400, 16px, 20.8px);
+    height: 48px;
+    border: none;
+    background: transparent;
+    color: $thirdTextColor;
+    transition: $hoverTransition;
+
+      &:hover {
+        color: $mainTextColor;
+      }
+  }
+
   &__header {
     @include reset;
     @include text-format(500, 35px, 24px);
     display: flex;
     gap: 8px;
+    padding-bottom: 16px;
   }
 
   &__status-actived {
@@ -61,17 +74,31 @@
     display: flex;
     justify-content: flex-start;
     gap: 24px;
+    padding-top: 16px;
   }
 
   &__projectTimeline {
     display: flex;
-    gap: 5px;
+    gap: 8px;
+    @include reset;
+    @include text-format(500, 14px, 20.8px);
+    white-space: nowrap;
+    color: $thirdTextColor;
+  }
+
+  &__projectDate {
+    @include reset;
+    @include text-format(400, 16px, 20.8px);
+    white-space: nowrap;
+    color: $thirdTextColor;
   }
 
   &__team {
+    @include reset;
+    @include text-format(400, 16px, 20.8px);
+    white-space: nowrap;
+    color: $thirdTextColor;
     width: 90px;
     gap: 15px;
-    display: flex;
-    align-items: center;
   }
 }

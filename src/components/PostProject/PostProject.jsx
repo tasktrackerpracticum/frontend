@@ -16,19 +16,10 @@ export default function PostProject({ title, is_active, start, finish, users }) 
         </div>
         <div className='postProject__wrap'>
           <div className='postProject__project-member'>
-          <img src={photo !== null ? photo : avatar} className='postProject__creator-photo' />
-          <div className='postProject__creator'>
-          
-            {creator?.last_name} {creator?.last_name}
+            <img src={photo !== null ? photo : avatar} className='postProject__creator-photo' />
+            <p className='postProject__creator'>{creator?.last_name} {creator?.last_name}</p>
           </div>
-          </div>
-          <div
-            className={
-              is_active
-                ? 'postProject__project-status-actived'
-                : 'postProject__project-status-closed'
-            }
-          >
+          <div className={is_active ? 'postProject__project-status-actived' : 'postProject__project-status-closed'}>
             {is_active ? 'Активен' : 'Завершен'}
           </div>
         </div>
