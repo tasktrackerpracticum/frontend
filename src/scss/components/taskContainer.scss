@@ -21,20 +21,23 @@
 
   &__header {
     @include text-format(500, 24px, 24px);
-    color: #9D8E80;
+    color: $thirdTextColor;
   }
 
   &__button {
     @include reset;
+    @include text-format(300, 20px, 20px);
     height: 96px;
-    width: 277px;
-    border: 2px dashed #9D8E80;
+    width: inherit;
+    border: 2px dashed $thirdTextColor;
     border-radius: 16px;
     background: transparent;
     margin-bottom: 15px;
+    color: $thirdTextColor;
+    transition: $hoverTransition;
 
       &:hover {
-        background: #93939366;
+        background: $hoverTask;
       }
   }
 
@@ -45,18 +48,12 @@
     flex-direction: column;
     align-items: center;
     row-gap: 16px;
-    transition: 0.2;
   }
   
   &__task {
     @include reset;
+    width: 100%;
     list-style: none;
     cursor: pointer;
-
-    // &:hover {
-    //   background: #93939366;
-    // }
   }
-
-
 }
