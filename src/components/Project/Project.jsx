@@ -10,9 +10,9 @@ export default function Project({ title, start, finish, isActive, users, }) {
 
   return (
     <form className='project'>
-      <div className='project__list-name'>{title}</div>
-      <div className='project__list-name'>{start}</div>
-      <div className='project__list-name'>{finish}</div>
+      <h2 className='project__list-name'>{title}</h2>
+      <p className='project__list-name'>{start}</p>
+      <p className='project__list-name'>{finish}</p>
       <div className='project__list-name'>
         <div className='project__list-member'>
           <img src={photo !== null ? photo : avatar} className='project__creator-photo' />

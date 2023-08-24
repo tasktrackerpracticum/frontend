@@ -95,7 +95,7 @@
 
   &__team {
     @include reset;
-    @include text-format(400, 16px, 20.8px);
+    @include text-format(500, 14px, 20.8px);
     white-space: nowrap;
     color: $thirdTextColor;
     width: 90px;
