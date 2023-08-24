@@ -8,6 +8,10 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
   const dispatch = useDispatch();
   const ref = useRef(null);
 
+  const deadlineDate = new Date(deadline);
+  const todayDate = new Date();
+  const targetDate = (deadlineDate - todayDate)/ (1000 * 60 * 60) //разница в часах
+
   // console.log('index', index)
 
   const [{isDrag}, drag] = useDrag({
@@ -76,7 +80,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
         <div className='task__timeContainer'>
           <div className='task__time-status' />{' '}
           {/* создать компонент СтатусаЗадачи, состоящий из несколько иконок и меняющих цвет фона  */}
-        {deadline}
+        {targetDate}
         </div>
         <div className='task__team'>...</div> {/* компонент с отрисовкой Аватарок команды */}
       </div>

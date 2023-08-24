@@ -27,10 +27,10 @@ export default function ProjectHeader() {
             <button className='projectHeader__button-description'>+ Добавить описание</button>
             <div className='projectHeader__container'>
               <p className='projectHeader__projectTimeline'>
-                Начало: <span className='projectHeader__projectDate'>{project.date_start}</span>
+                Начало: <span className='projectHeader__projectDate'>{project.date_start ? project.date_start.split("-").reverse().join("-").replaceAll("-", ".") : '---'}</span>
               </p>
               <p className='projectHeader__projectTimeline'>
-                Дедлайн: <span className='projectHeader__projectDate'>{project.date_finish}</span>
+                Дедлайн: <span className='projectHeader__projectDate'>{project.date_finish ? project.date_finish.split("-").reverse().join("-").replaceAll("-", ".") : '---'}</span>
               </p>
               <div className='projectHeader__team'>Команда: <TeamProject /></div>
             </div>

@@ -11,8 +11,8 @@ export default function Project({ title, start, finish, isActive, users, }) {
   return (
     <form className='project'>
       <h2 className='project__list-name'>{title}</h2>
-      <p className='project__list-name'>{start}</p>
-      <p className='project__list-name'>{finish}</p>
+      <p className='project__list-name'>{start ? start.split("-").reverse().join("-").replaceAll("-", ".") : '---'}</p>
+      <p className='project__list-name'>{finish ? finish.split("-").reverse().join("-").replaceAll("-", ".") : '---'}</p>
       <div className='project__list-name'>
         <div className='project__list-member'>
           <img src={photo !== null ? photo : avatar} className='project__creator-photo' />
