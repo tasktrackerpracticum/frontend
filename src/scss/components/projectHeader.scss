@@ -3,7 +3,6 @@
 .projectHeader {
   @include reset;
   margin: 50px 20px;
-  height: 56px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -30,6 +29,7 @@
     @include text-format(500, 35px, 24px);
     display: flex;
     gap: 8px;
+    cursor: pointer;
   }
 
   &__status-actived {
@@ -61,6 +61,42 @@
     display: flex;
     justify-content: flex-start;
     gap: 24px;
+    font-size: 20px;
+    color: #9D8E80;
+  }
+  &__container-creator {
+    width: 280px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__description {
+    color: #9D8E80;
+    font-weight: 400;
+    font-size: 16px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+    
+  }
+
+  &__creator {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+ 
   }
 
   &__projectTimeline {
@@ -73,5 +109,9 @@
     gap: 15px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }

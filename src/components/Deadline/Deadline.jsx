@@ -3,7 +3,7 @@ import { stringType } from '../../constatnts/prop-types';
 export default function Deadline({ start, finish }) {
   return (
     <section className='deadline'>
-      {start} - {finish}
+      Начало:  {start}  Дедлайн: {finish}
     </section>
   );
 }
