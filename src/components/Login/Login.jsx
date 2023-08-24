@@ -1,22 +1,38 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useValidation from '../../hooks/useValidation';
-import { functionType } from '../../constatnts/prop-types';
+import { loginFunctionType, stringType } from '../../constatnts/prop-types';
 import Slider from '../Slider/Slider';
-import { SIGN_UP } from '../../constatnts/constants.js';
+import logo from '../../images/logo.svg';
+import { FORGOT_PASSWORD, UNAUTHORIZED } from '../../constatnts/constants.js';
 
-function Login({ onLogin }) {
-  const { values, handleChange } = useValidation();
-  function handleSubmit(evt) {
+function Login({ onLogin, resStatus }) {
+  const { values, handleChange, showPassword, handleTogglePassword } = useValidation();
+  const [isFocused, setIsFocused] = useState(false);
+ 
+  const handleSubmit = (evt) => {
     evt.preventDefault();
     onLogin(values.email, values.password);
   };
-  
+
+  const isDisabled = !(values.email && values.password);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
+  const authText = (resStatus === 401 ? UNAUTHORIZED : false);
+
   return (
     <section className='auth'>
       <div className='auth__block auth__block_left'>
         <div className='auth__container auth__container_left'>
           <div className='auth__top'>
-            <h1 className='auth__name'>Такса</h1>
+            <img className='auth__logo' src={logo} alt='logo' />
             <form className='auth__form' onSubmit={handleSubmit}>
               <input
                 className='auth__input auth__input_type_email'
@@ -28,47 +44,42 @@ function Login({ onLogin }) {
                 required
                 onChange={handleChange}
               />
-              <span className='auth__error' id='email-error'>
-                Ошибка
+              <div className={`auth__input-wrap ${isFocused ? 'focused' : ''}`}>
+                <input
+                  className='auth__input auth__input_type_password'
+                  id='password'
+                  name='password'
+                  type={showPassword ? 'text' : 'password'}
+                  value={values.password || ''}
+                  placeholder={'Пароль'}
+                  required
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                />
+                <button className='auth__visibility-button' onClick={handleTogglePassword}></button>
+              </div>
+              <span className='auth__error' id='error'>
+                {authText}
               </span>
-              <input
-                className='auth__input auth__input_type_password'
-                id='password'
-                name='password'
-                type='password'
-                value={values.password || ''}
-                placeholder={'Пароль'}
-                required
-                onChange={handleChange}
-              />
-              <span className='auth__error' id='password-error'>
-                Ошибка
-              </span>
-              <button className='auth__submit-button' type='submit'>
+              <button className='auth__submit-button' type='submit' disabled={isDisabled}>
                 Войти
               </button>
-              <span className='auth__error' id='res-error'>
-                Ошибка
-              </span>
             </form>
-            <NavLink className='auth__link' to='/'>
-              Восстановить пароль
+            <span className='auth__agree'>
+            Нажимая «Войти», вы соглашаетесь с {' '}
+            <NavLink className='auth__agree-link' to='/'>
+              Условиями<br /> использования
             </NavLink>
-            <NavLink className='auth__link' to={SIGN_UP}>
-              Зарегистрироваться
-            </NavLink>
-          </div>
-          <span className='auth__bottom'>
-            Я соглашаюсь с условиями{' '}
-            <NavLink className='auth__bottom-link' to='/'>
-              Пользовательского соглашения
-            </NavLink>
-            <br /> и{' '}
-            <NavLink className='auth__bottom-link' to='/'>
+            &thinsp;и{' '}
+            <NavLink className='auth__agree-link' to='/'>
               Политикой конфиденциальности
             </NavLink>{' '}
-            Такса
           </span>
+          </div>
+          <NavLink className='auth__bottom' to={FORGOT_PASSWORD}>
+              Восстановить пароль
+            </NavLink>
         </div>
       </div>
       <div className='auth__block auth__block_right'>
@@ -81,5 +92,6 @@ function Login({ onLogin }) {
 export default Login;
 
 Login.propTypes = {
-  onLogin: functionType
+  onLogin: loginFunctionType,
+  resStatus: stringType,
 }
