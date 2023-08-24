@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { functionType, stringType } from '../../constatnts/prop-types';
 import { useFormContext, Controller } from 'react-hook-form';
@@ -31,14 +30,12 @@ function InputSelect({ isOpen, title }) {
     }))
     .filter((item) => item.value !== currentUser.id);
 
-  const { control} = useFormContext();
+  const { control } = useFormContext();
 
   const savePerformers = () => {
     dispatch(addUsersToCreateReducer(performers));
     isOpen();
   };
-
-
 
   const updatePerformers = (value) => {
     if (!performers.map((item) => item.id).includes(value.value)) {
@@ -72,7 +69,8 @@ function InputSelect({ isOpen, title }) {
               name='users'
               render={({ field: { onChange, value } }) => (
                 <ReactSelect
-                components={ {Option} }
+                  components={{ Option }}
+                  placeholder={'Выберите исполнителя'}
                   options={options}
                   value={value}
                   onChange={(newValue) => {
@@ -83,19 +81,16 @@ function InputSelect({ isOpen, title }) {
                     control: (baseStyles) => ({
                       ...baseStyles,
                       width: '400px',
-                      
                     }),
                     menuList: (baseStyles) => ({
                       ...baseStyles,
-                      boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
+                      boxShadow:
+                        '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
                       borderRadius: '8px',
                       overflow: 'hidden',
-                    })
+                    }),
                   }}
                 />
-
-  
-          
               )}
             />
           </div>

@@ -1,8 +1,15 @@
 import { stringType, boolType, objectType } from '../../constatnts/prop-types';
 import Deadline from '../Deadline/Deadline';
-import avatar from '../../images/user-avatar-profile.png';
+import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
+import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 
-export default function PostProject({ title, is_active, start, finish, users }) {
+export default function PostProject({
+  title,
+  is_active,
+  start,
+  finish,
+  users,
+}) {
   const usersProject = structuredClone(users);
   const creator = usersProject?.user;
   const photo = creator?.photo;
@@ -16,11 +23,19 @@ export default function PostProject({ title, is_active, start, finish, users }) 
         </div>
         <div className='postProject__wrap'>
           <div className='postProject__project-member'>
-          <img src={photo !== null ? photo : avatar} className='postProject__creator-photo' />
-          <div className='postProject__creator'>
-          
-            {creator?.last_name} {creator?.last_name}
-          </div>
+            {photo ? (
+              <AvatarPic pic={photo} size={22} />
+            ) : (
+              <AvatarLetter
+                nameUser={creator?.first_name}
+                surnameUser={creator?.last_name}
+                size={22}
+                fSize={10}
+              />
+            )}
+            <div className='postProject__creator'>
+              {creator?.first_name} {creator?.last_name}
+            </div>
           </div>
           <div
             className={
@@ -42,5 +57,5 @@ PostProject.propTypes = {
   finish: stringType,
   title: stringType,
   is_active: boolType,
-  users: objectType
+  users: objectType,
 };

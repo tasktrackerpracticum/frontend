@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import InputSelect from '../InputSelect/InputSelect';
-import avatar from '../../images/user-avatar-profile.png';
 import { useFormContext } from 'react-hook-form';
 import { activeType, boolType } from '../../constatnts/prop-types';
 import { useSelector } from 'react-redux';
+import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
+import AvatarPic from '../../ui/AvatarUser/AvatarPic';
+import Input from './Input';
 
 function InputField({ active, setActive }) {
   const currentUser = useSelector((state) => state.user.user);
@@ -12,15 +15,18 @@ function InputField({ active, setActive }) {
   );
 
   const {
+    watch,
     register,
     formState: { errors },
   } = useFormContext();
 
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
+  const form = watch();
 
-  const [date_start, setDateStart] = useState('');
-  const [date_finish, setDateFinish] = useState('');
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState('+ Добавить описание');
+
+  const [date_start, setDateStart] = useState();
+  const [date_finish, setDateFinish] = useState();
   const [isOpenSelectPerformer, setOpenSelectPerformer] = useState(false);
   const [isHiddenPerformers, setHiddenPerformers] = useState(true);
 
@@ -41,15 +47,39 @@ function InputField({ active, setActive }) {
     event.preventDefault();
 
     setDescription(event.target.value);
+    openInputDescription();
   };
+
   const handleDateStartChange = (event) => {
     event.preventDefault();
     setDateStart(event.target.value);
+    openInputDateStart();
   };
   const handleDateFinishChange = (event) => {
     event.preventDefault();
     setDateFinish(event.target.value);
+    openInputDateFinish();
   };
+
+  const closeModal = (event) => {
+    event.preventDefault();
+    setActive(!active);
+  };
+
+  const [openDescriptionInput, setOpenDescriptionInput] = useState(false);
+  const [openDateStartInput, setOpenDateStartInput] = useState(false);
+  const [openDateFinishInput, setOpenDateFinishInput] = useState(false);
+
+  function openInputDescription() {
+    setOpenDescriptionInput(!openDescriptionInput);
+  }
+
+  function openInputDateStart() {
+    setOpenDateStartInput(!openDateStartInput);
+  }
+  function openInputDateFinish() {
+    setOpenDateFinishInput(!openDateFinishInput);
+  }
 
   return (
     <section className='createProject__input-fields'>
@@ -79,64 +109,95 @@ function InputField({ active, setActive }) {
         </div>
         <button
           className='createProject__cancel-btn'
-          onClick={() => setActive(!active)}
+          onClick={closeModal}
         ></button>
       </div>
 
       <div className='createProject__content'>
         <div className='createProject__info'>
-          <div className='createProject__container-description'>
-            <textarea
-              className='createProject__input-description'
+          {openDescriptionInput ? (
+            <Input
+              isOpen={openInputDescription}
               value={description}
-              onChange={handleDescriptionChange}
-              type='text'
-              placeholder='+ Добавить описание'
-              {...register('description', {
-                required: false,
-                maxLength: {
-                  value: 150,
-                  message: `Должно быть не больше 150 символов`,
-                },
-              })}
+              title={'Описание проекта'}
+              inputType={'text'}
+              register={register}
+              dataType={'description'}
+              isMaxLength={500}
+              isMinLength={5}
+              errors={errors}
+              handleChange={handleDescriptionChange}
             />
-          </div>
+          ) : (
+            <div
+              className='createProject__container-description'
+              onClick={openInputDescription}
+            >
+              <h2 className='createProject__subtitle'>
+                {form.description !== '' ? form.description : description}
+              </h2>
+            </div>
+          )}
 
-          <div className='createProject__container'>
-            <h2 className='createProject__subtitle'>Дата начала</h2>
-            <input
-              className='createProject__input'
-              value={date_start || ''}
-              type='date'
-              placeholder='-----'
-              {...register('date_start', {
-                required: false,
-              })}
-              onChange={handleDateStartChange}
+          {openDateStartInput ? (
+            <Input
+              isOpen={openInputDateStart}
+              value={date_start}
+              title={'Описание проекта'}
+              inputType={'date'}
+              register={register}
+              dataType={'date_start'}
+              errors={errors}
+              handleChange={handleDateStartChange}
             />
-          </div>
+          ) : (
+            <div
+              className='createProject__container'
+              onClick={openInputDateStart}
+            >
+              <h2 className='createProject__subtitle'>Дата начала</h2>
+              <div className='createProject__input'>
+                {form.date_start !== null ? form.date_start : '— — — —'}
+              </div>
+            </div>
+          )}
 
-          <div className='createProject__container'>
-            <h2 className='createProject__subtitle'>Дата окончания</h2>
-            <input
-              className='createProject__input'
+          {openDateFinishInput ? (
+            <Input
+              isOpen={openInputDateFinish}
               value={date_finish}
-              type='date'
-              placeholder='-----'
-              {...register('date_finish', {
-                required: false,
-              })}
-              onChange={handleDateFinishChange}
+              title={'Описание проекта'}
+              inputType={'date'}
+              register={register}
+              dataType={'date_finish'}
+              errors={errors}
+              handleChange={handleDateFinishChange}
             />
-          </div>
+          ) : (
+            <div
+              className='createProject__container'
+              onClick={openInputDateFinish}
+            >
+              <h2 className='createProject__subtitle'>Дата окончания</h2>
+              <div className='createProject__input'>
+              {form.date_finish !== null ? form.date_finish : '— — — —'}
+              </div>
+            </div>
+          )}
+
           <div className='createProject__container-creator'>
             <h2 className='createProject__subtitle'>Автор</h2>
             <div className='createProject__creator'>
-              <img
-                src={currentUser.photo == '' ? avatar : currentUser.photo}
-                className='createProject__creator-avatar'
-                alt='avatar'
-              />
+              {currentUser.photo ? (
+                <AvatarPic pic={currentUser.photo} size={24} />
+              ) : (
+                <AvatarLetter
+                  nameUser={currentUser.first_name}
+                  surnameUser={currentUser.last_name}
+                  size={24}
+                  fzie={10}
+                />
+              )}
               <div className='createProject__creator-name'>
                 {currentUser.first_name} {currentUser.last_name}
               </div>
@@ -188,7 +249,7 @@ function InputField({ active, setActive }) {
             </div>
           )}
 
-          {performers.length == 0 || performers.length < 4? (
+          {performers.length == 0 || performers.length < 4 ? (
             ''
           ) : (
             <div className='createProject__hidden-performers' onClick={isHide}>

@@ -1,4 +1,6 @@
 import { objectType, stringType } from "../../constatnts/prop-types";
+import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
+import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 
 export const Option = (props) => {
     const {
@@ -11,7 +13,15 @@ export const Option = (props) => {
         {...innerProps}
       >
         <div className="option">
-        <img src={data.photo} className="option__avatar" />
+        {data.photo ? (
+            <AvatarPic pic={data.photo} size={24} />
+          ) : (
+            <AvatarLetter
+              nameUser={data.first_name}
+              surnameUser={data.last_name}
+              size={24}
+            />
+          )}
         {children}
       </div>
       </div>

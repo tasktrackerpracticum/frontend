@@ -33,6 +33,7 @@ export const createProject = (data) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+
       title: data.title,
       description: data.description,
       date_start: data.date_start,

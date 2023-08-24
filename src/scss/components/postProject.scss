@@ -16,6 +16,12 @@
   &__project-title {
     max-width: 208px;
     margin: 0 10px;
+    color: #2F261B;
+    font-size: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__wrap {
@@ -40,6 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #2F261B;
   }
 
   &__project-status-closed {
@@ -54,6 +61,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #2F261B;
   }
 
   &__project-member {

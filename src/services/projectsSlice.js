@@ -16,7 +16,7 @@ export const fetchProjects = createAsyncThunk(
 
 export const createNewProjects = createAsyncThunk(
   'projects/createProjects',
-  async (data, { rejectWithValue, dispatch }) => {
+  async (data, { rejectWithValue }) => {
     const newProject = {
       title: data.title,
       date_start: data.date_start ? data.date_start : null,
@@ -24,15 +24,10 @@ export const createNewProjects = createAsyncThunk(
       is_active: true,
 			users: data.users
 
-
     };
     try {
-      const response = await createProject(newProject);
-      const data = response.json();
-      dispatch(addProjectReducer(data));
-      if (!response.ok) {
-        throw new Error("Can't add project. Server error.");
-      }
+      const response = await createProject(newProject)
+			return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -65,25 +60,6 @@ const projectsSlice = createSlice({
     error: null,
   },
   reducers: {
-    addProjectReducer(state, action) {
-			const creator = [
-				{user: action.payload.currentUser,
-					role: 'pm'}
-			]
-      state.projects.push({
-        id: state.projects.length + 1,
-        title: action.payload.data.title,
-        date_finish: action.payload.data.date_finish
-          ? action.payload.data.date_finish
-          : null,
-        is_active: true,
-        date_start: action.payload.data.date_start
-          ? action.payload.data.date_start
-          : null,
-				users: creator
-      });
-
-    },
     addUsersToCreateReducer(state, action) {
 			state.listUsersToCreateProject = action.payload;
     },
@@ -100,6 +76,19 @@ const projectsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
+      })
+			.addCase(createNewProjects.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(createNewProjects.fulfilled, (state, action) => {
+        state.projects = [...state.projects, action.payload];
+        state.status = 'resolved';
+        state.error = null;
+      })
+      .addCase(createNewProjects.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.payload;
       });
