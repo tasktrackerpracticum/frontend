@@ -1,10 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import avatar from '../../images/user-avatar-profile.png';
 import exit from '../../images/exit.svg';
 import logo from '../../images/logo.svg';
-import { activeType, boolType, functionType } from '../../constatnts/prop-types';
+import {
+  activeType,
+  boolType,
+  functionType,
+} from '../../constatnts/prop-types';
 import SearchForm from '../SearchForm/SearchForm.jsx';
 import { useSelector } from 'react-redux';
+import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
+import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 
 export default function Header({ active, setActive, onLogout }) {
   const toggleClass = () => {
@@ -20,16 +25,21 @@ export default function Header({ active, setActive, onLogout }) {
       </NavLink>
       <SearchForm />
       <div className='header__link-container'>
-        <div className='header__avatar-profile'>
-          <img
-            src={currentUser.photo   ? currentUser.photo : avatar}
-            alt='avatar'
-            className='header__avatar-icon'
-            onClick={toggleClass}
-          />
+        <div className='header__avatar-profile'  onClick={toggleClass}>
+        {currentUser.photo ? (
+            <AvatarPic pic={currentUser.photo} size={48} />
+          ) : (
+            <AvatarLetter
+              nameUser={currentUser.first_name}
+              surnameUser={currentUser.last_name}
+              size={48}
+            />
+          )}
         </div>
         <div className='header__exit'>
-          <button onClick={onLogout}><img src={exit} alt='exit' className='header__exit-icon' /></button>
+          <button onClick={onLogout} className="header__exit-btn">
+            <img src={exit} alt='exit' className='header__exit-icon' />
+          </button>
         </div>
       </div>
     </header>
@@ -39,5 +49,5 @@ export default function Header({ active, setActive, onLogout }) {
 Header.propTypes = {
   active: boolType,
   setActive: activeType,
-  onLogout: functionType
+  onLogout: functionType,
 };

@@ -39,6 +39,12 @@
     align-items: center;
     justify-content: space-around;
     gap: 100px;
+
+    &_description {
+      align-items: flex-start;
+      height: 120px;
+      padding-top: 5px;
+    }
     
     &_errors {
       border: 1px solid #A70000;
@@ -49,6 +55,12 @@
     border-radius: 8px;
     border: none;
     outline: none;
+    height: 95%;
+
+    &_description {
+      width: 260px;
+      resize: none;
+    }
   }
   &__buttons {
     max-width: 400px;

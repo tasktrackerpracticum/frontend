@@ -1,7 +1,6 @@
 import { boolType, setActiveType } from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  addProjectReducer,
  createNewProjects,
 } from '../../services/projectsSlice';
 import InputField from './InputField';
@@ -9,20 +8,16 @@ import { useForm, FormProvider } from 'react-hook-form';
 
 
 function CreateProject({ active, setActive }) {
-
-
-  const currentUser = useSelector((state) => state.user.user);
   const performersList = useSelector(
     (state) => state.projects.listUsersToCreateProject,
   );
-
 
   const methods = useForm({
     defaultValues: {
       title: '',
       description: '',
       date_start: null,
-      date_finish: 0,
+      date_finish: null,
       users: [],
 
     },
@@ -32,16 +27,11 @@ function CreateProject({ active, setActive }) {
   const onSubmit = (data) => {
     data.users = performersList;
     console.log('data submit', data);
-
-    dispatch(addProjectReducer({ data, currentUser }));
    dispatch(createNewProjects(data));
     setActive(!active);
   };
 
   const dispatch = useDispatch();
-
-
-
 
   return (
     

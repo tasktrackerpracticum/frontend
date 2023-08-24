@@ -59,6 +59,11 @@
 			transition: opacity 0.3s linear 0s;
 		}
 	}
+	&__exit-btn {
+		background: transparent;
+		outline: none;
+		border: none;
+	}
 
 	&__avatar-profile {
 		width: 48px;

@@ -12,16 +12,20 @@ function InputForm({
   inputType,
   dataType,
   isMaxLength,
-  isMinLength,
   register,
   value,
   errors,
-  patternType,
+  handleChange,
 }) {
   const [valueInput, setValueInput] = useState(value);
 
   function handlerChange(evt) {
     setValueInput(evt.target.value);
+  }
+
+  function closeModal(evt) {
+    evt.preventDefault();
+    isOpen();
   }
 
   return (
@@ -31,9 +35,9 @@ function InputForm({
         <div className='input__form'>
           <div
             className={
-              !errors[dataType]
-                ? 'input__container'
-                : ' input__container input__container_errors'
+              dataType == 'description'
+                ? 'input__container input__container_description'
+                : ' input__container'
             }
           >
             {dataType == 'description' ? (
@@ -57,21 +61,13 @@ function InputForm({
               />
             ) : (
               <input
-                className='input__input-text'
+                className={' input__input-text'}
                 value={valueInput}
                 {...register(dataType, {
                   required: false,
                   maxLength: {
                     value: isMaxLength,
                     message: `Должно быть не больше ${isMaxLength} символов`,
-                  },
-                  minLength: {
-                    value: isMinLength,
-                    message: `Должно быть не меньше ${isMinLength} символов`,
-                  },
-                  pattern: {
-                    value: patternType,
-                    message: 'Введите правильную почту',
                   },
                 })}
                 type={inputType}
@@ -86,7 +82,7 @@ function InputForm({
                   ? 'input__close'
                   : ' input__close input__close_errors'
               }
-              onClick={isOpen}
+              onClick={closeModal}
             />
           </div>
           <div className='input__error'>{errors[dataType]?.message}</div>
@@ -95,11 +91,11 @@ function InputForm({
             <button
               type='button'
               className='input__btn-cancel'
-              onClick={isOpen}
+              onClick={closeModal}
             >
               Отмена
             </button>
-            <button type='submit' className='input__btn-submit'>
+            <button onClick={handleChange} className='input__btn-submit'>
               Сохранить
             </button>
           </div>
@@ -117,8 +113,7 @@ InputForm.propTypes = {
   inputType: stringType,
   isMaxLength: numberType,
   dataType: stringType,
-  isMinLength: numberType,
   register: functionType,
   errors: objectType,
-  patternType: stringType,
+  handleChange: functionType,
 };

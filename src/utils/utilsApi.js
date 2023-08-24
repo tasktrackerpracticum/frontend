@@ -1,6 +1,7 @@
 function checkResponse(res) {
   if (res.ok) {
-    return res.json();
+		const json =  res.json();
+    return json;
   }
   return Promise.reject(res.status);
 };

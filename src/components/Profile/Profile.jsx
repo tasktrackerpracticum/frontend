@@ -1,11 +1,16 @@
-import avatar from '../../images/user-avatar-profile.png';
-import { setActiveType, boolType, functionType } from '../../constatnts/prop-types';
+import {
+  setActiveType,
+  boolType,
+  functionType,
+} from '../../constatnts/prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchUserMe, updateUserMe } from '../../services/userSlice';
 import InputForm from '../InputForm/InputForm';
 import { useForm } from 'react-hook-form';
-import { patternsSchema } from '../../constatnts/constants'
+import { patternsSchema } from '../../constatnts/constants';
+import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
+import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 
 function Profile({ active, setActive, openModalAvatar }) {
   const dispatch = useDispatch();
@@ -19,11 +24,11 @@ function Profile({ active, setActive, openModalAvatar }) {
     register,
     formState: { errors },
     handleSubmit,
-    reset
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
-   console.log(data)
+    console.log(data);
     handleActionChange(data);
     closeInput();
   };
@@ -67,20 +72,20 @@ function Profile({ active, setActive, openModalAvatar }) {
       setOpenPositionInput(false);
   }
 
-
   return (
     <section className={active ? 'profile__active' : 'profile'}>
       <div className='profile__wrap'>
-        <div
-          className='profile__avatar-overlay'
-          onClick={openModalAvatar}
-        ></div>
-        <img
-          src={currentUser.photo ? currentUser.photo : avatar}
-          alt='место для аватара'
-          className='profile__avatar'
-        />
-
+        <div className='profile__avatar-overlay' onClick={openModalAvatar}>
+          {currentUser.photo ? (
+            <AvatarPic pic={currentUser.photo} size={48} />
+          ) : (
+            <AvatarLetter
+              nameUser={currentUser.first_name}
+              surnameUser={currentUser.last_name}
+              size={48}
+            />
+          )}
+        </div>
         <div className='profile__info-content'>
           <h1 className='profile__title'>
             {currentUser.first_name} {currentUser.last_name}
@@ -106,7 +111,6 @@ function Profile({ active, setActive, openModalAvatar }) {
               isMaxLength={15}
               isMinLength={5}
               errors={errors}
-              
             />
           ) : (
             <div className='profile__container' onClick={openInputPosition}>
@@ -125,7 +129,6 @@ function Profile({ active, setActive, openModalAvatar }) {
               errors={errors}
               isMaxLength={12}
               isMinLength={12}
-     
             />
           ) : (
             <div className='profile__container' onClick={openInputPhone}>
@@ -146,7 +149,6 @@ function Profile({ active, setActive, openModalAvatar }) {
               isMaxLength={20}
               isMinLength={5}
               patternType={patternsSchema.patternEmail}
-
             />
           ) : (
             <div className='profile__container' onClick={openInputEmail}>
@@ -164,10 +166,9 @@ function Profile({ active, setActive, openModalAvatar }) {
               register={register}
               dataType={'telegram'}
               errors={errors}
-              patternType = {patternsSchema.patternTelegram}
+              patternType={patternsSchema.patternTelegram}
               isMaxLength={15}
               isMinLength={2}
-   
             />
           ) : (
             <div className='profile__container' onClick={openInputTelegram}>
@@ -185,7 +186,6 @@ function Profile({ active, setActive, openModalAvatar }) {
               register={register}
               dataType={'timezone'}
               errors={errors}
- 
             />
           ) : (
             <div className='profile__container' onClick={openInputTimezone}>

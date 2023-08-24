@@ -25,23 +25,23 @@ function InputForm({
   }
 
   return (
-    <section className='input'>
-      <div className='input__title'>{title}:</div>
-      <div className='input__content'>
-        <div className='input__form'>
-          <div
+    <section className='inputProject'>
+      <div className='inputProject__title'>{title}:</div>
+      <div className='inputProject__content'>
+        <div className='inputProject__form'>
+        <div
             className={
-              !errors[dataType]
-                ? 'input__container'
-                : ' input__container input__container_errors'
+              dataType == 'description'
+                ? 'inputProject__container inputProject__container_description'
+                : ' inputProject__container'
             }
           >
             {dataType == 'description' ? (
               <textarea
                 className={
                   dataType == 'description'
-                    ? 'input__input-text input__input-text_description'
-                    : ' input__input-text'
+                    ? 'inputProject__input-text inputProject__input-text_description'
+                    : ' inputProject__input-text'
                 }
                 value={valueInput}
                 {...register(dataType, {
@@ -57,7 +57,7 @@ function InputForm({
               />
             ) : (
               <input
-                className='input__input-text'
+                className='inputProject__input-text'
                 value={valueInput}
                 {...register(dataType, {
                   required: false,
@@ -83,23 +83,23 @@ function InputForm({
             <div
               className={
                 !errors[dataType]
-                  ? 'input__close'
-                  : ' input__close input__close_errors'
+                  ? 'inputProject__close'
+                  : ' inputProject__close inputProject__close_errors'
               }
               onClick={isOpen}
             />
           </div>
-          <div className='input__error'>{errors[dataType]?.message}</div>
+          <div className='inputProject__error'>{errors[dataType]?.message}</div>
 
-          <div className='input__buttons'>
+          <div className='inputProject__buttons'>
             <button
               type='button'
-              className='input__btn-cancel'
+              className='inputProject__btn-cancel'
               onClick={isOpen}
             >
               Отмена
             </button>
-            <button type='submit' className='input__btn-submit'>
+            <button type='submit' className='inputProject__btn-submit'>
               Сохранить
             </button>
           </div>

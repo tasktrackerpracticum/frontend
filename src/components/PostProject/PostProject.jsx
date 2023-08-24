@@ -1,8 +1,15 @@
 import { stringType, boolType, objectType } from '../../constatnts/prop-types';
 import Deadline from '../Deadline/Deadline';
-import avatar from '../../images/user-avatar-profile.png';
+import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
+import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 
-export default function PostProject({ title, is_active, start, finish, users }) {
+export default function PostProject({
+  title,
+  is_active,
+  start,
+  finish,
+  users,
+}) {
   const usersProject = structuredClone(users);
   const creator = usersProject?.user;
   const photo = creator?.photo;
@@ -16,10 +23,27 @@ export default function PostProject({ title, is_active, start, finish, users }) 
         </div>
         <div className='postProject__wrap'>
           <div className='postProject__project-member'>
-            <img src={photo !== null ? photo : avatar} className='postProject__creator-photo' />
-            <p className='postProject__creator'>{creator?.last_name} {creator?.last_name}</p>
+            {photo ? (
+              <AvatarPic pic={photo} size={22} />
+            ) : (
+              <AvatarLetter
+                nameUser={creator?.first_name}
+                surnameUser={creator?.last_name}
+                size={22}
+                fSize={10}
+              />
+            )}
+            <p className='postProject__creator'>
+              {creator?.first_name} {creator?.last_name}
+            </p>
           </div>
-          <div className={is_active ? 'postProject__project-status-actived' : 'postProject__project-status-closed'}>
+          <div
+            className={
+              is_active
+                ? 'postProject__project-status-actived'
+                : 'postProject__project-status-closed'
+            }
+          >
             {is_active ? 'Активен' : 'Завершен'}
           </div>
         </div>
@@ -33,5 +57,5 @@ PostProject.propTypes = {
   finish: stringType,
   title: stringType,
   is_active: boolType,
-  users: objectType
+  users: objectType,
 };

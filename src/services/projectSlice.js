@@ -13,7 +13,6 @@ export const fetchProject = createAsyncThunk(
   },
 );
 
-
 const projectSlice = createSlice({
   name: 'project',
   initialState: {
