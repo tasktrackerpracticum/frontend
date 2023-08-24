@@ -4,6 +4,8 @@
 	"private": true,
 	"homepage": "https://taksa-tracker.ru/",
 	"dependencies": {
+		"@emotion/styled": "^11.11.0",
+		"@mui/material": "^5.14.5",
 		"@reduxjs/toolkit": "^1.9.5",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.4.0",

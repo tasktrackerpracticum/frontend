@@ -9,6 +9,12 @@ export default function Projects({ openProjectCreate }) {
   const { status, error, projects } = useSelector((state) => state.projects);
   const [isSortName, setSortName] = useState(false);
 
+
+
+  
+  console.log(projects)
+
+
   return (
     <section className='projects'>
       <div className='projects__wrap'>
