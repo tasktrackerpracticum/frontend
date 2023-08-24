@@ -14,6 +14,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all ease .3s;
+    &:hover {
+      background-color: #FFEDBF;
+      
+    }
   }
 
   &__create-btn {
@@ -32,7 +37,7 @@
   }
 
   &__content {
-    margin: 15px auto;
+    margin: 17px auto ;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -41,5 +46,10 @@
 
   &__container {
     text-decoration: none;
+    transition: all ease .5s;
+
+    &:hover {
+      background: #9A7F6633;
+    }
   }
 }

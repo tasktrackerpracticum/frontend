@@ -1,5 +1,6 @@
 import { boolType, stringType, arrayType } from '../../constatnts/prop-types';
-import avatar from '../../images/user-avatar-profile.png';
+import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
+import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 
 
 export default function Project({ title, start, finish, isActive, users, }) {
@@ -15,11 +16,21 @@ export default function Project({ title, start, finish, isActive, users, }) {
       <p className='project__list-name'>{finish ? finish.split("-").reverse().join("-").replaceAll("-", ".") : '---'}</p>
       <div className='project__list-name'>
         <div className='project__list-member'>
-          <img src={photo !== null ? photo : avatar} className='project__creator-photo' />
+        {photo ? (
+
+          <AvatarPic pic={photo} size={28} />
+          ) : (
+            <AvatarLetter
+              nameUser={creator?.first_name}
+              surnameUser={creator?.last_name}
+              size={28}
+              fSize={12}
+            />
+          )}
         
           <div className='project__creator'>
           
-            {creator?.last_name} {creator?.last_name}
+            {creator?.first_name} {creator?.last_name}
           </div>
         </div>
       </div>

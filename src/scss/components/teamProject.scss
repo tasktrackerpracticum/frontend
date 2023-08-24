@@ -1,5 +1,5 @@
 .teamProject {
-    max-width: 219px;
+    max-width: 260px;
     max-height: 35px;
     display: flex;
     gap: 8px;
@@ -30,8 +30,10 @@
         }
     }
     &__count {
-        max-width: 41px;
+        width: 70px;
         max-height: 17px;
+        display: flex;
+        flex-direction: row;
         color: #8A8A8A;
         font-size: 24px;
         font-weight: 500;

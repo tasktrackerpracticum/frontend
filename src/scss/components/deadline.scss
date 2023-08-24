@@ -2,4 +2,11 @@
   @include reset;
   @include text-format(400, 16px, 20.8px);
   color: $secondTextColor;
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+  cursor: pointer;
+  &:hover {
+      opacity: 0.8;
+  }
 }

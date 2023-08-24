@@ -7,6 +7,7 @@ function useValidation() {
     password: true,
   });
   const [isValidForm, setIsValidForm] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (evt) => {
     const target = evt.target;
@@ -15,6 +16,10 @@ function useValidation() {
     setValues({ ...values, [name]: value });
     setIsValid({ ...isValid, [name]: target.validity.valid });
     setIsValidForm(target.closest('form').checkValidity());
+  };
+
+	const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const resetForm = useCallback(
@@ -41,6 +46,8 @@ function useValidation() {
     isValidForm,
     handleChange,
     resetForm,
+		showPassword,
+    handleTogglePassword,
   };
 }
 

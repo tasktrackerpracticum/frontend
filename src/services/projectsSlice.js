@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getProjects, createProject } from '../utils/ProjectsApi';
+import {
+  getProjects,
+  createProject,
+  updateProject,
+} from '../utils/ProjectsApi';
 import { addUserInProject } from '../utils/UsersApi';
 
 export const fetchProjects = createAsyncThunk(
@@ -16,23 +20,17 @@ export const fetchProjects = createAsyncThunk(
 
 export const createNewProjects = createAsyncThunk(
   'projects/createProjects',
-  async (data, { rejectWithValue, dispatch }) => {
+  async (data, { rejectWithValue }) => {
     const newProject = {
       title: data.title,
       date_start: data.date_start ? data.date_start : null,
       date_finish: data.date_finish ? data.date_finish : null,
       is_active: true,
-			users: data.users
-
-
+      users: data.users,
     };
     try {
       const response = await createProject(newProject);
-      const data = response.json();
-      dispatch(addProjectReducer(data));
-      if (!response.ok) {
-        throw new Error("Can't add project. Server error.");
-      }
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -56,6 +54,18 @@ export const addUserProject = createAsyncThunk(
   },
 );
 
+export const updateProjectId = createAsyncThunk(
+  'projects/updateProjectId',
+  async ({ project_id, data }, { rejectWithValue }) => {
+    try {
+      const response = await updateProject({ project_id, data });
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
@@ -65,27 +75,8 @@ const projectsSlice = createSlice({
     error: null,
   },
   reducers: {
-    addProjectReducer(state, action) {
-			const creator = [
-				{user: action.payload.currentUser,
-					role: 'pm'}
-			]
-      state.projects.push({
-        id: state.projects.length + 1,
-        title: action.payload.data.title,
-        date_finish: action.payload.data.date_finish
-          ? action.payload.data.date_finish
-          : null,
-        is_active: true,
-        date_start: action.payload.data.date_start
-          ? action.payload.data.date_start
-          : null,
-				users: creator
-      });
-
-    },
     addUsersToCreateReducer(state, action) {
-			state.listUsersToCreateProject = action.payload;
+      state.listUsersToCreateProject = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -100,6 +91,44 @@ const projectsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
+      })
+      .addCase(createNewProjects.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(createNewProjects.fulfilled, (state, action) => {
+        state.projects = [...state.projects, action.payload];
+        state.status = 'resolved';
+        state.error = null;
+      })
+      .addCase(createNewProjects.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
+      })
+      .addCase(updateProjectId.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(updateProjectId.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.projects = state.projects.map((item) => {
+          if (item.id == action.payload.id) {
+            item = action.payload;
+          }
+          return item;
+        });
+
+				// state.projects = [
+        //   ...state.projects.filter((item) => item.id !== action.payload.id),
+        //   action.payload,
+        // ];
+
+        state.status = 'resolved';
+        state.error = null;
+      })
+      .addCase(updateProjectId.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.payload;
       });

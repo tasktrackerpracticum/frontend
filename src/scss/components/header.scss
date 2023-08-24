@@ -32,15 +32,6 @@
 		}
 	}
 
-
-	&__logo {
-		width: 41px;
-		height: 41px;
-		border-radius: 50%;
-		border: 1px solid rgba(234, 226, 218, 1);
-		box-sizing: border-box;
-	}
-
 	&__title {
 		@include text-format(500, 32px, 24px);
 		@include text;
@@ -73,6 +64,11 @@
 			opacity: 0.8;
 			transition: opacity 0.3s linear 0s;
 		}
+	}
+	&__exit-btn {
+		background: transparent;
+		outline: none;
+		border: none;
 	}
 
 	&__avatar-profile {

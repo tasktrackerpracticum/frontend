@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Header from '../Header/Header.jsx';
-import Register from '../Register/Register.jsx';
 import Login from '../Login/Login.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Main from '../Main/Main.jsx';
 import Profile from '../Profile/Profile.jsx';
 import CreateProject from '../CreateProject/CreateProject';
 import CreateTask from '../CreateTask/CreateTask';
+import ForgetPassword from '../ForgetPassword/ForgetPassword';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from '../../services/profileSlice';
-import { PROJECTS, SIGN_IN, SIGN_UP } from '../../constatnts/constants.js';
+import { PROJECTS, SIGN_IN, FORGOT_PASSWORD } from '../../constatnts/constants.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Projects from '../Projects/Projects';
 import ModalEditAvatar from '../ModalEditAvatar/ModalEditAvatar';
@@ -20,7 +20,7 @@ import { fetchProjects } from '../../services/projectsSlice';
 
 function App() {
   const token = localStorage.getItem('accessToken');
-  const { handleLogin, handleRegister, handleLogout, isLoggedIn } = useAuth();
+  const { handleLogin, handleLogout, isLoggedIn, resStatus, handleResStatus } = useAuth();
   const [profileActive, setProfileActive] = useState(false);
   const [isOpenProjectCreate, setOpenProjectCreate] = useState(false);
   const [isOpenTaskCreate, setOpenTaskCreate] = useState(false);
@@ -29,15 +29,11 @@ function App() {
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.profile)
 
-	
-
-
-
-   const email = "admin@admin.com";
-   const password = "admin";
+  //  const email = "admin@admin.com";
+  //  const password = "admin";
 //Запрос токена с админскими данными временный. Убрать после настройки авторизации
   useEffect(() => {
-    dispatch(fetchToken({email, password}))
+    dispatch(fetchToken())
     dispatch(fetchUsers());
     dispatch(fetchProjects());
   }, [dispatch]);
@@ -88,8 +84,9 @@ function App() {
             <Route path={`${PROJECTS}/:id`} element={ <ProtectedRoute isLoggedIn={token ? true : false} components={
               <Main openProjectCreate={openProjectCreate} openTaskCreate={openTaskCreate} />} />
             }/>
-            <Route path={SIGN_UP} element={ isLoggedIn ? <Navigate to='/' /> : <Register onRegister={handleRegister} />} />
-            <Route path={SIGN_IN} element={ isLoggedIn ? <Navigate to='/' /> : <Login onLogin={handleLogin} />} />
+            <Route path={SIGN_IN} element={ !isLoggedIn ? <Login onLogin={handleLogin} resStatus={resStatus} setResStatus={handleResStatus} /> : <Navigate to='/' /> 
+            }/>
+            <Route path={FORGOT_PASSWORD} element={<ForgetPassword />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </div>

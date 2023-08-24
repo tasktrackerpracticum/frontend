@@ -29,4 +29,26 @@
         line-height: 31px;
     }
 
+    &__custom-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 60px;
+        background: #9A7F6633;
+        border: none;
+        cursor: pointer;
+    }
+
+    &__custom-dot_active {
+        width: 40px;
+        height: 16px;
+        border-radius: 60px;
+        background: #9D8E80;
+        border: none;
+    }
+}
+
+.react-multi-carousel-dot-list {
+    gap: 24px;
+    top: 780px;
+    left: 650px !important;
 }
