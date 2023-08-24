@@ -66,7 +66,7 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
   });
 
   const opacity = isDrag ? 0 : 1;
-  const transition = isDrag ? '0.5s ease-in-out' : '0.5s ease-in-out';
+  const transition = isDrag ? '0.1s ease-in-out' : '0.2s ease-in-out';
   drag(drop(ref));
 
   return (
@@ -88,5 +88,5 @@ Task.propTypes = {
   deadline: taskContainerType,
   index: numberType,
   taskColumn: taskContainerType,
-  id: taskContainerType,
+  id: numberType,
 }

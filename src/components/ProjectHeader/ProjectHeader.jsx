@@ -1,5 +1,4 @@
 import TeamProject from '../TeamProject/TeamProject';
-import Deadline from '../Deadline/Deadline.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Fragment } from 'react';
@@ -14,26 +13,28 @@ export default function ProjectHeader() {
     <Fragment>
       {project && (
         <div className='projectHeader'>
-        <div className='projectHeader__content'>
-          <h2 className='projectHeader__header'>
-            {project.title}
-            <div
-              className={
-                project.is_active
-                  ? 'projectHeader__status-actived'
-                  : 'projectHeader__status-closed'}>
-              {project.is_active ? 'Активен' : 'Завершен'}
+          <div className='projectHeader__content'>
+            <h2 className='projectHeader__header'>
+              {project.title}
+              <div
+                className={
+                  project.is_active
+                    ? 'projectHeader__status-actived'
+                    : 'projectHeader__status-closed'}>
+                {project.is_active ? 'Активен' : 'Завершен'}
+              </div>
+            </h2>
+            <button className='projectHeader__button-description'>+ Добавить описание</button>
+            <div className='projectHeader__container'>
+              <p className='projectHeader__projectTimeline'>
+                Начало: <span className='projectHeader__projectDate'>{project.date_start}</span>
+              </p>
+              <p className='projectHeader__projectTimeline'>
+                Дедлайн: <span className='projectHeader__projectDate'>{project.date_finish}</span>
+              </p>
+              <div className='projectHeader__team'>Команда: <TeamProject /></div>
             </div>
-          </h2>
-          <div className='projectHeader__container'>
-            <p className='projectHeader__projectTimeline'>
-              Сроки проекта: <Deadline start={project.date_start} finish= {project.date_finish}/>
-            </p>
-            <div className='projectHeader__team'>Команда: <TeamProject />
-            </div>
-
           </div>
-        </div>
         <button className='projectHeader__button' onClick={() => navigate('/')}/>
       </div>)}
     </Fragment>

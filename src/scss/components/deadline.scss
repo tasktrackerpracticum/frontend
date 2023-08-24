@@ -1,0 +1,5 @@
+.deadline {
+  @include reset;
+  @include text-format(400, 16px, 20.8px);
+  color: $secondTextColor;
+}
