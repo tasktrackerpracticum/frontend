@@ -1,8 +1,9 @@
 .listProject {
-  max-height: 100vh;
+  max-height: 840px;
   border-radius: 40px;
-  background: #f5f1ed;
-  padding: 60px 30px;
+  background: $secondColor;
+  box-sizing: border-box;
+  padding: 40px 30px;
   overflow-y: auto;
 
   &__create {
@@ -28,10 +29,11 @@
     background: url(../../images/add.svg) no-repeat center;
     object-fit: contain;
     cursor: pointer;
+    transition: $hoverTransition;
 
-    &:hover {
-      opacity: 0.5;
-    }
+      &:hover {
+        opacity: 0.5;
+      }
   }
 
   &__content {
@@ -43,14 +45,6 @@
   }
 
   &__container {
-    width: 100%;
-    border-radius: 16px;
-    height: 158px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 16px;
     text-decoration: none;
     transition: all ease .5s;
 
@@ -58,6 +52,4 @@
       background: #9A7F6633;
     }
   }
-
-  
 }

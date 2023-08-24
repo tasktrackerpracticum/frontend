@@ -29,12 +29,9 @@ export default function Projects({ openProjectCreate }) {
         {error && <h2>{error}</h2>}{' '}
         {/* потом добавить модалку ошибки и убрать */}
         <div className='projects__content'>
-          <div
-            className='projects__tag'
-            onClick={() => setSortName(!isSortName)}
-          >
-            <h2 className='projects__tag-name'>
-              <div className='projects__text-tag'>Проект</div>
+          <div className='projects__tag' onClick={() => setSortName(!isSortName)}>
+            <div className='projects__tag-container'>
+              <p className='projects__tag-name'>Проект</p>
               <div
                 className={
                   isSortName
@@ -42,11 +39,11 @@ export default function Projects({ openProjectCreate }) {
                     : 'projects__tag-sort-less '
                 }
               />
-            </h2>
-            <h2 className='projects__tag-name'>Начало</h2>
-            <h2 className='projects__tag-name'>Дедлайн</h2>
-            <h2 className='projects__tag-name'>Автор</h2>
-            <h2 className='projects__tag-name'>Статус</h2>
+            </div>
+            <p className='projects__tag-name'>Начало</p>
+            <p className='projects__tag-name'>Дедлайн</p>
+            <p className='projects__tag-name'>Автор</p>
+            <p className='projects__tag-name'>Статус</p>
           </div>
           <div className='projects__list'>
           {projects.length !== 0 && (projects.map((item) => {

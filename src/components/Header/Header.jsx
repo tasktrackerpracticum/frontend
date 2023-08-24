@@ -22,7 +22,6 @@ export default function Header({ active, setActive, onLogout }) {
     <header className='header'>
       <NavLink to='/' className='header__container'>
         <img className='header__logo' src={logo} alt='logo' />
-        <h2 className='header__title'>Лого</h2>
       </NavLink>
       <SearchForm />
       <div className='header__link-container'>

@@ -3,11 +3,9 @@ function checkResponse(res) {
 		const json =  res.json();
     return json;
   }
-  return res.json().then((err) => Promise.reject(err));
+  return Promise.reject(res.status);
 };
 
 const request = (url, options) => fetch(url, options).then(checkResponse);
 
 export default request;
-
-

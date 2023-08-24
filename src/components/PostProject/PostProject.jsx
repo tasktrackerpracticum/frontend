@@ -33,9 +33,9 @@ export default function PostProject({
                 fSize={10}
               />
             )}
-            <div className='postProject__creator'>
+            <p className='postProject__creator'>
               {creator?.first_name} {creator?.last_name}
-            </div>
+            </p>
           </div>
           <div
             className={

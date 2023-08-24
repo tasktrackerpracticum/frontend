@@ -8,46 +8,40 @@
     align-items: center;
     background: #FFFFFF;
     cursor: pointer;
-
+    transition: $hoverTransition;
+    
     &:hover {
-      background: #9A7F6633;
+      background: $hoverProject;;
     }
-  
 
   &__list-name {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 31px;
-    color: #2F261B;
+    @include reset;
+    @include text-format(500, 20px, 26px);
+    color: $mainTextColor;
+    min-width: 360px;
 
     &:nth-child(1) {
-      width: 230px;
-      padding: 0 32px;
+      padding-left: 32px;
     }
 
-    &:nth-child(2) {
-      width: 200px;
-      padding: 0 32px;
-      font-size: 20px;
-      font-weight: 400;
+    &:nth-child(n+2):nth-child(-n+3) {
+      min-width: 184px;
+      padding-left: 24px;
+      @include text-format(400, 20px, 26px);
     }
-    &:nth-child(3) {
-      width: 250px;
-      font-size: 20px;
-      font-weight: 400;
-    }
+
     &:nth-child(4) {
-      width: 330px;
+      min-width: 266px;
+      padding-left: 24px;
       display: flex;
-    justify-content: flex-start;
     }
-    &:nth-child(5) {
-    display: flex;
-    justify-content: flex-end;
-      width: 125px;
-    }
-   
 
+    &:nth-child(5) {
+      display: flex;
+      min-width: 125px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
   }
 
   &__list-status-active {

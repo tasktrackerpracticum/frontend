@@ -3,24 +3,25 @@
 
 .task {
   @include reset;
-  height: 120px;
-  width: 277px;
-  background-color: $cardColor;
+  min-height: 107px;
+  background-color: $colorTask;
   border-radius: $borderRadiusTask;
+  border: $borderTask;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  box-shadow: $boxShadowTask;
+  transition: $hoverTransition;
+  
+  &:hover {
+    background: $hoverTask;
+  }
 
   &__header {
     @include reset;
-    @include text-format(500, 16px, 20px);
-    width: 248px;
-    color: #8A8A8A;
+    @include text-format(500, 16px, 20.8px);
+    color: $mainTextColor;
     text-align: left;
-    padding: 10px 0;
-    margin: 0 auto;
-
-
+    padding: 16px 16px 40px 16px;
   }
   &__content {
     display: flex;
@@ -31,6 +32,7 @@
 
   &__timeContainer {
     @include reset;
+    color: $secondTextColor;
 
   }
 }

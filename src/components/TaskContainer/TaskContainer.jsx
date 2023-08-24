@@ -24,7 +24,7 @@ export default function TaskContainer({ boradHeader, column, openTaskCreate }) {
     <section className="taskContainer" ref={drop} style={{opacity}}>
       <div className="taskContainer__content"> 
       <h2 className="taskContainer__header">{ boradHeader }</h2>
-      {boradHeader === 'Беклог' && <button className="taskContainer__button" onClick={openTaskCreate}>Новая задача</button>}
+      {boradHeader === 'Беклог' && <button className="taskContainer__button" onClick={openTaskCreate}>+ Новая задача</button>}
       <ul className="taskContainer__tasks">
         {tasks && (tasks.filter(task => task.column === column).map((item, index) => {
           return (
