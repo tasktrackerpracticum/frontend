@@ -3,7 +3,8 @@ import { stringType } from '../../constatnts/prop-types';
 export default function Deadline({ start, finish }) {
   return (
     <section className='deadline'>
-      Начало:  {start}  Дедлайн: {finish}
+      <div className="deadline__title">Начало:  {start}  </div>
+      <div className="deadline__title">Дедлайн: {finish} </div>
     </section>
   );
 }

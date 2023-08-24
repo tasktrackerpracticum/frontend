@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { objectType } from '../../constatnts/prop-types';
+import { arrayType } from '../../constatnts/prop-types';
 import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
 import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 
@@ -13,7 +13,7 @@ function TeamProject({ users }) {
           <div className='teamProject__avatar'>
             {users.slice(0, 3).map((item) => {
               return (
-                <div key={item.id} className='teamProject__avatar-icon'>
+                <div key={item.user.id} className='teamProject__avatar-icon'>
                   {item.user.photo ? (
                     <AvatarPic pic={item.user.photo} size={32} />
                   ) : (
@@ -40,5 +40,5 @@ function TeamProject({ users }) {
 export default TeamProject;
 
 TeamProject.propTypes = {
-  users: objectType,
+  users: arrayType,
 };

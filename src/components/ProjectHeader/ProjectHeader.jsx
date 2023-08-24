@@ -1,23 +1,73 @@
 import TeamProject from '../TeamProject/TeamProject';
-import Deadline from '../Deadline/Deadline.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import React, { Fragment } from 'react';
 import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
 import AvatarPic from '../../ui/AvatarUser/AvatarPic';
+import InputProject from './InputProject';
+import { useForm } from 'react-hook-form';
+import { updateProjectId } from '../../services/projectsSlice';
 
 export default function ProjectHeader() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { id } = useParams();
   const { projects } = useSelector((state) => state.projects);
   const project = projects.find((item) => item.id === Number(id));
   const creator = project?.users.find((item) => item.role == 'pm');
 
+  console.log(project);
+  const project_id = project?.id;
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    handleActionChange({ project_id, data });
+    closeInput();
+  };
+
+  function handleActionChange({ project_id, data }) {
+    dispatch(updateProjectId({ project_id, data }));
+  }
+
+  const [openDescription, setOpenDescription] = React.useState(false);
+  const [openDateStart, setOpenDateStart] = React.useState(false);
+  const [openDateFinish, setOpenDateFinish] = React.useState(false);
+
+  function openInputDateFinish() {
+    reset();
+    setOpenDateFinish(!openDateFinish);
+  }
+
+  function openInputDescription() {
+    reset();
+    setOpenDescription(!openDescription);
+  }
+  function openInputDateStart() {
+    reset();
+    setOpenDateStart(!openDateStart);
+  }
+
+  function closeInput() {
+    setOpenDescription(false);
+    setOpenDateStart(false);
+    setOpenDateFinish(false);
+  }
+
   return (
     <Fragment>
       {project && (
         <div className='projectHeader'>
-          <div className='projectHeader__content'>
+          <form
+            className='projectHeader__content'
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <h2 className='projectHeader__header'>
               {project.title}
               <div
@@ -30,14 +80,72 @@ export default function ProjectHeader() {
                 {project.is_active ? 'Активен' : 'Завершен'}
               </div>
             </h2>
-            <div className="projectHeader__description">+ Описание</div>
+            {openDescription ? (
+              <InputProject
+                isOpen={openInputDescription}
+                value={project.description}
+                title={'Описание проекта'}
+                inputType={'text'}
+                register={register}
+                dataType={'description'}
+                isMaxLength={500}
+                isMinLength={5}
+                errors={errors}
+              />
+            ) : (
+              <div
+                className='projectHeader__description'
+                onClick={openInputDescription}
+              >
+                {' '}
+                {project.description !== ''
+                  ? project.description
+                  : '+ Добавить описание'}
+              </div>
+            )}
+
             <div className='projectHeader__container'>
-              <p className='projectHeader__projectTimeline'>
-                <Deadline
-                  start={project.date_start}
-                  finish={project.date_finish}
-                />
-              </p>
+              <div className='projectHeader__container-date'>
+                {openDateStart ? (
+                  <InputProject
+                    isOpen={openInputDateStart}
+                    value={project.date_start}
+                    title={'Начало'}
+                    inputType={'date'}
+                    register={register}
+                    dataType={'date_start'}
+                    errors={errors}
+                  />
+                ) : (
+                  <div
+                    className='projectHeader__projectTimeline'
+                    onClick={openInputDateStart}
+                  >
+                    Начало:
+                    {project.date_start}
+                  </div>
+                )}
+                Дедлайн:
+                {openDateFinish ? (
+                  <InputProject
+                    isOpen={openInputDateFinish}
+                    value={project.date_finish}
+                    title={'Дедлайн'}
+                    inputType={'date'}
+                    register={register}
+                    dataType={'date_finish'}
+                    errors={errors}
+                  />
+                ) : (
+                  <div
+                    className='projectHeader__projectTimeline'
+                    onClick={openInputDateFinish}
+                  >
+                    {project.date_start}
+                  </div>
+                )}
+              </div>
+
               <div className='projectHeader__container-creator'>
                 Автор:
                 <div className='projectHeader__creator'>
@@ -60,7 +168,7 @@ export default function ProjectHeader() {
                 Команда: <TeamProject users={project.users} />
               </div>
             </div>
-          </div>
+          </form>
           <button
             className='projectHeader__button'
             onClick={() => navigate('/')}

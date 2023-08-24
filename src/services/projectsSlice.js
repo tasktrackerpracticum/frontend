@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getProjects, createProject } from '../utils/ProjectsApi';
+import {
+  getProjects,
+  createProject,
+  updateProject,
+} from '../utils/ProjectsApi';
 import { addUserInProject } from '../utils/UsersApi';
 
 export const fetchProjects = createAsyncThunk(
@@ -22,12 +26,11 @@ export const createNewProjects = createAsyncThunk(
       date_start: data.date_start ? data.date_start : null,
       date_finish: data.date_finish ? data.date_finish : null,
       is_active: true,
-			users: data.users
-
+      users: data.users,
     };
     try {
-      const response = await createProject(newProject)
-			return response;
+      const response = await createProject(newProject);
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -51,6 +54,18 @@ export const addUserProject = createAsyncThunk(
   },
 );
 
+export const updateProjectId = createAsyncThunk(
+  'projects/updateProjectId',
+  async ({ project_id, data }, { rejectWithValue }) => {
+    try {
+      const response = await updateProject({ project_id, data });
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
@@ -61,7 +76,7 @@ const projectsSlice = createSlice({
   },
   reducers: {
     addUsersToCreateReducer(state, action) {
-			state.listUsersToCreateProject = action.payload;
+      state.listUsersToCreateProject = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -79,7 +94,7 @@ const projectsSlice = createSlice({
         state.status = 'rejected';
         state.error = action.payload;
       })
-			.addCase(createNewProjects.pending, (state) => {
+      .addCase(createNewProjects.pending, (state) => {
         state.status = 'loading';
         state.error = null;
       })
@@ -89,6 +104,31 @@ const projectsSlice = createSlice({
         state.error = null;
       })
       .addCase(createNewProjects.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
+      })
+      .addCase(updateProjectId.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(updateProjectId.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.projects = state.projects.map((item) => {
+          if (item.id == action.payload.id) {
+            item = action.payload;
+          }
+          return item;
+        });
+
+				// state.projects = [
+        //   ...state.projects.filter((item) => item.id !== action.payload.id),
+        //   action.payload,
+        // ];
+
+        state.status = 'resolved';
+        state.error = null;
+      })
+      .addCase(updateProjectId.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.payload;
       });
