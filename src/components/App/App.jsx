@@ -34,7 +34,6 @@ function App() {
 //Запрос токена с админскими данными временный. Убрать после настройки авторизации
   useEffect(() => {
     dispatch(fetchToken())
-    dispatch(fetchToken())
     dispatch(fetchUsers());
     dispatch(fetchProjects());
   }, [dispatch]);
