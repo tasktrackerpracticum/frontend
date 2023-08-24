@@ -14,6 +14,7 @@ export default function Projects({ openProjectCreate }) {
   
   console.log(projects)
 
+
   return (
     <section className='projects'>
       <div className='projects__wrap'>

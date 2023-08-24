@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import InputSelect from '../InputSelect/InputSelect';
 import { useFormContext } from 'react-hook-form';
@@ -17,6 +16,7 @@ function InputField({ active, setActive }) {
   const {
     watch,
     register,
+    reset,
     formState: { errors },
   } = useFormContext();
 
@@ -64,6 +64,7 @@ function InputField({ active, setActive }) {
   const closeModal = (event) => {
     event.preventDefault();
     setActive(!active);
+    reset();
   };
 
   const [openDescriptionInput, setOpenDescriptionInput] = useState(false);
