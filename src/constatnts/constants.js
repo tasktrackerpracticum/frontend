@@ -2,11 +2,9 @@ import uuid from 'react-uuid';
 
 const baseUrl = 'https://taksa-tracker.ru';
 
-export const RESET_PASSWORD_API = `${baseUrl}/users/reset_password/`;
+export const RESET_PASSWORD_API = `${baseUrl}/api/v1/users/reset_password/`;
 // ------/token
 export const TOKEN_CREATE_API = `${baseUrl}/jwt/create/`;
-// ------/auth
-export const REGISTER_API = `${baseUrl}/users/`;
 // ------/user
 export const USERS_API = `${baseUrl}/api/v1/users`; //Посмотреть в swgger
 export const USER_ME_API = `${baseUrl}/api/v1/users/me/`; //Посмотреть в swgger
@@ -24,7 +22,8 @@ export const FORGOT_PASSWORD = '/forgot-password';
 export const PROJECTS = '/projects';
 // ------/текст
 export const USER_IS_NOT_EXIST =
-  'Извините, но такойго пользователя нет в нашей базе. Попробуйте ввести свой email ещё раз';
+  'Извините, но такого пользователя нет в нашей базе. Попробуйте ввести свой email ещё раз';
+export const UNAUTHORIZED = 'Неверный email или пароль';
 // ------/ссылки для бокового меню
 export const items = [
   { value: 'Создать проект', href: '/' },
