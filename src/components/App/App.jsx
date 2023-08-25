@@ -10,7 +10,7 @@ import CreateProject from '../CreateProject/CreateProject';
 import CreateTask from '../CreateTask/CreateTask';
 import ForgetPassword from '../ForgetPassword/ForgetPassword';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchToken } from '../../services/profileSlice';
+//import { fetchToken } from '../../services/profileSlice';
 import { PROJECTS, SIGN_IN, FORGOT_PASSWORD } from '../../constatnts/constants.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Projects from '../Projects/Projects';
@@ -29,11 +29,11 @@ function App() {
   const dispatch = useDispatch();
   const { status, error } = useSelector(state => state.profile)
 
-  //  const email = "admin@admin.com";
-  //  const password = "admin";
+   // const email = "admin@admin.com";
+   // const password = "admin";
 //Запрос токена с админскими данными временный. Убрать после настройки авторизации
   useEffect(() => {
-    dispatch(fetchToken())
+   // dispatch(fetchToken({email, password}))
     dispatch(fetchUsers());
     dispatch(fetchProjects());
   }, [dispatch]);
