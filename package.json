@@ -2,7 +2,7 @@
 	"name": "",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://taksa-tracker.ru/",
+	"homepage": "https://tasktrackerpracticum.github.io/frontend/",
 	"dependencies": {
 		"@emotion/styled": "^11.11.0",
 		"@mui/material": "^5.14.5",
