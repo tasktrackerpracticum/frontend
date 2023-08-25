@@ -121,11 +121,11 @@ export default function ProjectHeader() {
                     className='projectHeader__projectTimeline'
                     onClick={openInputDateStart}
                   >
-                    Начало:
+                    Начало: &nbsp;
                     {project.date_start}
                   </div>
                 )}
-                Дедлайн:
+
                 {openDateFinish ? (
                   <InputProject
                     isOpen={openInputDateFinish}
@@ -141,7 +141,9 @@ export default function ProjectHeader() {
                     className='projectHeader__projectTimeline'
                     onClick={openInputDateFinish}
                   >
-                    {project.date_start}
+                    {' '}
+                    Дедлайн: &nbsp;
+                    {project.date_finish}
                   </div>
                 )}
               </div>
