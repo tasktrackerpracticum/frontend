@@ -1,0 +1,56 @@
+.main {
+  display: flex;
+  margin: 0 40px 40px;
+  max-height: 100vh;
+  gap: 40px;
+  // scrollbar-width: none;
+  justify-content: center;
+  
+
+  &__container {
+    background: #F5F1ED;
+    border-radius: 40px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-height: 840px;
+    max-width: 1000px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &__container-button {
+    background-image: url(../../images/arrow_right.svg);
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+    background-position: center;
+    padding: 0;
+    border-radius: 40px;
+    background-color: rgba(47, 38, 27, 0.40);
+    border: none;
+    position: fixed;
+    right: 72px;
+    top: calc(100vh / 2);
+    transition: background-color ease-in-out .2s;
+    cursor: pointer;
+
+    &_type_left {
+      left: 400px;
+    }
+
+    &:hover {
+      background-color: rgba(47, 38, 27, 0.8);
+    }
+
+    &:disabled{
+      display: none;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+}

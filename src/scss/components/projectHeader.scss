@@ -1,0 +1,167 @@
+@import '../utils/mixins.scss';
+
+.projectHeader {
+  @include reset;
+  margin: 40px 40px 0 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 56px;
+
+  &__content {
+    width: 832px;
+  }
+
+  &__button {
+    width: 19px;
+    height: 19px;
+    border: none;
+    outline: none;
+    background: url(../../images/close.svg) no-repeat;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__button-description {
+    @include reset;
+    @include text-format(400, 16px, 20.8px);
+    height: 48px;
+    border: none;
+    background: transparent;
+    color: $thirdTextColor;
+    transition: $hoverTransition;
+
+      &:hover {
+        color: $mainTextColor;
+      }
+  }
+
+  &__header {
+    @include reset;
+    @include text-format(500, 35px, 24px);
+    display: flex;
+    gap: 8px;
+    padding-bottom: 16px;
+  }
+
+  &__status-actived {
+    @include reset;
+    @include text-format(500, 16px, 24px);
+    font-size: 14px;
+    background: #f8d57e66;
+    border-radius: 4px;
+    border: 1px;
+    width: 88px;
+    height: 26px;
+    text-align: center;
+  }
+
+  &__status-closed{
+    @include reset;
+    @include text-format(500, 16px, 24px);
+    font-size: 14px;
+    background: #F1F1F1;
+    border-radius: 4px;
+    border: 1px;
+    width: 88px;
+    height: 26px;
+    text-align: center;
+  }
+
+  &__container {
+    @include reset;
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+    font-size: 20px;
+    color: #9D8E80;
+  }
+  &__container-date {
+    width: 380px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #9D8E80;
+  }
+  &__container-creator {
+    width: 280px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__description {
+    color: #9D8E80;
+    font-weight: 400;
+    font-size: 16px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+    
+  }
+
+  &__creator {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+ 
+  }
+
+  &__creator-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &__projectTimeline {
+    display: flex;
+    gap: 8px;
+    @include reset;
+    @include text-format(500, 14px, 20.8px);
+    white-space: nowrap;
+    color: $thirdTextColor;
+  }
+
+  &__projectDate {
+    @include reset;
+    @include text-format(400, 16px, 20.8px);
+    white-space: nowrap;
+    color: $thirdTextColor;
+  }
+
+  &__team {
+    @include reset;
+    @include text-format(500, 14px, 20.8px);
+    white-space: nowrap;
+    color: $thirdTextColor;
+    width: 90px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

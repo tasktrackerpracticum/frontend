@@ -1,0 +1,132 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+ visibility: hidden;
+  transition: opacity 0.4s linear;
+
+
+  &__active {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+   
+  }
+
+  &__content {
+    border-radius: 16px;
+    background-color: #ffffff;
+    width: 480px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 40px;
+    opacity: 1;
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: row;
+
+  }
+  &__title {
+    margin: 0 60px;
+  }
+
+
+  &__input {
+    width: 360px;
+    height: 24px;
+    border-bottom: 1px solid;
+    outline: none;
+    opacity: 0;
+    display: none;
+    z-index: -1;
+    
+  }
+  &__avatar-input{
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+
+  &__close {
+    cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 368px;
+    gap: 24px;
+  }
+
+  &__btn-submit {
+    height: 48px;
+    border-radius: 100px;
+    gap: 4px;
+    padding: 12px, 24px, 12px, 24px;
+    background-color: #F8D57E;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  &__btn-cancel {
+    font-size: 20px;
+    font-weight: 500;
+    height: 48px;
+    border-radius: 100px;
+    border: 1px;
+    padding: 12px, 24px, 12px, 24px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  &__load-photo {
+    width: 368px;
+    height: 48px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #F8D57E;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+}
+
+

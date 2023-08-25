@@ -1,0 +1,25 @@
+$mainColor: #FAF8F6;
+$secondColor: #F5F1ED;
+
+$mainTextColor: #2F261B;
+$secondTextColor: #8A8A8A;
+$thirdTextColor: #9D8E80;
+
+$mainButtonColor: #f8d57e;
+
+//Task
+$colorTask: #fff;
+$colorTaskAttention: #FFEBE4;
+$colorTaskFail: #F1F1F1;
+$boxShadowTask: 0px 4px 24px 0px rgba(47, 38, 27, 0.04), 0px 4px 16px 0px rgba(47, 38, 27, 0.04);
+$borderTask: 1px solid rgba(47, 38, 27, 0.20);
+$borderTaskAttention: 1px solid rgba(167, 0, 0, 0.20);
+$borderTaskFail: 1px solid rgba(138, 138, 138, 0.40);
+$borderRadiusTaskContainer: 32px;
+$borderRadiusTask: 16px;
+$hoverTask: #9A7F6633;
+$hoverTransition: 0.3s;
+
+//Project
+$boxShadowProject: $boxShadowTask;
+$hoverProject: $hoverTask;

@@ -1,0 +1,23 @@
+# http://editorconfig.org
+
+# A special property that should be specified at the top of the file outside of
+# any sections. Set to true to stop .editor config file search on current file
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+
+[*.{js, jsx}]
+indent_size = 2
+indent_style = tab
+charset = utf-8
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Denotes whether file should end with a newline
+# Possible values - true, false
+insert_final_newline = true
