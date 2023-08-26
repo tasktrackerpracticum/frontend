@@ -16,7 +16,6 @@ export default function ProjectHeader() {
   const project = projects.find((item) => item.id === Number(id));
   const creator = project?.users.find((item) => item.role == 'pm');
 
-  console.log(project);
   const project_id = project?.id;
 
   const {
