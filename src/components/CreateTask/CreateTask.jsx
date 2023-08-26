@@ -33,23 +33,12 @@ function CreateTask({ active, setActive }) {
 
 
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    dispatch(createNewTask({  projectId }));
+  const onSubmit = (data) => {
+    const title = data.title
+    const deadline = data.date_finish
+    dispatch(createNewTask({ title, deadline, projectId }));
     setActive(!active);
   };
-
-
-
-
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(createNewTask({ title, deadline, projectId }));
-  //   setActive(!active);
-  // };
-
- 
 
   return (
     <section className={active ? 'createProject__active' : 'createProject'}>
