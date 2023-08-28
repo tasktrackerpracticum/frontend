@@ -16,7 +16,6 @@ export default function ProjectHeader() {
   const project = projects.find((item) => item.id === Number(id));
   const creator = project?.users.find((item) => item.role == 'pm');
 
-  console.log(project);
   const project_id = project?.id;
 
   const {
@@ -117,13 +116,13 @@ export default function ProjectHeader() {
                     errors={errors}
                   />
                 ) : (
-                  <div
+                  <p
                     className='projectHeader__projectTimeline'
                     onClick={openInputDateStart}
                   >
                     Начало: &nbsp;
-                    {project.date_start}
-                  </div>
+                      <span className='projectHeader__projectDate'>{project.date_start ? project.date_start.split("-").reverse().join("-").replaceAll("-", ".") : '---'}</span>
+                  </p>
                 )}
 
                 {openDateFinish ? (
@@ -137,14 +136,14 @@ export default function ProjectHeader() {
                     errors={errors}
                   />
                 ) : (
-                  <div
+                  <p
                     className='projectHeader__projectTimeline'
                     onClick={openInputDateFinish}
                   >
                     {' '}
                     Дедлайн: &nbsp;
-                    {project.date_finish}
-                  </div>
+                    <span className='projectHeader__projectDate'>{project.date_finish ? project.date_finish.split("-").reverse().join("-").replaceAll("-", ".") : '---'}</span>
+                  </p>
                 )}
               </div>
 

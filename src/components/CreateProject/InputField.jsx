@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import InputSelect from '../InputSelect/InputSelect';
 import { useFormContext } from 'react-hook-form';
-import { activeType, boolType } from '../../constatnts/prop-types';
+import { activeType, boolType, stringType } from '../../constatnts/prop-types';
 import { useSelector } from 'react-redux';
 import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
 import AvatarPic from '../../ui/AvatarUser/AvatarPic';
 import Input from './Input';
 
-function InputField({ active, setActive }) {
+function InputField({ active, setActive, inputPlaceholder, isCreateTask }) {
   const currentUser = useSelector((state) => state.user.user);
   const performers = useSelector(
     (state) => state.projects.listUsersToCreateProject,
@@ -21,6 +21,8 @@ function InputField({ active, setActive }) {
   } = useFormContext();
 
   const form = watch();
+
+  console.log(form)
 
   const [title, setTitle] = useState();
   const [description, setDescription] = useState('+ Добавить описание');
@@ -91,7 +93,7 @@ function InputField({ active, setActive }) {
             value={title}
             onChange={handleNameChange}
             type='text'
-            placeholder='Название проекта'
+            placeholder={inputPlaceholder ? inputPlaceholder : 'Название'}
             {...register('title', {
               required: 'Это поле обязательное',
               maxLength: {
@@ -187,7 +189,7 @@ function InputField({ active, setActive }) {
           )}
 
           <div className='createProject__container-creator'>
-            <h2 className='createProject__subtitle'>Автор</h2>
+            <h2 className='createProject__subtitle createProject__subtitle_type_creator'>Автор</h2>
             <div className='createProject__creator'>
               {currentUser.photo ? (
                 <AvatarPic pic={currentUser.photo} size={24} />
@@ -199,9 +201,7 @@ function InputField({ active, setActive }) {
                   fzie={10}
                 />
               )}
-              <div className='createProject__creator-name'>
-                {currentUser.first_name} {currentUser.last_name}
-              </div>
+              <p className='createProject__creator-name'>Я</p>
             </div>
           </div>
 
@@ -220,9 +220,9 @@ function InputField({ active, setActive }) {
                 className='createProject__performer'
                 onClick={openInputSelect}
               >
-                <div className='createProject__performer-edit-icon' />
+                {/* <div className='createProject__performer-edit-icon' /> */}
                 <div className='createProject__performer-text'>
-                  Добавить исполнителя
+                  + Добавить
                 </div>
               </div>
             </div>
@@ -269,6 +269,12 @@ function InputField({ active, setActive }) {
             </div>
           )}
         </div>
+        {isCreateTask && (
+          <>
+          <h2>Чек лист</h2>
+          <h2>Комментарии</h2>
+          </>
+        )}
       </div>
     </section>
   );
@@ -279,4 +285,6 @@ export default InputField;
 InputField.propTypes = {
   active: boolType,
   setActive: activeType,
+  inputPlaceholder: stringType,
+  isCreateTask: boolType
 };

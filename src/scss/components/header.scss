@@ -12,6 +12,12 @@
 	&__hidden {
 		visibility: hidden;
 	}
+  
+  &__button {
+    @include reset;
+    border: none;
+    background: transparent;
+  }
 
 	&__container {
 		@include reset;

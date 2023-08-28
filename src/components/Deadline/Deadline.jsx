@@ -2,10 +2,9 @@ import { stringType } from '../../constatnts/prop-types';
 
 export default function Deadline({ start, finish }) {
   return (
-    <section className='deadline'>
-      <div className="deadline__title">Начало:  {start}  </div>
-      <div className="deadline__title">Дедлайн: {finish} </div>
-    </section>
+    <span className='deadline'>
+      {start ? start.split("-").reverse().join("-").replaceAll("-", ".") : '---'} - {finish ? finish.split("-").reverse().join("-").replaceAll("-", ".") : '---'}
+    </span>
   );
 }
 

@@ -2,6 +2,7 @@ import { stringType, boolType, objectType } from '../../constatnts/prop-types';
 import Deadline from '../Deadline/Deadline';
 import AvatarLetter from '../../ui/AvatarUser/AvatarLetter';
 import AvatarPic from '../../ui/AvatarUser/AvatarPic';
+import { useSelector } from 'react-redux';
 
 export default function PostProject({
   title,
@@ -13,6 +14,9 @@ export default function PostProject({
   const usersProject = structuredClone(users);
   const creator = usersProject?.user;
   const photo = creator?.photo;
+  const creatorId = usersProject?.user.id;
+
+  const { id } = useSelector((state) => state.user.user);
 
   return (
     <form className='postProject'>
@@ -34,7 +38,7 @@ export default function PostProject({
               />
             )}
             <p className='postProject__creator'>
-              {creator?.first_name} {creator?.last_name}
+            {creatorId === id ? 'Я' : `${creator?.first_name} ${creator?.last_name}`}
             </p>
           </div>
           <div
