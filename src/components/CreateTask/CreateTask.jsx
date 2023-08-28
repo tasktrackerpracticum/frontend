@@ -1,5 +1,5 @@
 import { boolType, functionType } from '../../constatnts/prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createNewTask } from '../../services/tasksSlice';
 import { useLocation } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -8,11 +8,7 @@ import InputField from '../CreateProject/InputField';
 function CreateTask({ active, setActive }) {
   const location = useLocation();
   const projectId = parseInt(location.pathname.match(/\d+/));
-
-  const currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
-
-  console.log(currentUser)
 
   const methods = useForm({
     defaultValues: {
@@ -25,12 +21,10 @@ function CreateTask({ active, setActive }) {
   });
 
 
-
   // const [isActiveListPerformer, setActliveListPerformer] = useState(false);
   // const [title, setTitle] = useState();
   // const [deadline, setDeadline] = useState('');
   // const [disabled, setDisabled] = useState(true);
-
 
 
   const onSubmit = (data) => {

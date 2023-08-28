@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createNewProjects } from '../../services/projectsSlice';
 import InputField from './InputField';
 import { useForm, FormProvider } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
 
 function CreateProject({ active, setActive }) {
-  const performersList = useSelector(
-    (state) => state.projects.listUsersToCreateProject,
-  );
+  const [disableButton, isDisableButton] = useState(true)
+  const performersList = useSelector((state) => state.projects.listUsersToCreateProject);
 
   const methods = useForm({
     defaultValues: {
@@ -19,6 +19,13 @@ function CreateProject({ active, setActive }) {
       users: [],
     },
   });
+
+  //Блокирует кнопку ТОЛЬКО если не добавлены исполнители. Не понятно, как вытащить стейт из формы
+  useEffect(() => {
+    if (performersList.length !== 0) {
+      isDisableButton(false)
+    }
+  }, [performersList.length])
 
 
   const onSubmit = (data) => {
@@ -35,7 +42,12 @@ function CreateProject({ active, setActive }) {
         <form className='createProject__form' onSubmit={methods.handleSubmit(onSubmit)}>
           <InputField active={active} setActive={setActive} inputPlaceholder={'Новый проект'}/>
           <div className='createProject__container-btn'>
-            <button className='createProject__submit-btn' type='submit'>+ Создать проект</button>
+            <button
+              className='createProject__submit-btn'
+              disabled={disableButton ? true : false}
+              type='submit'>
+                + Создать проект
+              </button>
           </div>
         </form>
       </FormProvider>

@@ -120,7 +120,7 @@ const projectsSlice = createSlice({
           return item;
         });
 
-				// state.projects = [
+        // state.projects = [
         //   ...state.projects.filter((item) => item.id !== action.payload.id),
         //   action.payload,
         // ];

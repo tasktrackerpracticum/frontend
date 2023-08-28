@@ -22,7 +22,7 @@ function InputField({ active, setActive, inputPlaceholder, isCreateTask }) {
 
   const form = watch();
 
-  console.log(form)
+  // console.log(form)
 
   const [title, setTitle] = useState();
   const [description, setDescription] = useState('+ Добавить описание');
