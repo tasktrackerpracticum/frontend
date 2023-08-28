@@ -201,9 +201,7 @@ function InputField({ active, setActive, inputPlaceholder, isCreateTask }) {
                   fzie={10}
                 />
               )}
-              <div className='createProject__creator-name'>
-                {currentUser.first_name} {currentUser.last_name}
-              </div>
+              <p className='createProject__creator-name'>Я</p>
             </div>
           </div>
 
