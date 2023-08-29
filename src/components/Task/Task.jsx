@@ -1,18 +1,25 @@
-import { numberType, taskContainerType } from '../../constatnts/prop-types';
+import { arrayType, numberType, taskContainerType } from '../../constatnts/prop-types';
 import { useDrag, useDrop } from 'react-dnd';
 import { useRef } from 'react';
 import { moveTask } from '../../services/tasksSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import TaskStatus from '../TaskStatus/TaskStatus';
+import TeamProject from '../TeamProject/TeamProject';
 
 export default function Task({ title, deadline, id, taskColumn, index }) {
   const dispatch = useDispatch();
   const ref = useRef(null);
+  const users = useSelector(state => state.tasks.tasks[0].users);
 
+  let taskUsers = [];
+  for (let i = 0; i < users.length; ++i ) {
+    taskUsers.push({ user: users[i] })
+  }
+
+//Отрефакторить и убрать дату для опредления просроченной таски, т.к. дублирование в TaskStatus
   const deadlineDate = new Date(deadline);
   const todayDate = new Date();
-  const targetDate = (deadlineDate - todayDate)/ (1000 * 60 * 60) //разница в часах
-
-  // console.log('index', index)
+  const targetDateDays = (deadlineDate - todayDate) / (1000 * 60 * 60 * 24); //разница в днях
 
   const [{ isDrag }, drag] = useDrag({
     type: 'sort_task',
@@ -78,18 +85,13 @@ export default function Task({ title, deadline, id, taskColumn, index }) {
     <article
       ref={ref}
       data-handler-id={handlerId}
-      className='task'
+      className={`task ${targetDateDays < 0 ? 'task__type_expired' : ''}${targetDateDays > 0 && targetDateDays < 1 ? 'task__type_attention' : ''}`}
       style={{ opacity, transition }}
     >
       <h2 className='task__header'>{title}</h2>
       <div className='task__content'>
-        <div className='task__timeContainer'>
-          <div className='task__time-status' />{' '}
-          {/* создать компонент СтатусаЗадачи, состоящий из несколько иконок и меняющих цвет фона  */}
-        {targetDate}
-        </div>
-        <div className='task__team'>...</div>{' '}
-        {/* компонент с отрисовкой Аватарок команды */}
+        <TaskStatus deadline={deadline}/>
+        <TeamProject users={taskUsers} />
       </div>
     </article>
   );
@@ -100,4 +102,5 @@ Task.propTypes = {
   index: numberType,
   taskColumn: taskContainerType,
   id: taskContainerType,
+  taskUsers: arrayType
 };
