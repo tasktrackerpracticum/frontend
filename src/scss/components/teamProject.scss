@@ -29,6 +29,7 @@
             z-index: 3;
         }
     }
+
     &__count {
         width: 70px;
         max-height: 17px;
@@ -39,4 +40,8 @@
         font-weight: 500;
         line-height: 31px;
     }
+
+    &__count_typeNone {
+      display: none;
+  }
 }

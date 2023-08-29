@@ -27,7 +27,7 @@ function TeamProject({ users }) {
               );
             })}
           </div>
-          <div className='teamProject__count'>
+          <div className={`teamProject__count ${usersProject.length <= 3 ? 'teamProject__count_typeNone' : ''}`}>
             {' '}
             {usersProject.length <= 3 ? '' : `+ ${usersProject.length - 3}`}
           </div>

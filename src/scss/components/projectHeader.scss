@@ -96,6 +96,8 @@
     flex-direction: row;
     gap: 8px;
     cursor: pointer;
+    transition: $hoverTransition;
+    
     &:hover {
       opacity: 0.8;
     }
@@ -109,6 +111,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+
     &:hover {
       opacity: 0.8;
     }
@@ -139,6 +142,12 @@
     @include text-format(500, 14px, 20.8px);
     white-space: nowrap;
     color: $thirdTextColor;
+    cursor: pointer;
+    transition: $hoverTransition;
+        
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &__projectDate {
@@ -160,6 +169,8 @@
     font-weight: 500;
     font-size: 16px;
     cursor: pointer;
+    transition: $hoverTransition;
+
     &:hover {
       opacity: 0.8;
     }

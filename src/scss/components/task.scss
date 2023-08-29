@@ -16,6 +16,16 @@
     background: $hoverTask;
   }
 
+  &__type_expired {
+    background-color: $colorTaskFail;
+    border: $borderTaskFail;
+  }
+
+  &__type_attention {
+    background-color: $colorTaskAttention;
+    border: $borderTaskAttention;
+  }
+
   &__header {
     @include reset;
     @include text-format(500, 16px, 20.8px);
@@ -26,8 +36,8 @@
   &__content {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding-bottom: 15px;
+    justify-content: space-between;
+    padding: 0 16px 16px 16px;
   }
 
   &__timeContainer {

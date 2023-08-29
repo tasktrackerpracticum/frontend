@@ -37,9 +37,7 @@ export default function Header({ active, setActive, onLogout }) {
           )}
         </div>
         <div className='header__exit'>
-          <button onClick={onLogout} className="header__exit-btn">
-            <img src={exit} alt='exit' className='header__exit-icon' />
-          </button>
+          <button className='header__button' onClick={onLogout}><img src={exit} alt='exit' className='header__exit-icon' /></button>
         </div>
       </div>
     </header>
