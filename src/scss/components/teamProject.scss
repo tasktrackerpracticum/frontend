@@ -1,0 +1,47 @@
+.teamProject {
+    max-width: 260px;
+    max-height: 35px;
+    display: flex;
+    gap: 8px;
+
+    &__avatar {
+        max-width: 72px;
+        max-height: 32px;
+        display: flex;
+        position: relative;
+    }
+
+    &__avatar-icon {
+        position: relative;
+        max-width: 32px;
+        max-height: 32px;
+        border-radius: 50%;   
+       border: 0.67px solid #EAE2DA;
+       z-index: 5;
+
+        &:nth-child(2) {
+            left: -20%;
+            z-index: 4;
+        }
+
+        &:nth-child(3) {
+            left: -35%;
+            z-index: 3;
+        }
+    }
+
+    &__count {
+        width: 70px;
+        max-height: 17px;
+        display: flex;
+        flex-direction: row;
+        color: #8A8A8A;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 31px;
+    }
+
+    &__count_typeNone {
+      display: none;
+  }
+}

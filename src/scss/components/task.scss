@@ -1,0 +1,48 @@
+@import "../utils/mixins.scss";
+@import "../utils/variable.scss";
+
+.task {
+  @include reset;
+  min-height: 107px;
+  background-color: $colorTask;
+  border-radius: $borderRadiusTask;
+  border: $borderTask;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $boxShadowTask;
+  transition: $hoverTransition;
+  
+  &:hover {
+    background: $hoverTask;
+  }
+
+  &__type_expired {
+    background-color: $colorTaskFail;
+    border: $borderTaskFail;
+  }
+
+  &__type_attention {
+    background-color: $colorTaskAttention;
+    border: $borderTaskAttention;
+  }
+
+  &__header {
+    @include reset;
+    @include text-format(500, 16px, 20.8px);
+    color: $mainTextColor;
+    text-align: left;
+    padding: 16px 16px 40px 16px;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 16px 16px;
+  }
+
+  &__timeContainer {
+    @include reset;
+    color: $secondTextColor;
+
+  }
+}

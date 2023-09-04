@@ -1,0 +1,143 @@
+.input {
+  width: 432px;
+  min-height: 176px;
+  max-height: 376px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  border: 1px solid #8a8a8a66;
+
+  &__title {
+    width: 136px;
+    height: 10px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+  &__form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__container {
+    width: 400px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    background: white;
+    align-items: center;
+    justify-content: space-around;
+    gap: 100px;
+
+    &_description {
+      align-items: flex-start;
+      height: 120px;
+      padding-top: 5px;
+    }
+    
+    &_errors {
+      border: 1px solid #A70000;
+    }
+
+  }
+  &__input-text {
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    height: 95%;
+
+    &_description {
+      width: 260px;
+      resize: none;
+    }
+  }
+  &__buttons {
+    max-width: 400px;
+    max-height: 40px;
+    display: flex;
+    gap: 16px;
+    margin: 24px 16px;
+  }
+  &__btn-submit {
+    width: 192px;
+    height: 32px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: #f8d57e;
+    border: none;
+    cursor: pointer;
+  
+    &:disabled{
+      background-color: #FFFFFF;
+      border: 1px solid #F8D57E;
+      transition: 0.3;
+      opacity: 0.3;
+    }
+    &:disabled:hover {
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+    &:enabled {
+      background-color: #f8d57e;
+      transition: 0.3;
+    }
+    &:enabled:hover {
+     opacity: 0.5;
+     transition: opacity 0.2s ease;
+    }
+  }
+  &__btn-cancel {
+    width: 192px;
+    height: 32px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: #ffffff;
+    border: 1px solid #F8D57E;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.5;
+        transition: opacity 2s ;
+    }
+  }
+  &__close {
+    width: 12px;
+    height: 12px;
+    background-image: url('../../images/close.svg');
+    border: none;
+    background-size: cover;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.6;
+    }
+    &_errors {
+      background-image: url('../../images/close-errors.svg');
+    }
+  
+  }
+
+  &__error {
+    padding-top: 5px;
+width: 392px;
+font-size: 14px;
+font-weight: 400;
+color: #A70000;
+display: flex;
+  }
+}
